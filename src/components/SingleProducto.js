@@ -18,7 +18,7 @@ class SingleProducto extends Component {
     }
 
     obtenerProducto = async () => {
-        let url = `http://lab.besign.com.ve/flamuko/html/api/detail/${this.props.idProducto}`
+        let url = `http://localhost/flamuko/html/api/detail/${this.props.idProducto}`
         await axios(url)
             .then(res => {
                 this.setState({
@@ -30,7 +30,7 @@ class SingleProducto extends Component {
         })
     }
     obtenerLineas = () => {
-        let url = `http://lab.besign.com.ve/flamuko/html/api/show/lineas`
+        let url = `http://localhost/flamuko/html/api/show/lineas`
         axios.get(url)
             .then(res => {
                 this.setState({
@@ -41,7 +41,7 @@ class SingleProducto extends Component {
             })
     }
     obtenerEstados = () => {
-        let url = `http://lab.besign.com.ve/flamuko/html/api/show/estados`
+        let url = `http://localhost/flamuko/html/api/show/estados`
         axios.get(url)
             .then(res => {
                 this.setState({

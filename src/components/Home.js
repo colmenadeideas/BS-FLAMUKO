@@ -43,7 +43,7 @@ class Home extends Component {
             cargando: true
         })
         let producto = this.state.busqueda
-        let url = `http://lab.besign.com.ve/flamuko/html/api/search/all/${producto}`
+        let url = `http://localhost/flamuko/html/api/search/all/${producto}`
         axios.get(url)
             .then(res => {
                 if(isObject(res.data)){
@@ -66,7 +66,7 @@ class Home extends Component {
     }
   
     obtenerLineas = () => {
-        let url = `http://lab.besign.com.ve/flamuko/html/api/show/lineas`
+        let url = `http://localhost/flamuko/html/api/show/lineas`
         axios.get(url)
             .then(res => {
                 this.setState({
@@ -78,7 +78,7 @@ class Home extends Component {
     }
 
     obtenerEstados = () => {
-        let url = `http://lab.besign.com.ve/flamuko/html/api/show/estados`
+        let url = `http://localhost/flamuko/html/api/show/estados`
         axios.get(url)
             .then(res => {
                 this.setState({
