@@ -3,17 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-js-pagination": "^3.0.2",
     "react-paginate": "^6.3.0",
-    "react-router-dom": "^4.4.0",
-    "react-scripts": "2.1.8",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "^3.1.1",
+    "react-transition-group": "^2.6.1",
     "sweetalert2": "^8.3.0",
     "ts-pnp": "^1.0.1",
-    "typescript": "^3.3.3333",
-    "axios": "^0.18.0",
-    "react-transition-group": "^2.6.1"
+    "typescript": "^3.3.3333"
   },
   "scripts": {
     "start": "react-scripts start",
