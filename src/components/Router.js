@@ -16,9 +16,9 @@ class Router extends Component {
                         <Header />
                     </div>
                     <Switch>
-                        <Route exact path="/" component={Principal} />
-                        <Route exact path="/:nombreProducto" render={(props) => {
-                            var nombreProducto = props.location.pathname.replace('/', '')
+                        <Route exact path="/latiendadelpintor" component={Principal} />
+                        <Route exact path="/latiendadelpintor/:nombreProducto" render={(props) => {
+                            var nombreProducto = props.location.pathname.replace('/latiendadelpintor/', '')
                             return ( 
                                 <React.Fragment>
                                     <Home 
@@ -27,8 +27,8 @@ class Router extends Component {
                                 </React.Fragment>
                             )
                         }} />
-                        <Route exact path="/detail/:idProducto" render={(props) => {
-                            const idProducto = props.location.pathname.replace('/detail/', '')
+                        <Route exact path="/latiendadelpintor/detail/:idProducto" render={(props) => {
+                            const idProducto = props.location.pathname.replace('/latiendadelpintor/detail/', '')
                             return (
                                 <SingleProducto 
                                     idProducto={idProducto}
