@@ -26,7 +26,8 @@ class Header extends Component {
                 </div>
                 <div className="col-12 col-sm-12 col-md-9 form1 d-flex align-items-center">
                     {
-                        (this.state.pathname !== "/") 
+                        // console.log(this.state)
+                        (this.state.pathname !== "/latiendadelpintor") 
                             ?   <Buscador />
                             :   ""
                     }
