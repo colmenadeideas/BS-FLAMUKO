@@ -46,7 +46,7 @@ class Buscador extends Component {
         return (
             <React.Fragment>
                 <form id="form-search" className="form-inline" onSubmit={this.handleSubmit}>
-                    <Link to={this.state.busqueda} id="submit" type="submit">
+                    <Link to={`/latiendadelpintor${this.state.busqueda}`} id="submit" type="submit">
                         <input type='text' onChange={this.handleChange}  className="form-control valid" placeholder="Buscar por producto o color" />
                         <button type="submit" className="btn btn-primary" onClick={this.handleClick}><i className="fa fa-search"></i> BUSCAR</button>
                     </Link>

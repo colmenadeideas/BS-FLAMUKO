@@ -3,6 +3,9 @@
     margin: 0;
     font-family: "Source Sans Pro";
 }
+body {
+    overflow-x: hidden;
+}
 
 /* .App {
     display: grid;
