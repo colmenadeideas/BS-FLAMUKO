@@ -54,20 +54,22 @@ class SingleTienda extends Component {
         console.log(busqueda)
     }
     render() { 
-        const {valor} = this.props.tienda
+        var {valor} = this.props.tienda
         const {nombre, direccion, telefono, telefono1} = this.props.tienda.tienda[0]
-        // switch (true) {
-        //     case valor > EXISTENCIA_NIVEL_MEDIO:
-        //         valor = 'high';
-        //         break;
-        //     case valor < EXISTENCIA_NIVEL_BAJO:
-        //         valor = 'low';
-        //         break;
+        const EXISTENCIA_NIVEL_MEDIO = 600
+        const EXISTENCIA_NIVEL_BAJO = 100
+        switch (valor) {
+            case valor > EXISTENCIA_NIVEL_MEDIO:
+                valor = 'high';
+                break;
+            case valor < EXISTENCIA_NIVEL_BAJO:
+                valor = 'low';
+                break;
             
-        //     default:
-        //         valor = 'medium';
-        //         break;
-        // }
+            default:
+                valor = 'medium';
+                break;
+        }
         if (telefono) {
             var codigo = telefono.substr(0, 4)
             var is_cellphone = false
@@ -98,11 +100,15 @@ class SingleTienda extends Component {
         return (  
             <React.Fragment>
                 <div className="col-lg-12 static">
-                    <h6><div className={`availability ${valor}`}></div> {nombre} {valor}</h6>
-                    <small>
-                        <i className="fa fa-map-marker-alt"></i> {direccion}
-                        <br/><br/>
-                    </small>
+                    <h6><div className={`availability ${valor}`}></div> {nombre}</h6>
+                    {
+                        (direccion)
+                            ?   <small>
+                                    <i className="fa fa-map-marker-alt"></i> {direccion}
+                                    <br/><br/>
+                                </small>
+                            :   ""
+                    }
                     <div className="text-right">
                     {
                         (is_cellphone)
