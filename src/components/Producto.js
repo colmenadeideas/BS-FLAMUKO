@@ -6,7 +6,7 @@ const Producto = (props) => {
     const {nombre, id} = props.producto
     return (  
         <div className="col-lg-3 col-md-4 col-sm-6 col-12">
-            <Link className="card-link" to={`/detail/${id}`}>
+            <Link className="card-link" to={`/latiendadelpintor/detail/${id}`}>
                 <div className="card result-card" style={{background: props.color}}>
                     <h4>{nombre}</h4>
                     
