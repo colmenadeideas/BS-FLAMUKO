@@ -3,6 +3,7 @@ import Busqueda from './Busqueda';
 import Cargando from './Cargando';
 import { isObject, isNull } from 'util';
 import axios from 'axios';
+import Buscador from './Buscador';
 
 
 class Home extends Component {
