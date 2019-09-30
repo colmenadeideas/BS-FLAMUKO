@@ -20,6 +20,7 @@ class Header extends Component {
 
     render() { 
         console.log(this.props)
+        console.log(this.state)
         return (  
             <div className='row slide'>   
                 <div className="col-12 col-sm-12 col-md-3">
@@ -28,7 +29,7 @@ class Header extends Component {
                 <div className="col-12 col-sm-12 col-md-9 form1 d-flex align-items-center">
                     {
                         // console.log(this.state.pathname)
-                        (document.location.pathname !== "/latiendadelpintor") 
+                        (this.state.pathname !== "/latiendadelpintor" && this.state.pathname !== "/latiendadelpintor/") 
                             ?   <Buscador />
                             :   ""
                     }
