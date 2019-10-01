@@ -51,11 +51,10 @@ class Login extends Component {
             busqueda: this.props.producto
         }
         console.log(usuario)
-        var duracionCookie = 48 * 3600
-        var cookieSesion = 7200
+        var duracionCookie = 24 * 3600
         document.cookie = `sesion=activa; max-age=${duracionCookie};`;
         document.cookie = `email=${this.emailRef.current.value}; max-age=${duracionCookie};`;
-        document.cookie = `estado=login; max-age=${cookieSesion};`;
+        document.cookie = `estado=login; max-age=${duracionCookie};`;
         var login = false
         this.props.login(login)
     }
@@ -64,6 +63,7 @@ class Login extends Component {
         this.props.login(login)
     }
     render() { 
+        // console.log(https://api.ipify.org/?format=jsonp&callback=ip); // Obtener IP del cliente
         var sesion = document.cookie.substr(7,7).replace("activa;", "activa");
         var indexEstado = document.cookie.indexOf("estado")
         var indexLogin = indexEstado + 7

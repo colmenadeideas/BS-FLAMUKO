@@ -19,8 +19,6 @@ class Header extends Component {
     }
 
     render() { 
-        console.log(this.props)
-        console.log(this.state)
         return (  
             <div className='row slide'>   
                 <div className="col-12 col-sm-12 col-md-3">
