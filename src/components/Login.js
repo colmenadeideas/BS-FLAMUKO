@@ -11,6 +11,12 @@ class Login extends Component {
         this.emailRef = React.createRef();
         this.telefonoRef = React.createRef();
     }
+    botonesActive = () => {
+        let button = document.querySelectorAll('.call-button')
+        for (let i = 0; i < button.length; i++) {
+            button[i].classList.add('call-button-active') 
+        }
+    }
     registrarUsuario = (e) => {
         e.preventDefault();
         const usuario = {
@@ -21,9 +27,11 @@ class Login extends Component {
         }
         this.enviarRegistro(usuario)
         var duracionCookie = 48 * 3600
+        var duracionCookie2 = 2 * 48 * 3600
         document.cookie = `sesion=activa; max-age=${duracionCookie};`;
         document.cookie = `email=${this.emailRef.current.value}; max-age=${duracionCookie};`;
-        document.cookie = `estado=login; max-age=10;`;
+        document.cookie = `estado=login; max-age=${duracionCookie2};`;
+        this.botonesActive()
         var login = false
         this.props.login(login)
     }
@@ -51,11 +59,12 @@ class Login extends Component {
             busqueda: this.props.producto
         }
         console.log(usuario)
-        var duracionCookie = 24 * 3600
+        let duracionCookie = 24 * 3600
         document.cookie = `sesion=activa; max-age=${duracionCookie};`;
-        document.cookie = `email=${this.emailRef.current.value}; max-age=${duracionCookie};`;
-        document.cookie = `estado=login; max-age=${duracionCookie};`;
-        var login = false
+        document.cookie = `email=${usuario.email}; max-age=${duracionCookie};`;
+        document.cookie = `estado=login; max-age=${10};`;
+        this.botonesActive()
+        let login = false
         this.props.login(login)
     }
     closeWindow = () => {
@@ -78,7 +87,7 @@ class Login extends Component {
                         :   (this.state.registrado)
                                 ?   <div className="check-login">
                                         <form className="row justify-content-center" onSubmit={this.iniciarSesion}>
-                                            <h2 className="col-10 col-sm-4 offset-sm-4">Iniciar Sesión</h2>
+                                            <h2 className="col-10 col-sm-5 offset-sm-3">Iniciar Sesión</h2>
                                             <div className="close-window col-1 offset-sm-3"><i onClick={this.closeWindow}className="far fa-times-circle"></i></div>
                                             <input required className="input-form" type="email" placeholder="Email" ref={this.emailRef} /><div className="w-100"></div>                 
                                             <button type="submit" className="boton-ingresar boton-margin">Ingresar</button>   

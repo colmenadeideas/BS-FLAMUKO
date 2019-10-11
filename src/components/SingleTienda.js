@@ -14,6 +14,12 @@ class SingleTienda extends Component {
     componentDidUpdate() {
         this.obtenerCookies()
     }
+    botonesActive = () => {
+        let button = document.querySelectorAll('.call-button')
+        for (let i = 0; i < button.length; i++) {
+            button[i].classList.add('call-button-active') 
+        }
+    }
     obtenerCookies = () => {
         var cookies = [];
         var la_cookie = document.cookie.split("; ")
@@ -51,6 +57,7 @@ class SingleTienda extends Component {
             email: this.state.email,
             busqueda: this.props.producto.nombre
         }
+        this.botonesActive()
         console.log(busqueda)
     }
     render() { 
