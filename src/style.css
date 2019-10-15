@@ -487,7 +487,7 @@ button:focus {
     margin: auto;
 }
 .loader--text:after {
-    content: "Loading";
+    content: "Cargando";
     font-weight: bold;
     animation-name: loading-text;
     animation-duration: 3s;
@@ -510,16 +510,16 @@ button:focus {
 }
 @keyframes loading-text {
     0% {
-        content: "Loading";
+        content: "Cargando";
     }
     25% {
-        content: "Loading.";
+        content: "Cargando.";
     }
     50% {
-        content: "Loading..";
+        content: "Cargando..";
     }
     75% {
-        content: "Loading...";
+        content: "Cargando...";
     }
 }
 @keyframes slidein {
