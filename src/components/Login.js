@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CheckLogin from './CheckLogin';
+import axios from 'axios';
 
 class Login extends Component {
     state = {
@@ -25,18 +26,27 @@ class Login extends Component {
             telefono: this.telefonoRef.current.value, 
             busqueda: this.props.producto
         }
-        this.enviarRegistro(usuario)
-        var duracionCookie = 48 * 3600
-        var duracionCookie2 = 2 * 48 * 3600
-        document.cookie = `sesion=activa; max-age=${duracionCookie};`;
-        document.cookie = `email=${this.emailRef.current.value}; max-age=${duracionCookie};`;
-        document.cookie = `estado=login; max-age=${duracionCookie2};`;
-        this.botonesActive()
-        var login = false
-        this.props.login(login)
+        let login = this.enviarRegistro(usuario)
+        if (!login) {
+            this.props.login(login)
+        }
     }
     enviarRegistro = (usuario) => {
         console.log(usuario)
+        let url = `http://lab.besign.com.ve/flamuko/html/api/insertClientByCookie`
+        axios.post(url, usuario)
+            .then(res => {
+                console.log(res.data)
+            })
+            .then(() => {
+                let duracionCookie = 48 * 3600
+                let duracionCookie2 = 2 * 48 * 3600
+                document.cookie = `sesion=activa; max-age=${duracionCookie};`;
+                document.cookie = `email=${this.emailRef.current.value}; max-age=${duracionCookie};`;
+                document.cookie = `estado=login; max-age=${duracionCookie2};`;
+                this.botonesActive()
+            })
+        return false
     }
     login = (estado) => {
         this.props.login(estado)
@@ -58,17 +68,13 @@ class Login extends Component {
             email: this.emailRef.current.value,
             busqueda: this.props.producto
         }
-        console.log(usuario)
-        let duracionCookie = 24 * 3600
-        document.cookie = `sesion=activa; max-age=${duracionCookie};`;
-        document.cookie = `email=${usuario.email}; max-age=${duracionCookie};`;
-        document.cookie = `estado=login; max-age=${10};`;
-        this.botonesActive()
-        let login = false
-        this.props.login(login)
+        let login = this.enviarRegistro(usuario)
+        if (!login) {
+            this.props.login(login)
+        }
     }
     closeWindow = () => {
-        var login = false
+        let login = false
         this.props.login(login)
     }
     render() { 

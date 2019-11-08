@@ -12,37 +12,45 @@ class Filtros extends Component {
             mostrar: false,
             mensaje: "más"
         },
+        linea: [],
         lineas: [],
-        estado: ''
+        estado: '',
+        estados: []
+    }
+
+    componentDidMount() {
+        const { lineas, estados } = this.props
+        this.setState({
+            lineas,
+            estados
+        })
     }
 
     obtenerIdLinea = (idLinea) => {
-        if(document.location.pathname === "/") {
-            this.props.filtrosLinea(idLinea);
+        if (!document.location.pathname.includes("/latiendadelpintor/detail")) {
+            this.props.filtrosLinea(idLinea);   
         }
-        var linea = this.props.lineas[idLinea - 1].nombre
-        var lineas;
-        if (this.state.lineas.length === 0) {
-            lineas = [...this.state.lineas, linea]
+        var linea = this.state.lineas.filter(linea => (
+            linea.id === idLinea
+        ))
+        console.log(linea[0].nombre)
+        // console.log(this.state.lineas)
+        if (this.state.linea.indexOf(linea[0].nombre) === -1) {
+            let lineas = [...this.state.linea, linea[0].nombre]
             this.setState({
-                lineas
-            })
-        } else {
-            if (this.state.lineas.indexOf(linea) === -1) {
-                lineas = [...this.state.lineas, linea]
-                this.setState({
-                    lineas
-                })
-            }
+                linea: lineas
+            })  
         }
     }
     obtenerIdEstado = (idEstado) => {
-        if(document.location.pathname === "/") {
+        if(!document.location.pathname.includes("/latiendadelpintor/detail")) {
             this.props.filtrosEstado(idEstado)
         }
-        var estado = this.props.estados[idEstado - 1].nombre
+        var estado = this.state.estados.filter(estado => (
+            estado.id === idEstado
+        ))
         this.setState({
-            estado
+            estado: estado[0].nombre
         })
     } 
     toogleLineas = () => {
@@ -81,17 +89,23 @@ class Filtros extends Component {
     }
     borrarFiltro = (e) => {
         var borrarLinea = e.currentTarget.value;
-        var linea = this.props.lineas.filter(linea => {
-            if (linea.nombre === borrarLinea) return linea
-        })
-        var lineas = [...this.state.lineas];
-        var indiceLinea = lineas.indexOf(borrarLinea);
-        lineas.splice(indiceLinea, 1)
-        this.setState({
-            lineas
-        })
-        if (document.location.pathname === "/") {
-            this.props.borrarFiltro(linea[0].id)
+        if (borrarLinea === this.state.estado) {
+            this.setState({
+                estado: ''
+            })
+        } else {
+            var linea = this.state.lineas.filter(linea => (
+                linea.nombre === borrarLinea
+            ))
+            var lineas = [...this.state.linea];
+            var indiceLinea = lineas.indexOf(borrarLinea);
+            lineas.splice(indiceLinea, 1)
+            this.setState({
+                linea: lineas
+            })
+            if (!document.location.pathname.includes("/latiendadelpintor/detail")) {
+                this.props.borrarFiltro(linea[0].id)
+            }
         }
     }
     cerrarFiltros = () => {
@@ -101,16 +115,17 @@ class Filtros extends Component {
             document.getElementById('besign-footer').setAttribute('class', '');
         }, 1000);
     }
-    busqueda = () => {
-        // filtros/color/string
-        // string = linea: 1,2,3&ubicacion:1&presentacion: 1
-    }
     render() { 
         return (  
             <div className="col-12">
                 <div className="filters-area">
                     <h3>Ubicación</h3>
                     <div id="current-filters-ubicacion" className="current-filters">
+                        {
+                            (this.state.estado.length > 0)
+                            ?   <button type="submit" className="active-filter" onClick={this.borrarFiltro} value={this.state.estado}>{this.state.estado}</button>
+                            :   ""
+                        }
                     </div>
                     <ul id="ubicacion" className="filters">
                         {(this.props.estados.slice(0, 4)).map(estado => (
@@ -147,15 +162,15 @@ class Filtros extends Component {
                     <h3>Línea</h3>
                     <div id="current-filters-linea" className="current-filters">
                         {
-                            (this.state.lineas.length > 0)
-                            ?   this.state.lineas.map((linea, key) => (
+                            (this.state.linea.length > 0)
+                            ?   this.state.linea.map((linea, key) => (
                                     <button type="submit" key={key} className="active-filter" onClick={this.borrarFiltro} value={linea}>{linea}</button>
                                 ))
                             :   ""
                         }
                     </div>
                     <ul id="linea" className="filters">
-                        {(this.props.lineas.slice(0, 4)).map(linea => (
+                        {(this.state.lineas.slice(0, 4)).map(linea => (
                             <Linea 
                                 linea={linea}
                                 key={linea.id}
@@ -163,7 +178,7 @@ class Filtros extends Component {
                             />
                         ))}
                         <div className="collapse multi-collapse" id="CollapseLineas">
-                            {(this.props.lineas.slice(4, 24)).map(linea => (
+                            {(this.state.lineas.slice(4, 24)).map(linea => (
                                 <Linea 
                                     linea={linea}
                                     key={linea.id}

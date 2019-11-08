@@ -8,29 +8,32 @@ class Busqueda extends Component {
     estado: "",
     filtros: true
   }
+
   filtrosLinea = (nuevalinea) => {
-    var lineas;
-    if (this.state.linea.length === 0) {
-      lineas = [...this.state.linea, nuevalinea]
+    console.log(nuevalinea)
+    var linea;
+    if (this.state.linea.indexOf(nuevalinea) === -1) {
+      linea = [...this.state.linea, nuevalinea]
+      console.log(linea)
       this.setState({
-        linea: lineas,
+        linea,
         filtros: true
       })
-    } else if (this.state.linea.indexOf(nuevalinea) === -1) {
-        lineas = [...this.state.linea, nuevalinea]
-        this.setState({
-          linea: lineas,
-          filtros: true
-        })
     }
   } 
 
   
   filtrosEstado = (idEstado) => {
     // var estado = this.props.resultados.estados[idEstado - 1].nombre
-    this.setState({
+    // console.log(idEstado)
+    const busqueda = {
+      lineas: this.state.linea,
       estado: idEstado
-    })  
+    }
+    this.props.idEstado(busqueda)
+    // this.setState({
+    //   estado: idEstado
+    // })  
   }
   borrarFiltro = (borrarFiltros) => {
     // var contador = 0;
