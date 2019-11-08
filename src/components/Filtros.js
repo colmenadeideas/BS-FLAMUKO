@@ -43,15 +43,17 @@ class Filtros extends Component {
         }
     }
     obtenerIdEstado = (idEstado) => {
+        console.log(idEstado)
         if(!document.location.pathname.includes("/latiendadelpintor/detail")) {
             this.props.filtrosEstado(idEstado)
         }
-        var estado = this.state.estados.filter(estado => (
+        this.state.estados.filter(estado => (
             estado.id === idEstado
         ))
-        this.setState({
-            estado: estado[0].nombre
-        })
+        // console.log(estado)
+        // this.setState({
+        //     estado: estado[0].nombre
+        // })
     } 
     toogleLineas = () => {
         if (this.state.toogleLineas.mostrar) {

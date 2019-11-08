@@ -24,6 +24,7 @@ class Busqueda extends Component {
 
   
   filtrosEstado = (idEstado) => {
+    console.log(idEstado);
     // var estado = this.props.resultados.estados[idEstado - 1].nombre
     // console.log(idEstado)
     const busqueda = {
@@ -31,9 +32,9 @@ class Busqueda extends Component {
       estado: idEstado
     }
     this.props.idEstado(busqueda)
-    // this.setState({
-    //   estado: idEstado
-    // })  
+    this.setState({
+      estado: idEstado
+    })  
   }
   borrarFiltro = (borrarFiltros) => {
     // var contador = 0;
@@ -72,28 +73,32 @@ class Busqueda extends Component {
     let filtradoEstado = [];
     let resultado = [];
     if (this.state.estado && this.state.linea.length === 0) {
-      filtradoEstado.push(productos.filter(producto => (
-        producto.estado.indexOf(this.state.estado) !== -1
-      )))
-      filtradoEstado.map(filtro => (
-        resultado = resultado.concat(filtro)
-      ))
-    } else if (this.state.estado && this.state.linea.length > 0) {
-      resultado = resultado.filter(filtro => (
-        filtro.estado.indexOf(this.state.estado) !== -1
-      ))
-    } else if (!(this.state.estado) && this.state.linea.length > 0) {
-      this.state.linea.map(linea => (
-        filtradoLinea.push(productos.filter(producto => (
-          producto.linea.indexOf(linea) !== -1
+        console.log(productos);
+        console.log(productos.filter(producto => ( console.log(producto.estado) )))
+        filtradoEstado.push(productos.filter(producto => (
+            producto.estado.indexOf(this.state.estado) !== -1
         )))
-      ))
-      filtradoLinea.map(filtro => (
-        resultado = resultado.concat(filtro)
-      ))
+        filtradoEstado.map(filtro => (
+            resultado = resultado.concat(filtro)
+        ))
+    } else if (this.state.estado && this.state.linea.length > 0) {
+          resultado = resultado.filter(filtro => (
+                filtro.estado.indexOf(this.state.estado) !== -1
+          ))
+    } else if (!(this.state.estado) && this.state.linea.length > 0) {
+        this.state.linea.map(linea => (
+            filtradoLinea.push(productos.filter(producto => (
+                producto.linea.indexOf(linea) !== -1
+            )))
+        ))
+        filtradoLinea.map(filtro => (
+            resultado = resultado.concat(filtro)
+        ))
     } else {
-      resultado = productos
+        resultado = productos
     }
+    console.log(filtradoEstado);
+    console.log(filtradoLinea);
 
     if(!this.state.filtros) {
       resultado = productos;

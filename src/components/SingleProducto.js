@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import flamuko from '../img/flamuko-flagloss.png';
+//import flamuko from '../img/flamuko-flagloss.png';
 import SingleExistencia from './SingleExistencia';
 import Filtros from './Filtros';
 import Cargando from './Cargando';
@@ -50,8 +50,18 @@ class SingleProducto extends Component {
                 })
             })
     }
-    render() { 
-        const {nombre} = this.state.producto
+    showProduct = ( ) => {
+        const {cod, nombre} = this.state.producto
+        const pinturas = ['ARM-026', 'ARM-072', 'ARM-81', 'ARM-085', 'ARM-156', 'ARM-582', 'ARM-590', 'ARM-596', 'FLA-18', 'FLA-20', 'FLA-70', 'REG-359']
+        console.log(cod);
+
+        let pintura = pinturas.filter(nom => (
+            cod.indexOf(nom) !== -1
+        ))
+        if (pintura == "") {
+            pintura = "flamuko-flagloss"
+        }
+
         const producto =    <div className="App slide row">
                                 <div id="filtros" className="filtros col-sm-3 col-lg-2">
                                     <Filtros 
@@ -64,7 +74,7 @@ class SingleProducto extends Component {
                                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <h4 className="nombre-producto">{nombre}</h4>
                                             <div className="card result-card-detail div-img">					
-                                                <img className="img-producto" src={flamuko} alt={nombre}/>
+                                                <img className="img-producto" src={"/images/bote-pintura/"+pintura+".png"} alt={nombre}/>
                                             </div>
                                         </div>
                                         <SingleExistencia 
@@ -74,12 +84,19 @@ class SingleProducto extends Component {
                                     </div>
                                 </div>
                             </div>
+        return producto
+    }
+
+    render() { 
+
+        
+        
         return (  
             <React.Fragment>
                     {
                         (this.state.cargando)
                             ?   <Cargando />
-                            :   producto
+                            :   this.showProduct()
                     }
             </React.Fragment>
         );

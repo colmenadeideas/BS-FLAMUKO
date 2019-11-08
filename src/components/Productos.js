@@ -94,12 +94,16 @@ class Productos extends Component {
         const currentProductos = productos.slice(indexOfFirstTodo, indexOfLastTodo);
   
         const renderTodos = currentProductos.map((producto, index) => {
-          return (
-            <Producto  
-                key={index}
-                producto={producto}                                     
-            />
-          );
+            return (
+                //si no tiene color asociado no se mostrara en la muestra de resultados
+                producto.color !== "" 
+                ?
+                    <Producto  
+                        key={index}
+                        producto={producto}                                     
+                    />
+                :   ""
+            );
         });
   
         // Logic for displaying page numbers
