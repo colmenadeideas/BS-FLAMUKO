@@ -10,7 +10,7 @@ const Producto = (props) => {
     let pintura = pinturas.filter(nom => (
         cod.indexOf(nom) !== -1
     ))
-    if (pintura == "") {
+    if (pintura === "") {
         pintura = "flamuko-flagloss"
     }
 
