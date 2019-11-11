@@ -33,8 +33,6 @@ class Filtros extends Component {
         var linea = this.state.lineas.filter(linea => (
             linea.id === idLinea
         ))
-        console.log(linea[0].nombre)
-        // console.log(this.state.lineas)
         if (this.state.linea.indexOf(linea[0].nombre) === -1) {
             let lineas = [...this.state.linea, linea[0].nombre]
             this.setState({
@@ -43,17 +41,15 @@ class Filtros extends Component {
         }
     }
     obtenerIdEstado = (idEstado) => {
-        console.log(idEstado)
         if(!document.location.pathname.includes("/latiendadelpintor/detail")) {
             this.props.filtrosEstado(idEstado)
         }
-        this.state.estados.filter(estado => (
+        let estado = this.state.estados.filter(estado => (
             estado.id === idEstado
         ))
-        // console.log(estado)
-        // this.setState({
-        //     estado: estado[0].nombre
-        // })
+        this.setState({
+            estado: estado[0].nombre
+        })
     } 
     toogleLineas = () => {
         if (this.state.toogleLineas.mostrar) {
@@ -118,6 +114,30 @@ class Filtros extends Component {
         }, 1000);
     }
     render() { 
+        var lineas =    <React.Fragment>
+                            <div className="collapse multi-collapse" id="CollapseLineas">
+                                {
+                                    (this.state.lineas.slice(4, 24)).map(linea => (
+                                    <Linea 
+                                        linea={linea}
+                                        key={linea.id}
+                                        idLinea={this.obtenerIdLinea}
+                                    />
+                                    ))
+                                }
+                            </div>
+                            <a  
+                                onClick={this.toogleLineas}
+                                className="mostrar"
+                                data-toggle="collapse" 
+                                href="#CollapseLineas" 
+                                role="button" 
+                                aria-expanded="false" 
+                                aria-controls="CollapseLineas"
+                            >
+                                Ver {this.state.toogleLineas.mensaje}
+                            </a>
+                        </React.Fragment>
         return (  
             <div className="col-12">
                 <div className="filters-area">
@@ -172,33 +192,28 @@ class Filtros extends Component {
                         }
                     </div>
                     <ul id="linea" className="filters">
-                        {(this.state.lineas.slice(0, 4)).map(linea => (
-                            <Linea 
-                                linea={linea}
-                                key={linea.id}
-                                idLinea={this.obtenerIdLinea}
-                            />
-                        ))}
-                        <div className="collapse multi-collapse" id="CollapseLineas">
-                            {(this.state.lineas.slice(4, 24)).map(linea => (
-                                <Linea 
-                                    linea={linea}
-                                    key={linea.id}
-                                    idLinea={this.obtenerIdLinea}
-                                />
-                            ))}
-                        </div>
-                        <a  
-                            onClick={this.toogleLineas}
-                            className="mostrar"
-                            data-toggle="collapse" 
-                            href="#CollapseLineas" 
-                            role="button" 
-                            aria-expanded="false" 
-                            aria-controls="CollapseLineas"
-                        >
-                            Ver {this.state.toogleLineas.mensaje}
-                        </a>
+                        {   
+                            (this.state.lineas.length <= 4)
+                                ?   this.state.lineas.map(linea => (
+                                        <Linea 
+                                            linea={linea}
+                                            key={linea.id}
+                                            idLinea={this.obtenerIdLinea}
+                                        />
+                                    ))
+                                :   (this.state.lineas.slice(0, 4)).map(linea => (
+                                        <Linea 
+                                            linea={linea}
+                                            key={linea.id}
+                                            idLinea={this.obtenerIdLinea}
+                                        />
+                                    ))
+                        }
+                        {
+                            (this.state.lineas.length >= 5) 
+                                ?   lineas
+                                :   ''
+                        }
                     </ul>
                 </div>
             </div>

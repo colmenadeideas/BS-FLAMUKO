@@ -10,11 +10,9 @@ class Busqueda extends Component {
   }
 
   filtrosLinea = (nuevalinea) => {
-    console.log(nuevalinea)
     var linea;
     if (this.state.linea.indexOf(nuevalinea) === -1) {
       linea = [...this.state.linea, nuevalinea]
-      console.log(linea)
       this.setState({
         linea,
         filtros: true
@@ -24,9 +22,6 @@ class Busqueda extends Component {
 
   
   filtrosEstado = (idEstado) => {
-    console.log(idEstado);
-    // var estado = this.props.resultados.estados[idEstado - 1].nombre
-    // console.log(idEstado)
     const busqueda = {
       lineas: this.state.linea,
       estado: idEstado
@@ -72,33 +67,42 @@ class Busqueda extends Component {
     let filtradoLinea = [];
     let filtradoEstado = [];
     let resultado = [];
-    if (this.state.estado && this.state.linea.length === 0) {
-        console.log(productos);
-        console.log(productos.filter(producto => ( console.log(producto.estado) )))
-        filtradoEstado.push(productos.filter(producto => (
-            producto.estado.indexOf(this.state.estado) !== -1
-        )))
-        filtradoEstado.map(filtro => (
-            resultado = resultado.concat(filtro)
-        ))
-    } else if (this.state.estado && this.state.linea.length > 0) {
-          resultado = resultado.filter(filtro => (
-                filtro.estado.indexOf(this.state.estado) !== -1
-          ))
-    } else if (!(this.state.estado) && this.state.linea.length > 0) {
-        this.state.linea.map(linea => (
-            filtradoLinea.push(productos.filter(producto => (
-                producto.linea.indexOf(linea) !== -1
-            )))
-        ))
-        filtradoLinea.map(filtro => (
-            resultado = resultado.concat(filtro)
-        ))
+    // if (this.state.estado && this.state.linea.length === 0) {
+    //     filtradoEstado.push(productos.filter(producto => (
+    //         producto.estado.indexOf(this.state.estado) !== -1
+    //     )))
+    //     filtradoEstado.map(filtro => (
+    //         resultado = resultado.concat(filtro)
+    //     ))
+    // } else if (this.state.estado && this.state.linea.length > 0) {
+    //       resultado = resultado.filter(filtro => (
+    //             filtro.estado.indexOf(this.state.estado) !== -1
+    //       ))
+    // } else if (!(this.state.estado) && this.state.linea.length > 0) {
+    //     this.state.linea.map(linea => (
+    //         filtradoLinea.push(productos.filter(producto => (
+    //             producto.linea.indexOf(linea) !== -1
+    //         )))
+    //     ))
+    //     filtradoLinea.map(filtro => (
+    //         resultado = resultado.concat(filtro)
+    //     ))
+    // } else {
+    //     resultado = productos
+    // }
+
+    if (this.state.linea.length > 0) {
+      this.state.linea.map(linea => (
+          filtradoLinea.push(productos.filter(producto => (
+              producto.linea.indexOf(linea) !== -1
+          )))
+      ))
+      filtradoLinea.map(filtro => (
+          resultado = resultado.concat(filtro)
+      ))
     } else {
-        resultado = productos
+      resultado = productos
     }
-    console.log(filtradoEstado);
-    console.log(filtradoLinea);
 
     if(!this.state.filtros) {
       resultado = productos;

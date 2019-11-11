@@ -128,7 +128,7 @@ class Productos extends Component {
         return (  
             <React.Fragment>
                 <div className="row border-bottom resul1 align-items-center">
-                    <h6>{productos.length} resultados para <span>{busqueda}</span></h6>
+                    <h6>{productos.length} resultados para <span>{busqueda.replace('/', '')}</span></h6>
                     <span className="toogle-button" onClick={this.toogleFiltros}>Aplicar Filtros  <i className="fas fa-bars"></i></span>
                 </div>				
                 <div className="row product-display">

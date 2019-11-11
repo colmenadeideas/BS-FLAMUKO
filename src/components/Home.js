@@ -3,7 +3,6 @@ import Busqueda from './Busqueda';
 import Cargando from './Cargando';
 import { isObject, isNull } from 'util';
 import axios from 'axios';
-//import Buscador from './Buscador';
 
 
 class Home extends Component {
@@ -102,6 +101,20 @@ class Home extends Component {
 
     obtenerBusquedaFiltrada = (busqueda) => {
         console.log(busqueda)
+        console.log(this.state.busqueda);
+        let lineas
+        busqueda.lineas.map(linea => (
+            (lineas)
+                ?   lineas = lineas + "," + linea
+                :   lineas = linea
+        ))
+        let color = this.state.busqueda.replace('/', '') 
+        let url = `http://lab.besign.com.ve/flamuko/html/api/search/filtros/${color}/lineas:${lineas}-ubicacion:${busqueda.estado}`
+        console.log(url)
+        axios.get(url)
+            .then(res => {
+                console.log(res.data)
+            })
     }
 
     render() {

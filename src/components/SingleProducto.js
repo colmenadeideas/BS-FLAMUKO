@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import flamuko from '../img/flamuko-flagloss.png';
 import SingleExistencia from './SingleExistencia';
 import Filtros from './Filtros';
 import Cargando from './Cargando';
@@ -52,8 +51,7 @@ class SingleProducto extends Component {
     }
     showProduct = ( ) => {
         const {cod, nombre} = this.state.producto
-        const pinturas = ['ARM-026', 'ARM-072', 'ARM-81', 'ARM-085', 'ARM-156', 'ARM-582', 'ARM-590', 'ARM-596', 'FLA-18', 'FLA-20', 'FLA-70', 'REG-359']
-        console.log(cod);
+        const pinturas = ['ARM-026', 'ARM-072', 'ARM-81', 'ARM-085', 'ARM-156', 'ARM-582', 'ARM-590', 'ARM-596', 'FLA-18', 'FLA-20', 'FLA-40', 'FLA-70', 'FLA-355', 'REG-359']
 
         let pintura = pinturas.filter(nom => (
             cod.indexOf(nom) !== -1
@@ -74,7 +72,7 @@ class SingleProducto extends Component {
                                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <h4 className="nombre-producto">{nombre}</h4>
                                             <div className="card result-card-detail div-img">					
-                                                <img className="img-producto" src={require("../img/bote-pintura/"+pintura+".png")} alt={nombre}/>
+                                                <img className="img-producto" src={`/img/bote-pintura/${pintura[0]}.png`} alt={nombre}/>
                                             </div>
                                         </div>
                                         <SingleExistencia 
