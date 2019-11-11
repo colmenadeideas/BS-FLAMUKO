@@ -58,7 +58,7 @@ class SingleProducto extends Component {
         let pintura = pinturas.filter(nom => (
             cod.indexOf(nom) !== -1
         ))
-        if (pintura == "") {
+        if (pintura === "") {
             pintura = "flamuko-flagloss"
         }
 
@@ -74,7 +74,7 @@ class SingleProducto extends Component {
                                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <h4 className="nombre-producto">{nombre}</h4>
                                             <div className="card result-card-detail div-img">					
-                                                <img className="img-producto" src={"/images/bote-pintura/"+pintura+".png"} alt={nombre}/>
+                                                <img className="img-producto" src={require("../img/bote-pintura/"+pintura+".png")} alt={nombre}/>
                                             </div>
                                         </div>
                                         <SingleExistencia 

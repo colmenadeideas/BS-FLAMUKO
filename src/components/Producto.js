@@ -22,8 +22,7 @@ const Producto = (props) => {
                     
                     <div className="btn-link-bottom">Ver detalle</div>	
                     {/* comparo el codigo para seleccionar la imagen que se mostrara */}
-                    {}
-                    <img src={"/images/bote-pintura/"+pintura+".png"} alt={nombre} />
+                    <img src={require("../img/bote-pintura/"+pintura+".png")} alt={nombre} />
                 </div>
             </Link>
         </div>

@@ -62,7 +62,7 @@ class SingleTienda extends Component {
     }
     render() { 
         var {valor} = this.props.tienda
-        const {nombre, direccion, telefono, telefono1} = this.props.tienda.tienda[0]
+        const {nombre, direccion, telefono /*, telefono1*/} = this.props.tienda.tienda[0]
         const EXISTENCIA_NIVEL_MEDIO = 600
         const EXISTENCIA_NIVEL_BAJO = 100
         switch (valor) {
