@@ -18,27 +18,20 @@ class Router extends Component {
             })
         }  
     }
-    componentDidUpdate() {
-        if (document.location.pathname !== this.state.pathname) {
-            this.setState({
-                pathname: document.location.pathname
-            })
-        }  
-    }
     render() { 
         return (  
             <BrowserRouter>
                 <React.Fragment>
                     <div id="header">
                         <Header 
-                            info={this.state.pathname}
+                            pathname={this.state.pathname}
                         />
                     </div>
                     <Switch>
                         <Route exact path="/latiendadelpintor" component={Principal} />
                         <Route exact path="/latiendadelpintor/:nombreProducto" render={(props) => {
                             var nombreProducto = props.location.pathname.replace('/latiendadelpintor/', '')
-                            this.pathname(props.location.pathname)                
+                            this.pathname(document.location.pathname)
                             return ( 
                                 <React.Fragment>
                                     <Home 
@@ -49,7 +42,7 @@ class Router extends Component {
                         }} />
                         <Route exact path="/latiendadelpintor/detail/:idProducto" render={(props) => {
                             const idProducto = props.location.pathname.replace('/latiendadelpintor/detail/', '')
-                            this.pathname(props.location.pathname)                
+                            this.pathname(document.location.pathname)
                             return (
                                 <SingleProducto 
                                     idProducto={idProducto}

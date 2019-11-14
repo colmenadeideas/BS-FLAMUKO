@@ -19,7 +19,9 @@ class Home extends Component {
             busqueda: "",
             respuesta: Boolean
         },
-        cargando: true
+        cargando: true,
+        filtrado: false,
+        cargandoFiltrado: false
     }
     componentDidMount() {
         this.obtenerBusqueda()
@@ -40,13 +42,17 @@ class Home extends Component {
     obtenerResultados = () => {
         if (this.state.resultados.busqueda === this.state.busqueda) return null
         this.setState({
-            cargando: true
+            cargando: true,
+            filtrado: false,
+            cargandoFiltrado: false
         })
         let producto = this.state.busqueda
-        let url = `http://lab.besign.com.ve/flamuko/html/api/search/all/${producto}`
+        let url = `http://lab.besign.com.ve/flamuko/html/api/search/all/${producto.replace(' ', '-')}`
+        console.log(url)
         axios.get(url)
             .then(res => {
                 if(isObject(res.data)){
+                    console.log(res.data);
                     this.setState({
                         productos: res.data.productos,
                         respuesta: true
@@ -101,19 +107,32 @@ class Home extends Component {
 
     obtenerBusquedaFiltrada = (busqueda) => {
         console.log(busqueda)
-        console.log(this.state.busqueda);
-        let lineas
-        busqueda.lineas.map(linea => (
-            (lineas)
-                ?   lineas = lineas + "," + linea
-                :   lineas = linea
-        ))
+        let lineas = 0
+        if (busqueda.lineas.length > 0) {
+            busqueda.lineas.map(linea => (
+                (lineas)
+                    ?   lineas = lineas + "," + linea
+                    :   lineas = linea
+            ))
+        }
         let color = this.state.busqueda.replace('/', '') 
         let url = `http://lab.besign.com.ve/flamuko/html/api/search/filtros/${color}/lineas:${lineas}-ubicacion:${busqueda.estado}`
-        console.log(url)
+        this.setState({
+            cargandoFiltrado: true
+        })
         axios.get(url)
             .then(res => {
-                console.log(res.data)
+                let resultados = this.state.resultados
+                resultados.productos = res.data
+                this.setState({
+                    resultados,
+                    cargandoFiltrado: false
+                })
+                if (res.data.length === 0) {
+                    this.setState({
+                        filtrado: true
+                    })
+                }
             })
     }
 
@@ -128,6 +147,8 @@ class Home extends Component {
                                 resultados={this.state.resultados}  
                                 respuesta={this.state.respuesta}  
                                 idEstado={this.obtenerBusquedaFiltrada}
+                                filtrado={this.state.filtrado}
+                                cargando={this.state.cargandoFiltrado}
                             />
                 }
             </React.Fragment>

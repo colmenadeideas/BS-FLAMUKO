@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Productos from './Productos';
 import Filtros from './Filtros';
+import Cargando from './Cargando';
 
 class Busqueda extends Component {
   state = {  
@@ -65,7 +66,7 @@ class Busqueda extends Component {
   render() { 
     const { productos, lineas, estados, busqueda } = this.props.resultados
     let filtradoLinea = [];
-    let filtradoEstado = [];
+    // let filtradoEstado = [];
     let resultado = [];
     // if (this.state.estado && this.state.linea.length === 0) {
     //     filtradoEstado.push(productos.filter(producto => (
@@ -108,6 +109,7 @@ class Busqueda extends Component {
       resultado = productos;
     }
 
+    const noResultados =  <h1 className="slide">No se encontraron resultados</h1>
     const resultados =  <div className="container-fluid slide">
                           <div className="row">
                             <div id="filtros" className="filtros col-sm-3 col-lg-2">
@@ -120,17 +122,23 @@ class Busqueda extends Component {
                                 />
                             </div>
                             <div className="main col-12 col-sm-9 col-lg-10">
-                                <Productos 
-                                  productos={resultado}
-                                  busqueda={busqueda}
-                                  linea={this.state.linea}
-                                  estado={this.state.estado}
-                                />
+                              {
+                                (this.props.cargando) 
+                                  ? <Cargando />
+                                  : (this.props.filtrado)
+                                    ? noResultados
+                                    : <Productos 
+                                        productos={resultado}
+                                        busqueda={busqueda}
+                                        linea={this.state.linea}
+                                        estado={this.state.estado}
+                                        filtrado={this.props.filtrado}
+                                      />
+                              }
                             </div>
                           </div>
                         </div>
 
-    const noResultados =  <h1 className="slide">No se encontraron resultados</h1>
     return (  
       <React.Fragment>
         {(this.props.respuesta) ? resultados : noResultados}

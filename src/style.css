@@ -364,8 +364,8 @@ button:focus {
     position: static; 
 }
 .boton-check {
-    width: 50px;
-    padding: 5px 0px;
+    padding: 3px 0px;
+    width: 45px;
 }
 .check-login .btn-success {
     margin-right: 16px;

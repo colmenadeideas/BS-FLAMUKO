@@ -63,20 +63,34 @@ class SingleTienda extends Component {
     render() { 
         var {valor} = this.props.tienda
         const {nombre, direccion, telefono /*, telefono1*/} = this.props.tienda.tienda[0]
-        const EXISTENCIA_NIVEL_MEDIO = 600
-        const EXISTENCIA_NIVEL_BAJO = 100
-        switch (valor) {
-            case valor > EXISTENCIA_NIVEL_MEDIO:
-                valor = 'high';
-                break;
-            case valor < EXISTENCIA_NIVEL_BAJO:
-                valor = 'low';
-                break;
-            
-            default:
-                valor = 'medium';
-                break;
+        const EXISTENCIA_NIVEL_MEDIO = 15
+        const EXISTENCIA_NIVEL_BAJO = 0
+        valor = parseInt(valor)
+        if (valor > EXISTENCIA_NIVEL_MEDIO) {
+            console.log("h", valor)
+            valor = 'high';
+        } else if (valor < EXISTENCIA_NIVEL_BAJO) {
+            console.log("l", valor)
+            valor = 'low';
+        } else {
+            console.log("m", valor)
+            valor = 'medium';
         }
+        // switch (valor) {
+        //     case (valor > EXISTENCIA_NIVEL_MEDIO):
+        //         console.log("h", valor)
+        //         valor = 'high';
+        //         break;
+        //     case (valor < EXISTENCIA_NIVEL_BAJO):
+        //         console.log("l", valor)
+        //         valor = 'low';
+        //         break;
+            
+        //     default:
+        //         console.log("m", valor)
+        //         valor = 'medium';
+        //         break;
+        // }
         if (telefono) {
             var codigo = telefono.substr(0, 4)
             var is_cellphone = false

@@ -21,10 +21,10 @@ class Login extends Component {
     registrarUsuario = (e) => {
         e.preventDefault();
         const usuario = {
-            nombre: this.nombreRef.current.value,
-            email: this.emailRef.current.value,
-            telefono: this.telefonoRef.current.value, 
-            busqueda: this.props.producto
+            name: this.nombreRef.current.value,
+            username: this.emailRef.current.value,
+            phone: this.telefonoRef.current.value, 
+            search: this.props.producto
         }
         let login = this.enviarRegistro(usuario)
         if (!login) {
@@ -33,18 +33,18 @@ class Login extends Component {
     }
     enviarRegistro = (usuario) => {
         console.log(usuario)
-        let url = `http://lab.besign.com.ve/flamuko/html/api/insertClientByCookie`
+        let url = `http://lab.besign.com.ve/flamuko/html/api/save`
         axios.post(url, usuario)
             .then(res => {
                 console.log(res.data)
-            })
-            .then(() => {
-                let duracionCookie = 48 * 3600
+                let duracionCookie = 2000000 * 48 * 3600
                 let duracionCookie2 = 2 * 48 * 3600
-                document.cookie = `sesion=activa; max-age=${duracionCookie};`;
-                document.cookie = `email=${this.emailRef.current.value}; max-age=${duracionCookie};`;
-                document.cookie = `estado=login; max-age=${duracionCookie2};`;
-                this.botonesActive()
+                if (res.data === 'SignUp' || res.data === 'Login') {
+                    document.cookie = `sesion=activa; max-age=${duracionCookie};`;
+                    document.cookie = `email=${usuario.email}; max-age=${duracionCookie};`;
+                    document.cookie = `estado=login; max-age=${duracionCookie2};`;
+                    this.botonesActive()
+                }
             })
         return false
     }
@@ -65,8 +65,8 @@ class Login extends Component {
     iniciarSesion = (e) => {
         e.preventDefault();
         const usuario = {
-            email: this.emailRef.current.value,
-            busqueda: this.props.producto
+            username: this.emailRef.current.value,
+            search: this.props.producto
         }
         let login = this.enviarRegistro(usuario)
         if (!login) {

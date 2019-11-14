@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Buscador from './Buscador';
-import flamuko from '../img/flamuko-logo.png';
 
 class Header extends Component {
     state = {
-        pathname: document.location.pathname
+        pathname: ''
     }
     componentDidMount() {
         this.setState({
@@ -22,7 +21,7 @@ class Header extends Component {
         return (  
             <div className='row slide'>   
                 <div className="col-12 col-sm-12 col-md-3">
-                    <img className='logo' src={flamuko} alt="La Tienda del Pintor" title="La Tienda del Pintor" />
+                    <img className='logo' src="/latiendadelpintor/img/flamuko-logo.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" />
                 </div>
                 <div className="col-12 col-sm-12 col-md-9 form1 d-flex align-items-center">
                     {

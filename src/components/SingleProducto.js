@@ -50,7 +50,7 @@ class SingleProducto extends Component {
             })
     }
     showProduct = ( ) => {
-        const {cod, nombre} = this.state.producto
+        const {cod, nombre, color} = this.state.producto
         const pinturas = ['ARM-026', 'ARM-072', 'ARM-81', 'ARM-085', 'ARM-156', 'ARM-582', 'ARM-590', 'ARM-596', 'FLA-18', 'FLA-20', 'FLA-40', 'FLA-70', 'FLA-355', 'REG-359']
 
         let pintura = pinturas.filter(nom => (
@@ -71,8 +71,8 @@ class SingleProducto extends Component {
                                     <div className="row product-display no-gutters">
                                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <h4 className="nombre-producto">{nombre}</h4>
-                                            <div className="card result-card-detail div-img">					
-                                                <img className="img-producto" src={`/img/bote-pintura/${pintura[0]}.png`} alt={nombre}/>
+                                            <div className="card result-card-detail div-img" style={{background: color}}>					
+                                                <img className="img-producto" src={`/latiendadelpintor/img/bote-pintura/${pintura[0]}.png`} alt={nombre}/>
                                             </div>
                                         </div>
                                         <SingleExistencia 

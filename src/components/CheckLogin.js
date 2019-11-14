@@ -32,6 +32,7 @@ class CheckLogin extends Component {
     }
     render() { 
         var email = document.cookie.substr(21, 21).replace("; estado=", "")
+        console.log(document.cookie)
         this.botonesDisabled();
         return (  
             <div className="check-login">

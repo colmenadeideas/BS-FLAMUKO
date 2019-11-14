@@ -96,13 +96,12 @@ class Productos extends Component {
         const renderTodos = currentProductos.map((producto, index) => {
             return (
                 //si no tiene color asociado no se mostrara en la muestra de resultados
-                producto.color !== "" 
-                ?
-                    <Producto  
-                        key={index}
-                        producto={producto}                                     
-                    />
-                :   ""
+                (producto.color !== "" )
+                    ?   <Producto  
+                            key={index}
+                            producto={producto}                                     
+                        />
+                    :   ""
             );
         });
   
@@ -124,7 +123,6 @@ class Productos extends Component {
             </li>
           );
         });
-
         return (  
             <React.Fragment>
                 <div className="row border-bottom resul1 align-items-center">

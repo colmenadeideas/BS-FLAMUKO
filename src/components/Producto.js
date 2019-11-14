@@ -1,5 +1,4 @@
 import React from 'react';
-// import flamuko from '../img/flamuko-flagloss.png';
 import { Link } from 'react-router-dom';
 
 const Producto = (props) => {
@@ -21,7 +20,7 @@ const Producto = (props) => {
                     
                     <div className="btn-link-bottom">Ver detalle</div>	
                     {/* comparo el codigo para seleccionar la imagen que se mostrara */}
-                    <img src={`/img/bote-pintura/${pintura[0]}.png`} alt={nombre} />
+                    <img src={`/latiendadelpintor/img/bote-pintura/${pintura[0]}.png`} alt={nombre} />
                 </div>
             </Link>
         </div>
