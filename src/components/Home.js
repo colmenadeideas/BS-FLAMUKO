@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Busqueda from './Busqueda';
 import Cargando from './Cargando';
-import { isObject, isNull } from 'util';
 import axios from 'axios';
 
 
@@ -21,7 +20,11 @@ class Home extends Component {
         },
         cargando: true,
         filtrado: false,
-        cargandoFiltrado: false
+        cargandoFiltrado: false,
+        filtros: {
+            lineas: [],
+            estado: ''
+        }
     }
     componentDidMount() {
         this.obtenerBusqueda()
@@ -48,18 +51,18 @@ class Home extends Component {
         })
         let producto = this.state.busqueda
         let url = `http://lab.besign.com.ve/flamuko/html/api/search/all/${producto.replace(' ', '-')}`
-        console.log(url)
+        // console.log(url)
         axios.get(url)
             .then(res => {
-                if(isObject(res.data)){
-                    console.log(res.data);
+                if (res.data.productos) {
                     this.setState({
                         productos: res.data.productos,
                         respuesta: true
                     }, () => {
                         this.obtenerLineas()
                     })
-                } else if (isNull(res.data)) {
+                    this.props.resultado(true)
+                } else {
                     this.setState({
                         resultados: {
                             busqueda: this.state.busqueda
@@ -67,6 +70,7 @@ class Home extends Component {
                         respuesta: false,
                         cargando: false
                     })
+                    this.props.resultado(false)
                 }
             })
     }
@@ -87,8 +91,17 @@ class Home extends Component {
         let url = `http://lab.besign.com.ve/flamuko/html/api/show/estados`
         axios.get(url)
             .then(res => {
+                let estados = res.data.sort((a, b) => {
+                    if (a.nombre > b.nombre) {
+                        return 1;
+                    }
+                    if (a.nombre < b.nombre) {
+                        return -1;
+                    }
+                    return 0;
+                });
                 this.setState({
-                    estados: res.data
+                    estados
                 })
             })
             .then(() => {
@@ -98,7 +111,15 @@ class Home extends Component {
                         lineas: this.state.lineas,
                         estados: this.state.estados,
                         busqueda: this.state.busqueda,
-                        respuesta: this.state.respuesta
+                        respuesta: this.state.respuesta,
+                        presentacion: [
+                            { id: "1", nombre: "Galón" },
+                            { id: "4", nombre: "Cuarto" },
+                            { id: "3", nombre: "Cuñete 3 galones" },
+                            { id: "5", nombre: "Cuñete 5 galones" },
+                            { id: "40", nombre: "Cuñete 4 galones" },
+                            { id: "53", nombre: "Tambor" }
+                        ]
                     },
                     cargando: false
                 })
@@ -106,7 +127,7 @@ class Home extends Component {
     }
 
     obtenerBusquedaFiltrada = (busqueda) => {
-        console.log(busqueda)
+        // console.log(busqueda)
         let lineas = 0
         if (busqueda.lineas.length > 0) {
             busqueda.lineas.map(linea => (
@@ -135,6 +156,36 @@ class Home extends Component {
                 }
             })
     }
+    filtrosLinea = (linea) => {
+        let lineas = []
+        let filtros = this.state.filtros
+        let nombresFiltros = this.state.lineas.filter(filtro => (
+            linea.indexOf(filtro.id) !== -1
+        ))
+        nombresFiltros.map(filtro => (
+            lineas = [...lineas, filtro.nombre]
+        ))
+        filtros.lineas = lineas
+        this.setState({
+            filtros
+        })
+        this.props.filtros(this.state.filtros)
+    }
+    filtrosEstado = (estado) => {
+        let estados = []
+        let filtros = this.state.filtros
+        let nombresFiltros = this.state.estados.filter(filtro => (
+            filtro.id === estado
+        ))
+        nombresFiltros.map(filtro => (
+            estados = [...estados, filtro.nombre]
+        ))
+        filtros.estado = estados
+        this.setState({
+            filtros
+        })
+        this.props.filtros(this.state.filtros)
+    }
 
     render() {
         return (
@@ -149,6 +200,8 @@ class Home extends Component {
                                 idEstado={this.obtenerBusquedaFiltrada}
                                 filtrado={this.state.filtrado}
                                 cargando={this.state.cargandoFiltrado}
+                                linea={this.filtrosLinea}
+                                estado={this.filtrosEstado}
                             />
                 }
             </React.Fragment>

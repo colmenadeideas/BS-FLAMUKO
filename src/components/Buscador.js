@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 
+
 class Buscador extends Component {
     state = {
-        busqueda: "a"
+        busqueda: "",
+        resultado: Boolean
     }
     handleChange = (e) => {
         var busqueda = e.currentTarget.value
@@ -25,21 +27,43 @@ class Buscador extends Component {
         e.preventDefault()
         if (this.state.busqueda.length > 2) {
             document.getElementById('submit').click();
-            e.currentTarget.reset()
+            // if (this.props.busqueda) {
+            //     e.currentTarget.reset()
+            // }
         }
     }
-    componentDidUpdate() {
-        if (this.state.busqueda === window.location.pathname.replace('/latiendadelpintor/', '')) {
-            this.setState({
-                busqueda: "a"
-            })
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log(nextProps);
+        console.log(prevState);
+        if (nextProps.busqueda !== prevState.busqueda) {
+            if (nextProps.busqueda) {
+                return {
+                    busqueda: '',
+                    resultado: false
+                }        
+            }
         }
     }
+    // useEffect() {
+    //     console.log(this.props.busqueda)
+    //     // if (this.props.busqueda !== this.state.resultado) {
+    //         console.log(this.props.busqueda)
+    //         this.setState({
+    //             resultado: this.props.busqueda
+    //         })  
+    //         if (this.props.busqueda) {
+    //             this.setState({
+    //                 busqueda: ''
+    //             })            
+    //         }
+    //     // }
+    // }
     render() {
+        console.log("render")
         return (
             <React.Fragment>
                 <form id="form-search" className="form-inline" onSubmit={this.handleSubmit}>
-                    <input type='text' onChange={this.handleChange}  className="form-control valid" placeholder="Buscar por producto o color" />
+                    <input type='text' onChange={this.handleChange}  className="form-control valid" placeholder="Buscar por producto o color" value={this.state.busqueda} />
                     <button type="submit" className="btn btn-primary" onClick={this.handleClick}><i className="fa fa-search"></i> BUSCAR</button>
                 </form>
                 <Link to={`/latiendadelpintor/${this.state.busqueda}`} id="submit" style={{display: 'none'}}></Link>

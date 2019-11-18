@@ -43,16 +43,50 @@ class SingleProducto extends Component {
         let url = `http://lab.besign.com.ve/flamuko/html/api/show/estados`
         axios.get(url)
             .then(res => {
+                let estados = res.data.sort((a, b) => {
+                    if (a.nombre > b.nombre) {
+                        return 1;
+                    }
+                    if (a.nombre < b.nombre) {
+                        return -1;
+                    }
+                    return 0;
+                });
                 this.setState({
-                    estados: res.data,
+                    estados,
                     cargando: false
                 })
             })
     }
     showProduct = ( ) => {
-        const {cod, nombre, color} = this.state.producto
+        const {cod, nombre, color, presentacion} = this.state.producto
         const pinturas = ['ARM-026', 'ARM-072', 'ARM-81', 'ARM-085', 'ARM-156', 'ARM-582', 'ARM-590', 'ARM-596', 'FLA-18', 'FLA-20', 'FLA-40', 'FLA-70', 'FLA-355', 'REG-359']
 
+        let envase
+        switch (presentacion) {
+            case '1':
+                envase = 'Galón'
+                break;
+            case '4':
+                envase = 'Cuarto'
+                break;
+            case '3':
+                envase = 'Cuñete 3 galones'
+                break;
+            case '40':
+                envase = 'Cuñete 4 galones'
+                break;
+            case '5':
+                envase = 'Cuñete 5 galones'
+                break;
+            case '53':
+                envase = 'Tambor'
+                break;
+
+            default:
+                envase = '' 
+                break;
+        }
         let pintura = pinturas.filter(nom => (
             cod.indexOf(nom) !== -1
         ))
@@ -65,6 +99,7 @@ class SingleProducto extends Component {
                                     <Filtros 
                                         lineas={this.state.lineas}
                                         estados={this.state.estados}
+                                        filtros={this.props.filtros}
                                     />
                                 </div>
                                 <div className="main col-sm-9 col-lg-10">
@@ -74,6 +109,14 @@ class SingleProducto extends Component {
                                             <div className="card result-card-detail div-img" style={{background: color}}>					
                                                 <img className="img-producto" src={`/latiendadelpintor/img/bote-pintura/${pintura[0]}.png`} alt={nombre}/>
                                             </div>
+                                            {
+                                                (envase !== '')
+                                                    ?   <div className="presentacion presentacion-detail">
+                                                            <div><i className="fas fa-brush"></i></div>
+                                                            <h4>{envase}</h4>
+                                                        </div>
+                                                    :   ''
+                                            }
                                         </div>
                                         <SingleExistencia 
                                             existencia={this.state.existencia}
@@ -86,9 +129,6 @@ class SingleProducto extends Component {
     }
 
     render() { 
-
-        
-        
         return (  
             <React.Fragment>
                     {

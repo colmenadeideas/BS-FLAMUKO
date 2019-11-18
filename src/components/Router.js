@@ -9,7 +9,12 @@ import Principal from './Principal';
 
 class Router extends Component {
     state = {
-        pathname: ''
+        pathname: '',
+        filtros: {
+            lineas: [],
+            estado: ''
+        },
+        busqueda: Boolean
     }
     pathname = (e) => {
         if (e !== this.state.pathname) {
@@ -18,6 +23,17 @@ class Router extends Component {
             })
         }  
     }
+    filtros = filtros => {
+        let e = filtros
+        this.setState({
+            filtros: e
+        })
+    } 
+    busqueda = e => {
+        this.setState({
+            busqueda: e        
+        })
+    }
     render() { 
         return (  
             <BrowserRouter>
@@ -25,17 +41,24 @@ class Router extends Component {
                     <div id="header">
                         <Header 
                             pathname={this.state.pathname}
+                            busqueda={this.state.busqueda}
                         />
                     </div>
                     <Switch>
-                        <Route exact path="/latiendadelpintor" component={Principal} />
+                        <Route exact path="/latiendadelpintor" render={() => (
+                            <Principal
+                                busqueda={this.state.busqueda}
+                            />
+                        )} />
                         <Route exact path="/latiendadelpintor/:nombreProducto" render={(props) => {
                             var nombreProducto = props.location.pathname.replace('/latiendadelpintor/', '')
                             this.pathname(document.location.pathname)
                             return ( 
                                 <React.Fragment>
                                     <Home 
-                                        busqueda={nombreProducto}           
+                                        busqueda={nombreProducto}   
+                                        filtros={this.filtros}      
+                                        resultado={this.busqueda}  
                                     />
                                 </React.Fragment>
                             )
@@ -46,6 +69,7 @@ class Router extends Component {
                             return (
                                 <SingleProducto 
                                     idProducto={idProducto}
+                                    filtros={this.state.filtros}
                                 />
                             )
                         }} />

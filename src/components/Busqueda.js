@@ -7,6 +7,7 @@ class Busqueda extends Component {
   state = {  
     linea: [],
     estado: "",
+    presentacion: "",
     filtros: true
   }
 
@@ -14,6 +15,7 @@ class Busqueda extends Component {
     var linea;
     if (this.state.linea.indexOf(nuevalinea) === -1) {
       linea = [...this.state.linea, nuevalinea]
+      this.props.linea(linea)
       this.setState({
         linea,
         filtros: true
@@ -21,13 +23,13 @@ class Busqueda extends Component {
     }
   } 
 
-  
   filtrosEstado = (idEstado) => {
     const busqueda = {
       lineas: this.state.linea,
       estado: idEstado
     }
     this.props.idEstado(busqueda)
+    this.props.estado(idEstado)
     this.setState({
       estado: idEstado
     })  
@@ -64,7 +66,7 @@ class Busqueda extends Component {
     // }
   }
   render() { 
-    const { productos, lineas, estados, busqueda } = this.props.resultados
+    const { productos, lineas, estados, busqueda, presentacion } = this.props.resultados
     let filtradoLinea = [];
     // let filtradoEstado = [];
     let resultado = [];
@@ -116,6 +118,7 @@ class Busqueda extends Component {
                                 <Filtros 
                                   lineas={lineas}
                                   estados={estados}
+                                  presentacion={presentacion}
                                   filtrosLinea={this.filtrosLinea}
                                   filtrosEstado={this.filtrosEstado}
                                   borrarFiltro={this.borrarFiltro}
@@ -126,14 +129,14 @@ class Busqueda extends Component {
                                 (this.props.cargando) 
                                   ? <Cargando />
                                   : (this.props.filtrado)
-                                    ? noResultados
-                                    : <Productos 
-                                        productos={resultado}
-                                        busqueda={busqueda}
-                                        linea={this.state.linea}
-                                        estado={this.state.estado}
-                                        filtrado={this.props.filtrado}
-                                      />
+                                      ? noResultados
+                                      : <Productos 
+                                          productos={resultado}
+                                          busqueda={busqueda}
+                                          linea={this.state.linea}
+                                          estado={this.state.estado}
+                                          filtrado={this.props.filtrado}
+                                        />
                               }
                             </div>
                           </div>

@@ -58,7 +58,7 @@ class SingleTienda extends Component {
             busqueda: this.props.producto.nombre
         }
         this.botonesActive()
-        console.log(busqueda)
+        // console.log(busqueda)
     }
     render() { 
         var {valor} = this.props.tienda
@@ -67,13 +67,10 @@ class SingleTienda extends Component {
         const EXISTENCIA_NIVEL_BAJO = 0
         valor = parseInt(valor)
         if (valor > EXISTENCIA_NIVEL_MEDIO) {
-            console.log("h", valor)
             valor = 'high';
         } else if (valor < EXISTENCIA_NIVEL_BAJO) {
-            console.log("l", valor)
             valor = 'low';
         } else {
-            console.log("m", valor)
             valor = 'medium';
         }
         // switch (valor) {

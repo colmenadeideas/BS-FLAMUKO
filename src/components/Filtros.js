@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Linea from './Linea';
 import Estado from './Estado';
+import Presentacion from './Presentacion';
 
 class Filtros extends Component {
     state = {  
@@ -15,15 +16,24 @@ class Filtros extends Component {
         linea: [],
         lineas: [],
         estado: '',
-        estados: []
+        estados: [],
+        presentaciones: [],
+        presentacion: ''
     }
 
     componentDidMount() {
-        const { lineas, estados } = this.props
+        const { lineas, estados, presentacion, filtros } = this.props
         this.setState({
             lineas,
-            estados
+            estados,
+            presentaciones: presentacion
         })
+        if (filtros) {
+            this.setState({
+                estado: filtros.estado,
+                linea: filtros.lineas
+            })
+        }
     }
 
     obtenerIdLinea = (idLinea) => {
@@ -114,6 +124,7 @@ class Filtros extends Component {
         }, 1000);
     }
     render() { 
+        // console.log(this.state.presentaciones)
         var lineas =    <React.Fragment>
                             <div className="collapse multi-collapse" id="CollapseLineas">
                                 {
@@ -216,6 +227,45 @@ class Filtros extends Component {
                         }
                     </ul>
                 </div>
+                {/* <div className="filters-area">
+                <h3>Presentación</h3>
+                    <div id="current-filters-presentacion" className="current-filters">
+                        {
+                            (this.state.presentacion.length > 0)
+                            ?   <button type="submit" className="active-filter" onClick={this.borrarFiltro} value={this.state.presentacion}>{this.state.presentacion}</button>
+                            :   ""
+                        }
+                    </div>
+                    <ul id="presentacion" className="filters">
+                        {(this.state.presentaciones.slice(0, 4)).map(presentacion => (
+                            <Presentacion 
+                                presentacion={presentacion}
+                                key={presentacion.id}
+                                idPresentacion={this.obtenerIdPresentacion}
+                            />
+                        ))}
+                        <div className="collapse multi-collapse" id="CollapsePresentaciones">
+                            {(this.state.presentaciones.slice(4, 24)).map(presentacion => (
+                                <Presentacion 
+                                    presentacion={presentacion}
+                                    key={presentacion.id}
+                                    idPresentacion={this.obtenerIdPresentacion}
+                                />
+                            ))}
+                        </div>
+                        <a  
+                            onClick={this.tooglePresentaciones}
+                            className="mostrar"
+                            data-toggle="collapse" 
+                            href="#CollapsePresentaciones" 
+                            role="button" 
+                            aria-expanded="false" 
+                            aria-controls="CollapsePresentaciones"
+                        >
+                            Ver {this.state.tooglePresentaciones.mensaje}
+                        </a>
+                    </ul>
+                </div> */}
             </div>
         );
     }

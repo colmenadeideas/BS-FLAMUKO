@@ -32,7 +32,7 @@ class Login extends Component {
         }
     }
     enviarRegistro = (usuario) => {
-        console.log(usuario)
+        // console.log(usuario)
         let url = `http://lab.besign.com.ve/flamuko/html/api/save`
         axios.post(url, usuario)
             .then(res => {
@@ -44,9 +44,9 @@ class Login extends Component {
                     document.cookie = `email=${usuario.email}; max-age=${duracionCookie};`;
                     document.cookie = `estado=login; max-age=${duracionCookie2};`;
                     this.botonesActive()
+                    return false
                 }
             })
-        return false
     }
     login = (estado) => {
         this.props.login(estado)
