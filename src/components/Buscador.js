@@ -13,6 +13,7 @@ class Buscador extends Component {
         this.setState({
             busqueda
         })
+        console.log(this.state.busqueda)
     }
     handleClick = () => {
         if (this.state.busqueda.length < 3) {
@@ -27,23 +28,21 @@ class Buscador extends Component {
         e.preventDefault()
         if (this.state.busqueda.length > 2) {
             document.getElementById('submit').click();
-            // if (this.props.busqueda) {
-            //     e.currentTarget.reset()
-            // }
+            e.currentTarget.reset()
         }
     }
-    static getDerivedStateFromProps(nextProps, prevState) {
-        console.log(nextProps);
-        console.log(prevState);
-        if (nextProps.busqueda !== prevState.busqueda) {
-            if (nextProps.busqueda) {
-                return {
-                    busqueda: '',
-                    resultado: false
-                }        
-            }
-        }
-    }
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    //     console.log(nextProps);
+    //     console.log(prevState);
+    //     if (nextProps.busqueda !== prevState.busqueda) {
+    //         if (nextProps.busqueda) {
+    //             return {
+    //                 busqueda: '',
+    //                 resultado: false
+    //             }        
+    //         }
+    //     }
+    // }
     // useEffect() {
     //     console.log(this.props.busqueda)
     //     // if (this.props.busqueda !== this.state.resultado) {
@@ -63,7 +62,7 @@ class Buscador extends Component {
         return (
             <React.Fragment>
                 <form id="form-search" className="form-inline" onSubmit={this.handleSubmit}>
-                    <input type='text' onChange={this.handleChange}  className="form-control valid" placeholder="Buscar por producto o color" value={this.state.busqueda} />
+                    <input type='text' onChange={this.handleChange}  className="form-control valid" placeholder="Buscar por producto o color" />
                     <button type="submit" className="btn btn-primary" onClick={this.handleClick}><i className="fa fa-search"></i> BUSCAR</button>
                 </form>
                 <Link to={`/latiendadelpintor/${this.state.busqueda}`} id="submit" style={{display: 'none'}}></Link>

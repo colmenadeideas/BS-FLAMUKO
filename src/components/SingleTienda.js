@@ -68,7 +68,7 @@ class SingleTienda extends Component {
         valor = parseInt(valor)
         if (valor > EXISTENCIA_NIVEL_MEDIO) {
             valor = 'high';
-        } else if (valor < EXISTENCIA_NIVEL_BAJO) {
+        } else if (valor === EXISTENCIA_NIVEL_BAJO) {
             valor = 'low';
         } else {
             valor = 'medium';
