@@ -54,6 +54,7 @@ class Home extends Component {
         // console.log(url)
         axios.get(url)
             .then(res => {
+                console.log(res.data)
                 if (res.data.productos) {
                     this.setState({
                         productos: res.data.productos,
@@ -169,7 +170,6 @@ class Home extends Component {
         this.setState({
             filtros
         })
-        this.props.filtros(this.state.filtros)
     }
     filtrosEstado = (estado) => {
         let estados = []
@@ -184,7 +184,15 @@ class Home extends Component {
         this.setState({
             filtros
         })
-        this.props.filtros(this.state.filtros)
+    }
+    borrarEstado = estado => {
+        let resultados = this.state.resultados
+        resultados.productos = this.state.productos
+        this.setState({
+            resultados,
+            filtrado: true,
+            cargandoFiltrado: false
+        })
     }
 
     render() {
@@ -202,6 +210,8 @@ class Home extends Component {
                                 cargando={this.state.cargandoFiltrado}
                                 linea={this.filtrosLinea}
                                 estado={this.filtrosEstado}
+                                presentacion={this.filtrosPresentacion}
+                                borrarEstado={this.borrarEstado}
                             />
                 }
             </React.Fragment>

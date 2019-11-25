@@ -26,28 +26,41 @@ class Busqueda extends Component {
   filtrosEstado = (idEstado) => {
     const busqueda = {
       lineas: this.state.linea,
+      presentacion: this.state.presentacion,
       estado: idEstado
     }
     this.props.idEstado(busqueda)
     this.props.estado(idEstado)
-    this.setState({
-      estado: idEstado
-    })  
   }
+
+  filtrosPresentacion = (presentacion) => {
+    this.setState({
+      presentacion
+    })
+  }
+
   borrarFiltro = (borrarFiltros) => {
     // var contador = 0;
-    var filtrosActuales = [...this.state.linea]
-    var filtrosNuevos = filtrosActuales.filter(filtro => (filtro !== borrarFiltros))
-    this.setState({
-      linea: filtrosNuevos
-    })
-    if (filtrosNuevos.some(Number)) {
+    if (borrarFiltros.lineas) {
+      var filtrosActuales = [...this.state.linea]
+      var filtrosNuevos = filtrosActuales.filter(filtro => (filtro !== borrarFiltros.lineas))
       this.setState({
-        filtros: true
+        linea: filtrosNuevos
       })
-    } else {
+      if (filtrosNuevos.some(Number)) {
+        this.setState({
+          filtros: true
+        })
+      } else {
+        this.setState({
+          filtros: false
+        })
+      }
+    } else if (borrarFiltros.estado) {
+      this.props.borrarEstado(borrarFiltros.estado)
+    } else if (borrarFiltros.presentacion) {
       this.setState({
-        filtros: false
+        presentacion: ""
       })
     }
     // if (nuevosFiltros.length === 1) {
@@ -93,7 +106,6 @@ class Busqueda extends Component {
     // } else {
     //     resultado = productos
     // }
-
     if (this.state.linea.length > 0) {
       this.state.linea.map(linea => (
           filtradoLinea.push(productos.filter(producto => (
@@ -106,9 +118,13 @@ class Busqueda extends Component {
     } else {
       resultado = productos
     }
-
-    if(!this.state.filtros) {
-      resultado = productos;
+    if (this.state.presentacion.length > 0) {
+      console.log(resultado)
+      let filtro = resultado
+      resultado = filtro.filter(producto => (
+        producto.presentacion === this.state.presentacion
+      ))
+      console.log(resultado)
     }
 
     const noResultados =  <h1 className="slide">No se encontraron resultados</h1>
@@ -121,6 +137,7 @@ class Busqueda extends Component {
                                   presentacion={presentacion}
                                   filtrosLinea={this.filtrosLinea}
                                   filtrosEstado={this.filtrosEstado}
+                                  filtrosPresentacion={this.filtrosPresentacion}
                                   borrarFiltro={this.borrarFiltro}
                                 />
                             </div>
@@ -133,8 +150,6 @@ class Busqueda extends Component {
                                       : <Productos 
                                           productos={resultado}
                                           busqueda={busqueda}
-                                          linea={this.state.linea}
-                                          estado={this.state.estado}
                                           filtrado={this.props.filtrado}
                                         />
                               }

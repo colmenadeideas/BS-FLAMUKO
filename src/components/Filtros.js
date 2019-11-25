@@ -13,6 +13,10 @@ class Filtros extends Component {
             mostrar: false,
             mensaje: "más"
         },
+        tooglePresentaciones: {
+            mostrar: false,
+            mensaje: "más"
+        },
         linea: [],
         lineas: [],
         estado: '',
@@ -61,6 +65,17 @@ class Filtros extends Component {
             estado: estado[0].nombre
         })
     } 
+    obtenerIdPresentacion = (idPresentacion) => {
+        if(!document.location.pathname.includes("/latiendadelpintor/detail")) {
+            this.props.filtrosPresentacion(idPresentacion)
+        }
+        let presentacion = this.state.presentaciones.filter(presentacion => (
+            presentacion.id === idPresentacion
+        ))
+        this.setState({
+            presentacion: presentacion[0].nombre
+        })
+    }
     toogleLineas = () => {
         if (this.state.toogleLineas.mostrar) {
             this.setState({
@@ -95,12 +110,46 @@ class Filtros extends Component {
             })
         }
     }
+    tooglePresentaciones = () => {
+        if (this.state.tooglePresentaciones.mostrar) {
+            this.setState({
+                tooglePresentaciones: {
+                    mostrar: false,
+                    mensaje: "más"
+                }
+            })
+        } else {
+            this.setState({
+                tooglePresentaciones: {
+                    mostrar: true,
+                    mensaje: "menos"
+                }
+            })
+        }
+    }
     borrarFiltro = (e) => {
-        var borrarLinea = e.currentTarget.value;
+        let borrarLinea = e.currentTarget.value;
+        let filtro
         if (borrarLinea === this.state.estado) {
             this.setState({
                 estado: ''
             })
+            if (!document.location.pathname.includes("/latiendadelpintor/detail")) {
+                filtro = {
+                    estado: borrarLinea
+                }
+                this.props.borrarFiltro(filtro)
+            }
+        } else if (borrarLinea === this.state.presentacion) {
+            this.setState({
+                presentacion: ''
+            })
+            if (!document.location.pathname.includes("/latiendadelpintor/detail")) {
+                filtro = {
+                    presentacion: borrarLinea
+                }
+                this.props.borrarFiltro(filtro)
+            }
         } else {
             var linea = this.state.lineas.filter(linea => (
                 linea.nombre === borrarLinea
@@ -112,7 +161,10 @@ class Filtros extends Component {
                 linea: lineas
             })
             if (!document.location.pathname.includes("/latiendadelpintor/detail")) {
-                this.props.borrarFiltro(linea[0].id)
+                filtro = {
+                    lineas: linea[0].id
+                }
+                this.props.borrarFiltro(filtro)
             }
         }
     }
@@ -227,7 +279,7 @@ class Filtros extends Component {
                         }
                     </ul>
                 </div>
-                {/* <div className="filters-area">
+                <div className="filters-area">
                 <h3>Presentación</h3>
                     <div id="current-filters-presentacion" className="current-filters">
                         {
@@ -265,7 +317,7 @@ class Filtros extends Component {
                             Ver {this.state.tooglePresentaciones.mensaje}
                         </a>
                     </ul>
-                </div> */}
+                </div>
             </div>
         );
     }

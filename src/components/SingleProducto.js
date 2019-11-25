@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SingleExistencia from './SingleExistencia';
-import Filtros from './Filtros';
 import Cargando from './Cargando';
+import FiltrosSingle from './FiltrosSingle';
 
 class SingleProducto extends Component {
     state = {  
@@ -22,38 +22,7 @@ class SingleProducto extends Component {
             .then(res => {
                 this.setState({
                     producto: res.data.producto[0],
-                    existencia: res.data.existencia
-                }, () => {
-                    this.obtenerLineas()
-                })
-        })
-    }
-    obtenerLineas = () => {
-        let url = `http://lab.besign.com.ve/flamuko/html/api/show/lineas`
-        axios.get(url)
-            .then(res => {
-                this.setState({
-                    lineas: res.data
-                }, () => {
-                    this.obtenerEstados()
-                })
-            })
-    }
-    obtenerEstados = () => {
-        let url = `http://lab.besign.com.ve/flamuko/html/api/show/estados`
-        axios.get(url)
-            .then(res => {
-                let estados = res.data.sort((a, b) => {
-                    if (a.nombre > b.nombre) {
-                        return 1;
-                    }
-                    if (a.nombre < b.nombre) {
-                        return -1;
-                    }
-                    return 0;
-                });
-                this.setState({
-                    estados,
+                    existencia: res.data.existencia,
                     cargando: false
                 })
             })
@@ -96,10 +65,8 @@ class SingleProducto extends Component {
 
         const producto =    <div className="App slide row">
                                 <div id="filtros" className="filtros col-sm-3 col-lg-2">
-                                    <Filtros 
-                                        lineas={this.state.lineas}
-                                        estados={this.state.estados}
-                                        filtros={this.props.filtros}
+                                    <FiltrosSingle
+
                                     />
                                 </div>
                                 <div className="main col-sm-9 col-lg-10">

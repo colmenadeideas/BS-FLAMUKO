@@ -23,12 +23,6 @@ class Router extends Component {
             })
         }  
     }
-    filtros = filtros => {
-        let e = filtros
-        this.setState({
-            filtros: e
-        })
-    } 
     busqueda = e => {
         this.setState({
             busqueda: e        
@@ -56,8 +50,7 @@ class Router extends Component {
                             return ( 
                                 <React.Fragment>
                                     <Home 
-                                        busqueda={nombreProducto}   
-                                        filtros={this.filtros}      
+                                        busqueda={nombreProducto}    
                                         resultado={this.busqueda}  
                                     />
                                 </React.Fragment>
@@ -69,7 +62,6 @@ class Router extends Component {
                             return (
                                 <SingleProducto 
                                     idProducto={idProducto}
-                                    filtros={this.state.filtros}
                                 />
                             )
                         }} />

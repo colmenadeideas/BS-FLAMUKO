@@ -13,7 +13,6 @@ class Buscador extends Component {
         this.setState({
             busqueda
         })
-        console.log(this.state.busqueda)
     }
     handleClick = () => {
         if (this.state.busqueda.length < 3) {
@@ -58,7 +57,6 @@ class Buscador extends Component {
     //     // }
     // }
     render() {
-        console.log("render")
         return (
             <React.Fragment>
                 <form id="form-search" className="form-inline" onSubmit={this.handleSubmit}>

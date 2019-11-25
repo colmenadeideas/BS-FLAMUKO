@@ -58,13 +58,13 @@ const Producto = (props) => {
                                     <h4><b>{envase}</b></h4>
                                     {icon !== ''
                                         ?   //<div><img src={`/latiendadelpintor/img/${icon}`} className="presentacion__img" alt="icon" /></div>
-                                        <div><img src={`../../img/${icon}`} className="presentacion__img" alt="icon" /></div>
+                                        <div><img src={`/latiendadelpintor/img/${icon}`} className="presentacion__img" alt="icon" /></div>
                                         :   <div><i className="fas fa-brush"></i></div>
                                     }
                                 </div>	
                             :   <div className="btn-link-bottom">Ver Detalle</div>	
                     }
-                    {/* comparo el codigo para seleccionar la imagen que se mostrara */}ss
+                    {/* comparo el codigo para seleccionar la imagen que se mostrara */}
                     <img src={`/latiendadelpintor/img/bote-pintura/${pintura[0]}.png`} className="result-card__img" alt={nombre} />
                 </div>
             </Link>
