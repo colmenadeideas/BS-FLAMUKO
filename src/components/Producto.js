@@ -6,21 +6,27 @@ const Producto = (props) => {
     const {cod, nombre, id, color, presentacion} = props.producto
     // console.log(presentacion)
     let envase
+    let icon = ''
     switch (presentacion) {
         case '1':
             envase = 'Galón'
+            icon = 'galon.png'
             break;
         case '4':
             envase = 'Cuarto'
+            icon = 'cuartico.png'
             break;
         case '3':
             envase = 'Cuñete 3 galones'
+            icon = 'cunete.png'
             break;
         case '40':
             envase = 'Cuñete 4 galones'
+            icon = 'cunete.png'
             break;
         case '5':
             envase = 'Cuñete 5 galones'
+            icon = 'cunete.png'
             break;
         case '53':
             envase = 'Tambor'
@@ -49,13 +55,17 @@ const Producto = (props) => {
                     {
                         (envase !== '')
                             ?   <div className="btn-link-bottom presentacion">
-                                    <div><i className="fas fa-brush"></i></div>
-                                    <h4>{envase}</h4>
+                                    <h4><b>{envase}</b></h4>
+                                    {icon !== ''
+                                        ?   //<div><img src={`/latiendadelpintor/img/${icon}`} className="presentacion__img" alt="icon" /></div>
+                                        <div><img src={`../../img/${icon}`} className="presentacion__img" alt="icon" /></div>
+                                        :   <div><i className="fas fa-brush"></i></div>
+                                    }
                                 </div>	
                             :   <div className="btn-link-bottom">Ver Detalle</div>	
                     }
-                    {/* comparo el codigo para seleccionar la imagen que se mostrara */}
-                    <img src={`/latiendadelpintor/img/bote-pintura/${pintura[0]}.png`} alt={nombre} />
+                    {/* comparo el codigo para seleccionar la imagen que se mostrara */}ss
+                    <img src={`/latiendadelpintor/img/bote-pintura/${pintura[0]}.png`} className="result-card__img" alt={nombre} />
                 </div>
             </Link>
         </div>
