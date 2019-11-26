@@ -200,6 +200,7 @@ form a {
     background: none; 
     padding: 0;
     border: none;
+    text-align: start;
 }
 .current-filters { 
     width: 100%; 
@@ -216,9 +217,6 @@ form a {
     padding: 7px 5px 7px 15px; 
     margin-bottom: 10px; 
     transition: all ease 0.5s
-}
-.filters-area button, .filters-area button:link { 
-    color: #585858; 
 }
 .filters-area button.active-filter, 
 .filters-area button:link.active-filter  { 

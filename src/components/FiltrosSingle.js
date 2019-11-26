@@ -4,10 +4,16 @@ import Estado from './Estado';
 class FiltrosSingle extends Component {
     state = {  
         estado: '',
+        estados: [],
         toogleEstados: {
             mostrar: false,
             mensaje: "más"
         }
+    }
+    componentDidMount() {
+        this.setState({
+            estados: this.props.estados
+        })
     }
     toogleEstados = () => {
         if (this.state.toogleEstados.mostrar) {
@@ -26,7 +32,50 @@ class FiltrosSingle extends Component {
             })
         }
     }
+    obtenerIdEstado = (idEstado) => {
+        if(document.location.pathname.includes("/latiendadelpintor/detail")) {
+            this.props.filtrosEstado(idEstado)
+        }
+        let estado = this.props.estados.filter(estado => (
+            estado.id === idEstado
+        ))
+        this.setState({
+            estado: estado[0].nombre
+        })
+    } 
+    borrarFiltro = (e) => {
+        this.setState({
+            estado: ''
+        })
+        if (document.location.pathname.includes("/latiendadelpintor/detail")) {
+            this.props.borrarFiltro(e.currentTarget.value)
+        }
+    }
     render() { 
+        var estados =   <React.Fragment>
+                            <div className="collapse multi-collapse" id="CollapseEstados">
+                                {
+                                    (this.props.estados.slice(4, 24)).map(estado => (
+                                        <Estado 
+                                            estado={estado}
+                                            key={estado.id}
+                                            idEstado={this.obtenerIdEstado}
+                                        />
+                                    ))
+                                }
+                            </div>
+                            <a  
+                                onClick={this.toogleEstados}
+                                className="mostrar"
+                                data-toggle="collapse" 
+                                href="#CollapseEstados" 
+                                role="button" 
+                                aria-expanded="false" 
+                                aria-controls="CollapseEstados"
+                            >
+                                Ver {this.state.toogleEstados.mensaje}
+                            </a>
+                        </React.Fragment>
         return (  
             <div className="col-12">
                 <div className="filters-area">
@@ -39,33 +88,28 @@ class FiltrosSingle extends Component {
                         }
                     </div>
                     <ul id="ubicacion" className="filters">
-                        {/* {(this.props.estados.slice(0, 4)).map(estado => (
-                            <Estado 
-                                estado={estado}
-                                key={estado.id}
-                                idEstado={this.obtenerIdEstado}
-                            />
-                        ))} */}
-                        <div className="collapse multi-collapse" id="CollapseEstados">
-                            {/* {(this.props.estados.slice(4, 24)).map(estado => (
-                                <Estado 
-                                    estado={estado}
-                                    key={estado.id}
-                                    idEstado={this.obtenerIdEstado}
-                                />
-                            ))} */}
-                        </div>
-                        <a  
-                            onClick={this.toogleEstados}
-                            className="mostrar"
-                            data-toggle="collapse" 
-                            href="#CollapseEstados" 
-                            role="button" 
-                            aria-expanded="false" 
-                            aria-controls="CollapseEstados"
-                        >
-                            Ver {this.state.toogleEstados.mensaje}
-                        </a>
+                        {   
+                            (this.props.estados.length <= 4)
+                                ?   this.props.estados.map(estado => (
+                                        <Estado 
+                                            estado={estado}
+                                            key={estado.id}
+                                            idEstado={this.obtenerIdEstado}
+                                        />
+                                    ))
+                                :   (this.props.estados.slice(0, 4)).map(estado => (
+                                        <Estado 
+                                            estado={estado}
+                                            key={estado.id}
+                                            idEstado={this.obtenerIdEstado}
+                                        />
+                                    ))
+                        }
+                        {
+                            (this.props.estados.length >= 5) 
+                                ?   estados
+                                :   ''
+                        }
                     </ul>
                     <button className="done-button" onClick={this.cerrarFiltros}>Listo</button>
                 </div>
