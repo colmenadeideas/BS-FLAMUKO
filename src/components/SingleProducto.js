@@ -29,24 +29,30 @@ class SingleProducto extends Component {
     }
     showProduct = ( ) => {
         const {cod, nombre, color, presentacion} = this.state.producto
-        const pinturas = ['ARM-026', 'ARM-072', 'ARM-81', 'ARM-085', 'ARM-156', 'ARM-582', 'ARM-590', 'ARM-596', 'FLA-18', 'FLA-20', 'FLA-40', 'FLA-70', 'FLA-355', 'REG-359']
+        const pinturas = ['ARM026', 'ARM072', 'ARM81', 'ARM085', 'ARM156', 'ARM582', 'ARM590', 'ARM596', 'FLA18', 'FLA20', 'FLA40', 'FLA70', 'FLA355', 'REG359']
 
         let envase
+        let icon = ''
         switch (presentacion) {
             case '1':
                 envase = 'Galón'
+                icon = 'galon.png'
                 break;
             case '4':
                 envase = 'Cuarto'
+                icon = 'cuartico.png'
                 break;
             case '3':
                 envase = 'Cuñete 3 galones'
+                icon = 'cunete.png'
                 break;
             case '40':
                 envase = 'Cuñete 4 galones'
+                icon = 'cunete.png'
                 break;
             case '5':
                 envase = 'Cuñete 5 galones'
+                icon = 'cunete.png'
                 break;
             case '53':
                 envase = 'Tambor'
@@ -79,8 +85,11 @@ class SingleProducto extends Component {
                                             {
                                                 (envase !== '')
                                                     ?   <div className="presentacion presentacion-detail">
-                                                            <div><i className="fas fa-brush"></i></div>
-                                                            <h4>{envase}</h4>
+                                                            <h4 className="presentacion__title"><b>{envase}</b></h4>
+                                                            {icon !== ''
+                                                                ?   <div><img src={`/latiendadelpintor/img/${icon}`} className="presentacion__img" alt="icon" /></div>
+                                                                :   <div><i className="fas fa-brush"></i></div>
+                                                            }
                                                         </div>
                                                     :   ''
                                             }

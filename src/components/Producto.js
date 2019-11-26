@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Producto = (props) => {
-    const pinturas = ['ARM-026', 'ARM-072', 'ARM-81', 'ARM-085', 'ARM-156', 'ARM-582', 'ARM-590', 'ARM-596', 'FLA-18', 'FLA-20', 'FLA-40', 'FLA-70', 'FLA-355', 'REG-359']
+    const pinturas = ['ARM026', 'ARM072', 'ARM81', 'ARM085', 'ARM156', 'ARM582', 'ARM590', 'ARM596', 'FLA18', 'FLA20', 'FLA40', 'FLA70', 'FLA355', 'REG359']
     const {cod, nombre, id, color, presentacion} = props.producto
     // console.log(presentacion)
     let envase
@@ -35,12 +35,13 @@ const Producto = (props) => {
         default:
             envase = ''
             break;
-    }
+        }
+        console.log(cod);
     let pintura = pinturas.filter(nom => (
         cod.indexOf(nom) !== -1
     ))
     if (pintura === "") {
-        pintura = "flamuko-flagloss"
+        pintura = "flauko-flaloss"
     }
 
     return (  
@@ -55,10 +56,9 @@ const Producto = (props) => {
                     {
                         (envase !== '')
                             ?   <div className="btn-link-bottom presentacion">
-                                    <h4><b>{envase}</b></h4>
+                                    <h4 className="presentacion__title"><b>{envase}</b></h4>
                                     {icon !== ''
-                                        ?   //<div><img src={`/latiendadelpintor/img/${icon}`} className="presentacion__img" alt="icon" /></div>
-                                        <div><img src={`/latiendadelpintor/img/${icon}`} className="presentacion__img" alt="icon" /></div>
+                                        ?   <div><img src={`/latiendadelpintor/img/${icon}`} className="presentacion__img" alt="icon" /></div>
                                         :   <div><i className="fas fa-brush"></i></div>
                                     }
                                 </div>	

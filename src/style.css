@@ -6,6 +6,12 @@
 body {
     overflow-x: hidden;
 }
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button {
+    margin: 0;
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+}
 
 /* .App {
     display: grid;
@@ -123,9 +129,12 @@ form a {
     align-items: center;
     color: #666;
 }
-.presentacion__img{
-    box-sizing: border-box;
-    max-height: 60%; 
+.result-card__img{
+    position: absolute; 
+    max-width: 33%;
+    max-height: 50%; 
+    bottom: 40px; 
+    left: 20px; 
 }
 .presentacion h4 {
     margin: 0 !important;
@@ -142,19 +151,17 @@ form a {
     color:#585858; 
     font-size: 0.9rem; 
     text-transform: lowercase; 
-    margin: 20px 15px 0 15px;
-    padding-right: 7px;
-
+    margin: 20px 15px 0 15px
 }
 .result-card h4::first-letter { 
     text-transform: uppercase; 
 }
-.result-card__img { 
-    position: absolute; 
-    max-width: 33%;
-    max-height: 50%; 
-    bottom: 40px; 
-    left: 20px; 
+.presentacion__img { 
+    box-sizing: border-box;
+    max-height: 60%; 
+}
+.presentacion__title {
+    padding-right: 7px;
 }
 .card { 
     border-color: #E6E6E6; 
@@ -361,7 +368,7 @@ a.call-button, a.call-button:link {
     padding: 30px;
     box-shadow: 0px 0px 20px -10px black;
 }
-.check-login > p {
+.modal-footer > p {
     margin-bottom: 0;
 }
 .check-login h2 {
@@ -414,6 +421,7 @@ button:focus {
     background: none;
     border: none;
     color: #007791;
+    cursor: pointer;
 }
 .toogle-sesion:hover { 
     color: #003179; 

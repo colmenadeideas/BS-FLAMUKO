@@ -32,13 +32,13 @@ class Login extends Component {
         }
     }
     enviarRegistro = (usuario) => {
-        // console.log(usuario)
+        console.log(usuario)
         let url = `http://lab.besign.com.ve/flamuko/html/api/save`
         axios.post(url, usuario)
             .then(res => {
                 console.log(res.data)
-                let duracionCookie = 2000000 * 48 * 3600
-                let duracionCookie2 = 2 * 48 * 3600
+                let duracionCookie = 2//2000000 * 48 * 3600
+                let duracionCookie2 = 2//2 * 48 * 3600
                 if (res.data === 'SignUp' || res.data === 'Login') {
                     document.cookie = `sesion=activa; max-age=${duracionCookie};`;
                     document.cookie = `email=${usuario.email}; max-age=${duracionCookie};`;
@@ -91,30 +91,50 @@ class Login extends Component {
                                 login={this.login}
                             />   
                         :   (this.state.registrado)
-                                ?   <div className="check-login">
-                                        <form className="row justify-content-center" onSubmit={this.iniciarSesion}>
-                                            <h2 className="col-10 col-sm-5 offset-sm-3">Iniciar Sesión</h2>
-                                            <div className="close-window col-1 offset-sm-3"><i onClick={this.closeWindow}className="far fa-times-circle"></i></div>
-                                            <input required className="input-form" type="email" placeholder="Email" ref={this.emailRef} /><div className="w-100"></div>                 
-                                            <button type="submit" className="boton-ingresar boton-margin">Ingresar</button>   
-                                        </form>
-                                        <p>o <button onClick={this.toogleSesion} className="toogle-sesion">Registrarse</button></p>
-                                    </div>
-                                :   <div className="check-login">
-                                        <form className="row justify-content-center" onSubmit={this.registrarUsuario}>
-                                            <h2 className="col-10 col-sm-4 offset-sm-4">Regístrate</h2>
-                                            <div className="close-window col-1 offset-sm-3"><i onClick={this.closeWindow}className="far fa-times-circle"></i></div>
-                                            <input required className="input-form" type="text" placeholder="Nombre" ref={this.nombreRef} /><div className="w-100"></div>                
-                                            <input required className="input-form" type="email" placeholder="Email" ref={this.emailRef} /><div className="w-100"></div>           
-                                            <input required className="input-form" type="number" placeholder="Telefono" ref={this.telefonoRef} /><div className="w-100"></div>   
-                                            <button type="submit" className="boton-ingresar">Ingresar</button><div className="w-100"></div>
-                                            <div className="form-check">
-                                                <input type="checkbox" className="form-check-input" id="Check" defaultChecked />
-                                                <label className="form-check-label" htmlFor="Check">He leído y acepto los términos y condiciones de uso</label>
+                                ?   <div className="modal-dialog modal-dialog-centered" role="document">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h2 className="modal-title" id="exampleModalLongTitle">Iniciar Sesion</h2>
+                                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
-                                        </form>
-                                        <p>o <button onClick={this.toogleSesion} className="toogle-sesion">Iniciar Sesión</button></p>
+                                            <div className="modal-body">
+                                                <div className="row justify-content-center">
+                                                    <input required className="input-form" type="email" placeholder="Email" ref={this.emailRef} /><div className="w-100"></div>                 
+                                                </div>
+                                            </div>
+                                            <div className="modal-footer">
+                                                <button type="submit" className="btn btn-primary" onClick={this.iniciarSesion}>Ingresar</button>
+                                                <p>o <button onClick={this.toogleSesion} className="toogle-sesion">Registrarse</button></p>
+                                            </div>
+                                        </div>
+                                    </div> 
+                            :   <div className="modal-dialog modal-dialog-centered" role="document">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h2 className="modal-title" id="exampleModalLongTitle">Registrate</h2>
+                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <form className="row justify-content-center">
+                                                <input required className="input-form" type="text" placeholder="Nombre" ref={this.nombreRef} /><div className="w-100"></div>
+                                                <input required className="input-form" type="email" placeholder="Email" ref={this.emailRef} /><div className="w-100"></div>
+                                                <input required className="input-form" type="number" placeholder="Telefono" ref={this.telefonoRef} /><div className="w-100"></div>
+                                                <div className="form-check">
+                                                    <input type="checkbox" className="form-check-input" id="Check" defaultChecked />
+                                                    <label className="form-check-label" htmlFor="Check">He leído y acepto los términos y condiciones de uso</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button type="submit" className="btn btn-primary" onClick={this.registrarUsuario}>Ingresar</button>
+                                            <p>o <button onClick={this.toogleSesion} className="toogle-sesion">Iniciar Sesión</button></p>
+                                        </div>
                                     </div>
+                                </div> 
                 }
             </React.Fragment>
         );

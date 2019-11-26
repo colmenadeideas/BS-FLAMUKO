@@ -23,11 +23,13 @@ class SingleTienda extends Component {
     obtenerCookies = () => {
         var cookies = [];
         var la_cookie = document.cookie.split("; ")
+        console.log(la_cookie);
         for (var i=0; i<la_cookie.length; i++) {
             var mi_cookie = la_cookie[i].split("=")[1]
             cookies.push(mi_cookie)
         }
-        if (cookies[2] !== this.state.estado) {
+        console.log(cookies);
+        if (cookies[2] !== this.state.estado && cookies[2] !== "undefined") {
             this.setState({
                 sesion: cookies[0],
                 email: cookies[1],
@@ -58,7 +60,7 @@ class SingleTienda extends Component {
             busqueda: this.props.producto.nombre
         }
         this.botonesActive()
-        // console.log(busqueda)
+        console.log(busqueda)
     }
     render() { 
         var {valor} = this.props.tienda
@@ -132,24 +134,31 @@ class SingleTienda extends Component {
                         (is_cellphone)
                             ?   (this.state.sesion === "activa" && this.state.estado === "login") 
                                 ?   <a href={mensaje} onClick={this.handleClick} target="_blank"  rel="noopener noreferrer" className="call-button"><i className="fa fa-whatsapp"></i> Enviar Mensaje</a>
-                                :   <button onClick={this.handleClick} target="_blank" rel="noopener noreferrer" className="call-button"><i className="fa fa-whatsapp"></i> Enviar Mensaje</button>
+                                :   <button data-toggle="modal" data-target="#modalRegister" className="call-button"><i className="fa fa-whatsapp"></i> Enviar Mensaje</button>
                             :   (this.state.sesion === "activa" && this.state.estado === "login")
                                 ?   <a href={llamar} onClick={this.handleClick} className="call-button"><i className="fa fa-phone-volume"></i> <span> Llamar </span> </a>
-                                :   <button onClick={this.handleClick} className="call-button"><i className="fa fa-phone-volume"></i> <span> Llamar </span> </button> 
+                                //:   <button onClick={this.handleClick} className="call-button"><i className="fa fa-phone-volume"></i> <span> Llamar </span> </button> 
+                                :   <button data-toggle="modal" data-target="#modalRegister" className="call-button"><i className="fa fa-phone-volume"></i> <span> Llamar </span> </button> 
                     }
                     <br/>
                     </div>
                     <hr/>
                 </div>
                 {
-                    (this.state.login && this.state.estado !== "login")
-                        ?   <div className="login-form">
-                                <Login 
-                                    producto={this.props.producto.nombre}
-                                    login={this.login}
-                                />
-                            </div>
-                        :   ""
+                    <div className="modal fade" id="modalRegister" tabIndex="-1" role="dialog" aria-labelledby="modalRegister" aria-hidden="true">
+                        <Login 
+                            producto={this.props.producto.nombre}
+                            login={this.login}
+                        />
+                    </div>
+                    // (this.state.login && this.state.estado !== "login")
+                    //     ?   <div className="login-form">
+                    //             <Login 
+                    //                 producto={this.props.producto.nombre}
+                    //                 login={this.login}
+                    //             />
+                    //         </div>
+                    //     :   ""
                 }
             </React.Fragment>
         );
