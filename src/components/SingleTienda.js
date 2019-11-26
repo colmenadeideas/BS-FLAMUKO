@@ -23,12 +23,12 @@ class SingleTienda extends Component {
     obtenerCookies = () => {
         var cookies = [];
         var la_cookie = document.cookie.split("; ")
-        console.log(la_cookie);
+        //console.log(la_cookie);
         for (var i=0; i<la_cookie.length; i++) {
             var mi_cookie = la_cookie[i].split("=")[1]
             cookies.push(mi_cookie)
         }
-        console.log(cookies);
+        //console.log(cookies);
         if (cookies[2] !== this.state.estado && cookies[2] !== "undefined") {
             this.setState({
                 sesion: cookies[0],
@@ -151,14 +151,6 @@ class SingleTienda extends Component {
                             login={this.login}
                         />
                     </div>
-                    // (this.state.login && this.state.estado !== "login")
-                    //     ?   <div className="login-form">
-                    //             <Login 
-                    //                 producto={this.props.producto.nombre}
-                    //                 login={this.login}
-                    //             />
-                    //         </div>
-                    //     :   ""
                 }
             </React.Fragment>
         );

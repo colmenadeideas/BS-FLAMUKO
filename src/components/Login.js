@@ -37,16 +37,18 @@ class Login extends Component {
         axios.post(url, usuario)
             .then(res => {
                 console.log(res.data)
-                let duracionCookie = 2//2000000 * 48 * 3600
-                let duracionCookie2 = 2//2 * 48 * 3600
+                let duracionCookie = 2000000 * 48 * 3600
+                let duracionCookie2 = 2 * 48 * 3600
                 if (res.data === 'SignUp' || res.data === 'Login') {
-                    document.cookie = `sesion=activa; max-age=${duracionCookie};`;
-                    document.cookie = `email=${usuario.email}; max-age=${duracionCookie};`;
-                    document.cookie = `estado=login; max-age=${duracionCookie2};`;
+                    // document.cookie = `sesion=activa; max-age=${duracionCookie};`;
+                    // document.cookie = `email=${usuario.email}; max-age=${duracionCookie};`;
+                    // document.cookie = `estado=login; max-age=${duracionCookie2};`;
                     this.botonesActive()
                     return false
                 }
             })
+        // var modal = document.querySelector(".modal");
+        // modal.classList.add("hidden");
     }
     login = (estado) => {
         this.props.login(estado)
@@ -105,7 +107,7 @@ class Login extends Component {
                                                 </div>
                                             </div>
                                             <div className="modal-footer">
-                                                <button type="submit" className="btn btn-primary" onClick={this.iniciarSesion}>Ingresar</button>
+                                                <button type="submit" className="btn btn-primary" onClick={this.iniciarSesion} data-dismiss="modal">Ingresar</button>
                                                 <p>o <button onClick={this.toogleSesion} className="toogle-sesion">Registrarse</button></p>
                                             </div>
                                         </div>
@@ -130,7 +132,7 @@ class Login extends Component {
                                             </form>
                                         </div>
                                         <div className="modal-footer">
-                                            <button type="submit" className="btn btn-primary" onClick={this.registrarUsuario}>Ingresar</button>
+                                            <button type="submit" className="btn btn-primary" onClick={this.registrarUsuario} data-dismiss="modal">Ingresar</button>
                                             <p>o <button onClick={this.toogleSesion} className="toogle-sesion">Iniciar Sesión</button></p>
                                         </div>
                                     </div>
