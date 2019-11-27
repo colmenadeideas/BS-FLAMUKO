@@ -40,13 +40,13 @@ class Login extends Component {
                 let duracionCookie = 2000000 * 48 * 3600
                 let duracionCookie2 = 2 * 48 * 3600
                 if (res.data === 'SignUp' || res.data === 'Login') {
-                    // document.cookie = `sesion=activa; max-age=${duracionCookie};`;
-                    // document.cookie = `email=${usuario.email}; max-age=${duracionCookie};`;
-                    // document.cookie = `estado=login; max-age=${duracionCookie2};`;
+                    document.cookie = `sesion=activa; max-age=${duracionCookie};`;
+                    document.cookie = `email=${usuario.email}; max-age=${duracionCookie};`;
+                    document.cookie = `estado=login; max-age=${duracionCookie2};`;
                     this.botonesActive()
-                    return false
                 }
             })
+        return false
         // var modal = document.querySelector(".modal");
         // modal.classList.add("hidden");
     }
@@ -75,10 +75,7 @@ class Login extends Component {
             this.props.login(login)
         }
     }
-    closeWindow = () => {
-        let login = false
-        this.props.login(login)
-    }
+
     render() { 
         // console.log(https://api.ipify.org/?format=jsonp&callback=ip); // Obtener IP del cliente
         var sesion = document.cookie.substr(7,7).replace("activa;", "activa");

@@ -15,6 +15,8 @@ class SingleTienda extends Component {
         this.obtenerCookies()
     }
     botonesActive = () => {
+        console.log(this.state);
+
         let button = document.querySelectorAll('.call-button')
         for (let i = 0; i < button.length; i++) {
             button[i].classList.add('call-button-active') 
@@ -28,7 +30,7 @@ class SingleTienda extends Component {
             var mi_cookie = la_cookie[i].split("=")[1]
             cookies.push(mi_cookie)
         }
-
+        console.log(la_cookie);
         if (cookies[2] !== this.state.estado && cookies[2] !== "undefined") {
             this.setState({
                 sesion: cookies[0],
@@ -38,6 +40,7 @@ class SingleTienda extends Component {
         }
     }
     handleClick = () => {
+        console.log(this.state);
         if (this.state.sesion === "activa" && this.state.estado === "login") {
             this.setState({
                 login: false
@@ -50,6 +53,8 @@ class SingleTienda extends Component {
         }
     }
     login = (estado) => {
+        console.log(estado);
+        console.log(this.state);
         this.setState({
             login: estado
         })

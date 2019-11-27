@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class CheckLogin extends Component {
     aceptarLogin = () => {
         var duracionCookie2 = 2 * 48 * 3600
-        // document.cookie = `estado=login; max-age=${duracionCookie2};`;
+        document.cookie = `estado=login; max-age=${duracionCookie2};`;
         let button = document.querySelectorAll('.call-button')
         for (let i = 0; i < button.length; i++) {
             button[i].classList.add('call-button-active') 
@@ -32,7 +32,7 @@ class CheckLogin extends Component {
     }
     render() { 
         var email = document.cookie.substr(21, 21).replace("; estado=", "")
-        // console.log(document.cookie)
+        console.log(document.cookie)
         this.botonesDisabled();
         return (  
             <div className="modal-dialog modal-dialog-centered" role="document">

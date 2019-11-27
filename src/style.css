@@ -190,6 +190,8 @@ form a {
 .filters-area ul { 
     padding:0; 
     margin: 0;  
+    max-height: 200px;
+    overflow-y: auto;
 }
 .filters-area ul li { 
     list-style: none; 
