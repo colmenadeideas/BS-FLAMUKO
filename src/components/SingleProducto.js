@@ -7,9 +7,10 @@ import FiltrosSingle from './FiltrosSingle';
 class SingleProducto extends Component {
     state = {  
         producto: [],
-        lineas: [],
         estados: [],
         existencia: [],
+        existenciaFiltrada: [],
+        filtrado: false,
         cargando: true
     }
     componentDidMount() {
@@ -24,8 +25,54 @@ class SingleProducto extends Component {
                     producto: res.data.producto[0],
                     existencia: res.data.existencia,
                     cargando: false
+                }, () => {
+                    this.obtenerEstados()
                 })
             })
+    }
+    obtenerEstados = () => {
+        let url = `http://lab.besign.com.ve/flamuko/html/api/show/estados`
+        axios.get(url)
+            .then(res => {
+                let estados = res.data.sort((a, b) => {
+                    if (a.nombre > b.nombre) {
+                        return 1;
+                    }
+                    if (a.nombre < b.nombre) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                this.filtrosEstados(estados)
+            })
+    }
+    filtrosEstados = (estados) => {
+        let filtrosEstados = this.state.estados
+        this.state.existencia.map(tienda => (
+            (filtrosEstados.indexOf(tienda.tienda[0].estado) === -1 && tienda.tienda[0].estado !== null)
+                ?   filtrosEstados = [...filtrosEstados, tienda.tienda[0].estado]
+                :   filtrosEstados
+        ))
+        let estado = estados.filter(estado => (
+            filtrosEstados.indexOf(estado.id) !== -1
+        ))
+        this.setState({
+            estados: estado
+        })
+    }
+    filtrosEstado = (idEstado) => {
+        let existenciaFiltrada = this.state.existencia.filter(tienda => (
+            (tienda.tienda[0].estado === idEstado && tienda.tienda[0].estado !== null)
+        ))
+        this.setState({
+            existenciaFiltrada,
+            filtrado: true
+        })
+    }
+    borrarFiltro = () => {
+        this.setState({
+            filtrado: false
+        })
     }
     showProduct = ( ) => {
         const {cod, nombre, color, presentacion} = this.state.producto
@@ -72,7 +119,9 @@ class SingleProducto extends Component {
         const producto =    <div className="App slide row">
                                 <div id="filtros" className="filtros col-sm-3 col-lg-2">
                                     <FiltrosSingle
-
+                                        estados={this.state.estados}
+                                        filtrosEstado={this.filtrosEstado}
+                                        borrarFiltro={this.borrarFiltro}
                                     />
                                 </div>
                                 <div className="main col-sm-9 col-lg-10">
@@ -94,10 +143,17 @@ class SingleProducto extends Component {
                                                     :   ''
                                             }
                                         </div>
-                                        <SingleExistencia 
-                                            existencia={this.state.existencia}
-                                            producto={this.state.producto}
-                                        />
+                                        {   
+                                            (!this.state.filtrado)   
+                                                ?   <SingleExistencia   
+                                                        existencia={this.state.existencia}
+                                                        producto={this.state.producto}
+                                                    />
+                                                :   <SingleExistencia   
+                                                        existencia={this.state.existenciaFiltrada}
+                                                        producto={this.state.producto}
+                                                    />
+                                        }
                                     </div>
                                 </div>
                             </div>
