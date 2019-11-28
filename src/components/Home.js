@@ -51,6 +51,7 @@ class Home extends Component {
         })
         let producto = this.state.busqueda
         let url = `http://lab.besign.com.ve/flamuko/html/api/search/all/${producto.replace(' ', '-')}`
+        // let url = `http://localhost/flamuko/html/api/search/all/${producto.replace(' ', '-')}`
         // console.log(url)
         axios.get(url)
             .then(res => {
@@ -77,7 +78,8 @@ class Home extends Component {
     }
   
     obtenerLineas = () => {
-        let url = `http://lab.besign.com.ve/flamuko/html/api/show/lineas`
+        // let url = `http://lab.besign.com.ve/flamuko/html/api/show/lineas`
+        let url = `http://localhost/flamuko/html/api/show/lineas`
         axios.get(url)
             .then(res => {
                 this.setState({
@@ -89,7 +91,8 @@ class Home extends Component {
     }
 
     obtenerEstados = () => {
-        let url = `http://lab.besign.com.ve/flamuko/html/api/show/estados`
+        // let url = `http://lab.besign.com.ve/flamuko/html/api/show/estados`
+        let url = `http://localhost/flamuko/html/api/show/estados`
         axios.get(url)
             .then(res => {
                 let estados = res.data.sort((a, b) => {
@@ -121,12 +124,37 @@ class Home extends Component {
                             { id: "40", nombre: "Cuñete 4 galones" },
                             { id: "53", nombre: "Tambor" }
                         ]
-                    },
-                    cargando: false
+                    }
                 })
+                this.obtenerLineasPresentacion()
             })
     }
-
+    obtenerLineasPresentacion = () => {
+        let lineasExistentes = []
+        let presentacionesExistentes = []
+        for(let i = 0; i < this.state.productos.length; i++) {
+            let producto = this.state.productos[i]
+            if (lineasExistentes.indexOf(producto.linea) === -1 && producto.linea !== null) {
+                lineasExistentes = [...lineasExistentes, producto.linea]
+            }
+            if (presentacionesExistentes.indexOf(producto.presentacion) === -1 && producto.presentacion !== null) {
+                presentacionesExistentes = [...presentacionesExistentes, producto.presentacion]
+            }
+        }
+        let presentacion = this.state.resultados.presentacion.filter(presen => (
+            presentacionesExistentes.indexOf(presen.id) !== -1
+        ))
+        let lineas = this.state.lineas.filter(linea => (
+            lineasExistentes.indexOf(linea.id) !== -1
+        ))
+        let resultados = this.state.resultados
+        resultados.lineas = lineas
+        resultados.presentacion = presentacion
+        this.setState({
+            resultados,
+            cargando: false
+        })
+    }
     obtenerBusquedaFiltrada = (busqueda) => {
         // console.log(busqueda)
         let lineas = 0
@@ -138,12 +166,14 @@ class Home extends Component {
             ))
         }
         let color = this.state.busqueda.replace('/', '') 
-        let url = `http://lab.besign.com.ve/flamuko/html/api/search/filtros/${color}/lineas:${lineas}-ubicacion:${busqueda.estado}`
+        // let url = `http://lab.besign.com.ve/flamuko/html/api/search/filtros/${color}/lineas:${lineas}-ubicacion:${busqueda.estado}`
+        let url = `http://localhost/flamuko/html/api/search/filtros/${color}/lineas:${lineas}-ubicacion:${busqueda.estado}`
         this.setState({
             cargandoFiltrado: true
         })
         axios.get(url)
             .then(res => {
+                console.log(res.data)
                 let resultados = this.state.resultados
                 resultados.productos = res.data
                 this.setState({
@@ -190,8 +220,7 @@ class Home extends Component {
         resultados.productos = this.state.productos
         this.setState({
             resultados,
-            filtrado: true,
-            cargandoFiltrado: false
+            filtrado: false
         })
     }
 

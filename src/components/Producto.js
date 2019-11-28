@@ -35,8 +35,7 @@ const Producto = (props) => {
         default:
             envase = ''
             break;
-        }
-        console.log(cod);
+    }
     let pintura = pinturas.filter(nom => (
         cod.indexOf(nom) !== -1
     ))

@@ -181,11 +181,11 @@ class Filtros extends Component {
                             <div className="collapse multi-collapse" id="CollapseLineas">
                                 {
                                     (this.state.lineas.slice(4, 24)).map(linea => (
-                                    <Linea 
-                                        linea={linea}
-                                        key={linea.id}
-                                        idLinea={this.obtenerIdLinea}
-                                    />
+                                        <Linea 
+                                            linea={linea}
+                                            key={linea.id}
+                                            idLinea={this.obtenerIdLinea}
+                                        />
                                     ))
                                 }
                             </div>
@@ -201,6 +201,30 @@ class Filtros extends Component {
                                 Ver {this.state.toogleLineas.mensaje}
                             </a>
                         </React.Fragment>
+        var presentaciones =    <React.Fragment>
+                                    <div className="collapse multi-collapse" id="CollapsePresentaciones">
+                                        {
+                                            (this.state.presentaciones.slice(4, 24)).map(presentacion => (
+                                                <Presentacion 
+                                                    presentacion={presentacion}
+                                                    key={presentacion.id}
+                                                    idPresentacion={this.obtenerIdPresentacion}
+                                                />
+                                            ))
+                                        }
+                                    </div>
+                                    <a  
+                                        onClick={this.tooglePresentaciones}
+                                        className="mostrar"
+                                        data-toggle="collapse" 
+                                        href="#CollapsePresentaciones" 
+                                        role="button" 
+                                        aria-expanded="false" 
+                                        aria-controls="CollapsePresentaciones"
+                                    >
+                                        Ver {this.state.tooglePresentaciones.mensaje}
+                                    </a>
+                                </React.Fragment>
         return (  
             <div className="col-12">
                 <div className="filters-area">
@@ -289,33 +313,28 @@ class Filtros extends Component {
                         }
                     </div>
                     <ul id="presentacion" className="filters">
-                        {(this.state.presentaciones.slice(0, 4)).map(presentacion => (
-                            <Presentacion 
-                                presentacion={presentacion}
-                                key={presentacion.id}
-                                idPresentacion={this.obtenerIdPresentacion}
-                            />
-                        ))}
-                        <div className="collapse multi-collapse" id="CollapsePresentaciones">
-                            {(this.state.presentaciones.slice(4, 24)).map(presentacion => (
-                                <Presentacion 
-                                    presentacion={presentacion}
-                                    key={presentacion.id}
-                                    idPresentacion={this.obtenerIdPresentacion}
-                                />
-                            ))}
-                        </div>
-                        <a  
-                            onClick={this.tooglePresentaciones}
-                            className="mostrar"
-                            data-toggle="collapse" 
-                            href="#CollapsePresentaciones" 
-                            role="button" 
-                            aria-expanded="false" 
-                            aria-controls="CollapsePresentaciones"
-                        >
-                            Ver {this.state.tooglePresentaciones.mensaje}
-                        </a>
+                        {   
+                            (this.state.presentaciones.length <= 4)
+                                ?   this.state.presentaciones.map(presentacion => (
+                                        <Presentacion 
+                                            presentacion={presentacion}
+                                            key={presentacion.id}
+                                            idPresentacion={this.obteneridPresentacion}
+                                        />
+                                    ))
+                                :   (this.state.presentaciones.slice(0, 4)).map(presentacion => (
+                                        <Presentacion 
+                                            presentacion={presentacion}
+                                            key={presentacion.id}
+                                            idPresentacion={this.obteneridPresentacion}
+                                        />
+                                    ))
+                        }
+                        {
+                            (this.state.presentaciones.length >= 5) 
+                                ?   presentaciones
+                                :   ''
+                        }
                     </ul>
                 </div>
             </div>
