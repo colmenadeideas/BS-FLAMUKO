@@ -33,8 +33,8 @@ class Login extends Component {
     }
     enviarRegistro = (usuario) => {
         console.log(usuario)
-        // let url = `http://lab.besign.com.ve/flamuko/html/api/save`
-        let url = `http://localhost/flamuko/html/api/save`
+        let url = `http://lab.besign.com.ve/flamuko/html/api/save`
+        //let url = `http://localhost/flamuko/html/api/save`
         axios.post(url, usuario)
             .then(res => {
                 console.log(res.data)
