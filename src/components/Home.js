@@ -78,8 +78,8 @@ class Home extends Component {
     }
   
     obtenerLineas = () => {
-        // let url = `http://lab.besign.com.ve/flamuko/html/api/show/lineas`
-        let url = `http://localhost/flamuko/html/api/show/lineas`
+        let url = `http://lab.besign.com.ve/flamuko/html/api/show/lineas`
+        //let url = `http://localhost/flamuko/html/api/show/lineas`
         axios.get(url)
             .then(res => {
                 this.setState({
@@ -91,8 +91,8 @@ class Home extends Component {
     }
 
     obtenerEstados = () => {
-        // let url = `http://lab.besign.com.ve/flamuko/html/api/show/estados`
-        let url = `http://localhost/flamuko/html/api/show/estados`
+         let url = `http://lab.besign.com.ve/flamuko/html/api/show/estados`
+        //let url = `http://localhost/flamuko/html/api/show/estados`
         axios.get(url)
             .then(res => {
                 let estados = res.data.sort((a, b) => {
@@ -166,8 +166,8 @@ class Home extends Component {
             ))
         }
         let color = this.state.busqueda.replace('/', '') 
-        // let url = `http://lab.besign.com.ve/flamuko/html/api/search/filtros/${color}/lineas:${lineas}-ubicacion:${busqueda.estado}`
-        let url = `http://localhost/flamuko/html/api/search/filtros/${color}/lineas:${lineas}-ubicacion:${busqueda.estado}`
+         let url = `http://lab.besign.com.ve/flamuko/html/api/search/filtros/${color}/lineas:${lineas}-ubicacion:${busqueda.estado}`
+        //let url = `http://localhost/flamuko/html/api/search/filtros/${color}/lineas:${lineas}-ubicacion:${busqueda.estado}`
         this.setState({
             cargandoFiltrado: true
         })
