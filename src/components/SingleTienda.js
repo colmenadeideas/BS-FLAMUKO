@@ -1,44 +1,74 @@
 import React, { Component } from 'react'
+import {getCookie} from './Helpers'
 import Login from './Login';
 
 class SingleTienda extends Component {
+
     state = {  
         login: false, 
         estado: "",
         email: "",
-        sesion: ""
+        sesion: "",
+        botonesActive: false
     }
+
     componentDidMount() {
         this.obtenerCookies()
     }
-    componentDidUpdate() {
+
+    componentDidUpdate(){
         this.obtenerCookies()
     }
+
     botonesActive = () => {
-        console.log(this.state);
+        
 
-        let button = document.querySelectorAll('.call-button')
-        for (let i = 0; i < button.length; i++) {
-            button[i].classList.add('call-button-active') 
-        }
+        // let button = document.querySelectorAll('.call-button')
+        // for (let i = 0; i < button.length; i++) {
+        //     button[i].classList.add('active') 
+        // }
+        this.setState({
+            botonesActive: true
+        })
     }
-    obtenerCookies = () => {
-        var cookies = [];
-        var la_cookie = document.cookie.split("; ")
+    // obtenerCookies = () => {
+    //     var cookies = [];
+    //     var la_cookie = document.cookie.split("; ")
 
-        for (var i=0; i<la_cookie.length; i++) {
-            var mi_cookie = la_cookie[i].split("=")[1]
-            cookies.push(mi_cookie)
-        }
-        console.log(la_cookie);
-        if (cookies[2] !== this.state.estado && cookies[2] !== "undefined") {
+    //     for (var i=0; i<la_cookie.length; i++) {
+    //         var mi_cookie = la_cookie[i].split("=")[1]
+    //         cookies.push(mi_cookie)
+    //     }
+    //     // console.log(la_cookie);
+    //     if (cookies[2] !== this.state.estado && cookies[2] !== "undefined") {
+    //         this.setState({
+    //             sesion: cookies[0],
+    //             email: cookies[1],
+    //             estado: cookies[2]
+    //         })
+    //     }
+    // }
+    obtenerCookies = () =>{
+        const email = getCookie('email')
+        const sesion = getCookie('sesion')
+        const estado = getCookie('estado')
+        const status = email && sesion && estado
+        if(email === this.state.email && sesion === this.state.sesion && estado === this.state.estado) return
+        // console.log(email)
+        // console.log(sesion)
+        // console.log(estado)
+        if(status){
             this.setState({
-                sesion: cookies[0],
-                email: cookies[1],
-                estado: cookies[2]
+                email: email,
+                sesion: sesion,
+                estado: estado
             })
+            this.botonesActive()
+
         }
+        
     }
+
     handleClick = () => {
         console.log(this.state);
         if (this.state.sesion === "activa" && this.state.estado === "login") {
@@ -67,6 +97,8 @@ class SingleTienda extends Component {
         this.botonesActive()
         console.log(busqueda)
     }
+
+
     render() { 
         var {valor} = this.props.tienda
         const {nombre, direccion, telefono /*, telefono1*/} = this.props.tienda.tienda[0]
@@ -114,6 +146,7 @@ class SingleTienda extends Component {
                     break;
                 case '0426': 
                     is_cellphone = true; 
+            
                     break;
                 default:
                     break;
@@ -138,12 +171,20 @@ class SingleTienda extends Component {
                     {
                         (is_cellphone)
                             ?   (this.state.sesion === "activa" && this.state.estado === "login") 
-                                ?   <a href={mensaje} onClick={this.handleClick} target="_blank"  rel="noopener noreferrer" className="call-button"><i className="fa fa-whatsapp"></i> Enviar Mensaje</a>
-                                :   <button data-toggle="modal" data-target="#modalRegister" className="call-button"><i className="fa fa-whatsapp"></i> Enviar Mensaje</button>
+                                ?   <a href={mensaje} onClick={this.handleClick} target="_blank"  rel="noopener noreferrer" 
+                                className={`call-button ${this.state.botonesActive ? 'active' : ''}`}>
+                                    <i className="fa fa-whatsapp"></i> Enviar Mensaje
+                                </a>
+                                :   <button data-toggle="modal" data-target="#modalRegister" 
+                                    className={`call-button ${this.state.botonesActive ? 'active' : ''}`}><i className="fa fa-whatsapp"></i> Enviar Mensaje</button>
                             :   (this.state.sesion === "activa" && this.state.estado === "login")
-                                ?   <a href={llamar} onClick={this.handleClick} className="call-button"><i className="fa fa-phone-volume"></i> <span> Llamar </span> </a>
+                                ?   <a href={llamar} onClick={this.handleClick} 
+                                    className={`call-button ${this.state.botonesActive ? 'active' : ''}`}>
+                                        <i className="fa fa-phone-volume"></i> <span> Llamar </span> 
+                                    </a>
                                 //:   <button onClick={this.handleClick} className="call-button"><i className="fa fa-phone-volume"></i> <span> Llamar </span> </button> 
-                                :   <button data-toggle="modal" data-target="#modalRegister" className="call-button"><i className="fa fa-phone-volume"></i> <span> Llamar </span> </button> 
+                                :   <button data-toggle="modal" data-target="#modalRegister" 
+                                    className={`call-button ${this.state.botonesActive ? 'active' : ''}`}><i className="fa fa-phone-volume"></i> <span> Llamar </span> </button> 
                     }
                     <br/>
                     </div>
@@ -154,6 +195,7 @@ class SingleTienda extends Component {
                         <Login 
                             producto={this.props.producto.nombre}
                             login={this.login}
+                            obtenerCookies={this.obtenerCookies}
                         />
                     </div>
                 }

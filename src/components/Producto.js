@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {ChangeTextColor, hexToRGB} from './styleFunctions'
 
 const Producto = (props) => {
     const pinturas = ['ARM026', 'ARM072', 'ARM81', 'ARM085', 'ARM156', 'ARM582', 'ARM590', 'ARM596', 'FLA18', 'FLA20', 'FLA40', 'FLA70', 'FLA355', 'REG359']
@@ -46,7 +47,9 @@ const Producto = (props) => {
     return (  
         <div className="col-lg-3 col-md-4 col-sm-6 col-12">
             <Link className="card-link" to={`/latiendadelpintor/detail/${id}`}>
-                <div className="card result-card" style={{background: color}}>
+                {/* <div className="card result-card" style={{background: color}}> */}
+                <div className="card result-card" style={ChangeTextColor(color)}>
+
                     <h4>{nombre}</h4>
                     {/* <div className="presentacion">
                         <div></div>

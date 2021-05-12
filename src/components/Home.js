@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Busqueda from './Busqueda';
 import Cargando from './Cargando';
+import Error from './Error';
 import axios from 'axios';
 
 
@@ -16,10 +17,12 @@ class Home extends Component {
             lineas: [],
             estados: [],
             busqueda: "",
+            presentacion: [],
             respuesta: Boolean
         },
         cargando: true,
         filtrado: false,
+        errorAlCargar:false,
         cargandoFiltrado: false,
         filtros: {
             lineas: [],
@@ -27,6 +30,8 @@ class Home extends Component {
         }
     }
     componentDidMount() {
+        if (this.props.busqueda === this.state.busqueda) return null
+
         this.obtenerBusqueda()
     }
     componentDidUpdate() {
@@ -50,7 +55,7 @@ class Home extends Component {
             cargandoFiltrado: false
         })
         let producto = this.state.busqueda
-        let url = `http://lab.besign.com.ve/flamuko/html/api/search/all/${producto.replace(' ', '-')}`
+        let url = `http://lab.besign.com.ve/flamuko/html/api/search/all/${producto.replace('%20', '-')}`
         // let url = `http://localhost/flamuko/html/api/search/all/${producto.replace(' ', '-')}`
         // console.log(url)
         axios.get(url)
@@ -75,6 +80,16 @@ class Home extends Component {
                     this.props.resultado(false)
                 }
             })
+            .catch(err=>{
+                console.log(err)
+                console.log('Esta reconociendo el error')
+                this.setState({
+                    errorAlCargar: true,
+                    respuesta: false,
+                    cargando: false,
+                })
+                this.props.resultado(false)
+            })
     }
   
     obtenerLineas = () => {
@@ -82,6 +97,7 @@ class Home extends Component {
         //let url = `http://localhost/flamuko/html/api/show/lineas`
         axios.get(url)
             .then(res => {
+                console.log(res.data)
                 this.setState({
                     lineas: res.data
                 }, () => {
@@ -150,6 +166,7 @@ class Home extends Component {
         let resultados = this.state.resultados
         resultados.lineas = lineas
         resultados.presentacion = presentacion
+        console.log(resultados.presentacion)
         this.setState({
             resultados,
             cargando: false
@@ -227,7 +244,23 @@ class Home extends Component {
     render() {
         return (
             <React.Fragment>
-                {
+                {this.state.errorAlCargar ? <Error/> : null}
+                {this.state.cargando ? <Cargando /> : null}
+                {!this.state.cargando && !this.state.errorAlCargar ? 
+                            <Busqueda
+                            busqueda={this.obtenerBusqueda} 
+                            resultados={this.state.resultados}  
+                            respuesta={this.state.respuesta}  
+                            idEstado={this.obtenerBusquedaFiltrada}
+                            filtrado={this.state.filtrado}
+                            cargando={this.state.cargandoFiltrado}
+                            linea={this.filtrosLinea}
+                            estado={this.filtrosEstado}
+                            presentacion={this.filtrosPresentacion}
+                            borrarEstado={this.borrarEstado}
+                        />
+                            : null}
+                {/* {
                     (this.state.cargando)
                         ?   <Cargando />
                         :   <Busqueda
@@ -242,7 +275,7 @@ class Home extends Component {
                                 presentacion={this.filtrosPresentacion}
                                 borrarEstado={this.borrarEstado}
                             />
-                }
+                } */}
             </React.Fragment>
         );
     }

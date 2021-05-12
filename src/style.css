@@ -31,6 +31,7 @@ input[type="number"]::-webkit-inner-spin-button {
 #header {
     display: flex;
     background: #005CA8;
+    justify-content: center;
     min-height: 100px;
     padding: 20px;
 }
@@ -42,6 +43,7 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0px 100px;
 }
 #form-search input {
+    position: relative;
     width: 75%;
     border-radius: 20px 0 0 20px;
     border: none;
@@ -67,6 +69,30 @@ form a {
 .form-control:focus {
     box-shadow: unset !important;
 }
+
+.sesion-dropdown{
+    display: grid;
+    place-items: center;
+}
+.sugerencia-box{
+    position: absolute;
+    padding: 0 10px;
+    z-index: 99;
+    top: 150px;
+    background-color: white;
+    width: 500px;
+    border: 1px solid black;
+}
+.sugerencia-box .sugerencia{
+    padding-top: 0 !important;
+    cursor: pointer;
+    border-bottom: 1px solid #CCC;
+    display: grid;
+    place-items: center;
+}
+.sugerencia p{
+    border: 1px solid magenta;
+}
 /* Fin Header */
 
 /* Principal */
@@ -74,6 +100,12 @@ form a {
     padding: 40px 20px 0 20px;
     text-align: center;
     height: 70vh;
+}
+.principal .prueba{
+    border: 1px solid black;
+    /* color: white; */
+    /* --height:255; */
+    background-color: rgb(0, 0, calc(var(height) * 1));
 }
 .principal #form-search {
     box-shadow: 0px 1px 1px 0.5px #888;
@@ -148,7 +180,7 @@ form a {
     box-shadow: 2px 3px 15px rgba(0,0,0,0.2);
 }
 .result-card h4 {
-    color:#585858; 
+    /* color:#585858;  */
     font-size: 0.9rem; 
     text-transform: lowercase; 
     margin: 20px 15px 0 15px
@@ -171,6 +203,18 @@ form a {
 }
 /* Fin Producto */
 
+.not-found-page{
+    height: 100%;
+    padding: 2rem;
+}
+.not-found-content{
+    display: grid;
+    place-items: center;
+}
+.not-found-content span{
+    font-size: 4rem;
+    font-weight: bolder;
+}
 /* Filtros */
 .filtros{
     padding-right: 0px !important;
@@ -278,12 +322,12 @@ button.active-filter::after {
     margin:0 10px 0 0;
     transition: all ease 0.5s;
 }
-.call-button-active {
+.call-button.active {
     background: #28a745 !important;
     border-color: #28a745 !important;
     color: #FFF !important;
 }
-.call-button-active:hover {
+.call-button.active:hover {
     background: #1a6e2e !important;
     border-color: #1a6e2e !important;
 }
@@ -313,12 +357,66 @@ a.call-button, a.call-button:link {
 .availability.low { 
     background: #DC3545 
 }
+
+.availability.small{
+    height: 10px; 
+    width: 10px;
+}
+.leyenda-existencia{
+    height: 50px;
+    position: relative;
+}
+.leyenda-existencia .row{
+    height: 100%;
+    width: 51.3%;
+    position: absolute;
+    right: 0;
+}
+.indicador-group{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.indicador-group span{
+    text-transform: uppercase;
+    color: #aaa;
+}
+.indicador-existencia{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
 .address-area { 
     max-height: 450px; 
-    overflow-y: scroll; 
+    overflow-y: scroll;
+
     padding-top: 20px; 
     padding-right: 20px  
 }
+.address-area::-webkit-scrollbar {
+    width: 10px;
+  }
+   
+.address-area::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+
+}
+
+.address-area::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 25px;
+    transition: 800ms;
+    /* background-color: darkgrey; */
+    /* outline: 1px solid slategrey; */
+}
+
+.address-area::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+
 .product-description { 
     padding-top: 30px 
 }
@@ -347,6 +445,9 @@ a.call-button, a.call-button:link {
     justify-content: center;
     margin-top: 20px;
 }
+
+
+
 /* Fin Producto */
 
 /* Login */
@@ -541,6 +642,7 @@ button:focus {
     animation-duration: 3s;
     animation-iteration-count: infinite;
 }
+
 
 @keyframes loader {
     15% {

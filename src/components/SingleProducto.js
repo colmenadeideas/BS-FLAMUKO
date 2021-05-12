@@ -3,6 +3,9 @@ import axios from 'axios';
 import SingleExistencia from './SingleExistencia';
 import Cargando from './Cargando';
 import FiltrosSingle from './FiltrosSingle';
+import Error from './Error';
+import LeyendaExitencia from './leyendaExistencia';
+import NotFound from './NotFound';
 
 class SingleProducto extends Component {
     state = {  
@@ -11,7 +14,8 @@ class SingleProducto extends Component {
         existencia: [],
         existenciaFiltrada: [],
         filtrado: false,
-        cargando: true
+        cargando: true,
+        errorAlCargar:false,
     }
     componentDidMount() {
         this.obtenerProducto()
@@ -22,12 +26,21 @@ class SingleProducto extends Component {
         //let url = `http://localhost/flamuko/html/api/detail/${this.props.idProducto}`
         await axios(url)
             .then(res => {
+                console.log(res.data.producto[0])
                 this.setState({
                     producto: res.data.producto[0],
                     existencia: res.data.existencia,
                     cargando: false
                 }, () => {
                     this.obtenerEstados()
+                })
+            })
+            .catch( err =>{
+                console.log(err)
+                console.log('Esta reconociendo el error')
+                this.setState({
+                    errorAlCargar: true,
+                    cargando: false,
                 })
             })
     }
@@ -77,10 +90,11 @@ class SingleProducto extends Component {
         })
     }
     showProduct = ( ) => {
+        if(this.state.producto.length === 0) return
         const {cod, nombre, color, presentacion} = this.state.producto
         const pinturas = ['ARM026', 'ARM072', 'ARM81', 'ARM085', 'ARM156', 'ARM582', 'ARM590', 'ARM596', 'FLA18', 'FLA20', 'FLA40', 'FLA70', 'FLA355', 'REG359']
 
-        let envase
+        let envase;
         let icon = ''
         switch (presentacion) {
             case '1':
@@ -111,9 +125,11 @@ class SingleProducto extends Component {
                 envase = '' 
                 break;
         }
+
         let pintura = pinturas.filter(nom => (
             cod.indexOf(nom) !== -1
         ))
+
         if (pintura === "") {
             pintura = "flamuko-flagloss"
         }
@@ -128,6 +144,7 @@ class SingleProducto extends Component {
                                 </div>
                                 <div className="main col-sm-9 col-lg-10">
                                     <div className="row product-display no-gutters">
+                                        <LeyendaExitencia/>
                                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <h4 className="nombre-producto">{nombre}</h4>
                                             <div className="card result-card-detail div-img" style={{background: color}}>					
@@ -165,8 +182,10 @@ class SingleProducto extends Component {
     render() { 
         return (  
             <React.Fragment>
+                    {this.state.errorAlCargar ? <NotFound/> : null}
+
                     {
-                        (this.state.cargando)
+                        (this.state.cargando && !this.state.error)
                             ?   <Cargando />
                             :   this.showProduct()
                     }

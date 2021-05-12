@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Buscador from './Buscador';
+import TopNavBar from './TopNavBar'
+// import {Link} from 'react-router-dom'
 
 class Header extends Component {
     state = {
@@ -18,20 +20,34 @@ class Header extends Component {
     }
     render() { 
         return (  
+            
             <div className='row slide'>   
                 <div className="col-12 col-sm-12 col-md-3">
-                    <img className='logo' src="/latiendadelpintor/img/flamuko-logo.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" />
+
+                    {/* <img className='logo' src="/latiendadelpintor/img/flamuko-logo.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" /> */}
+                    {/* <Link to="/latiendadelpintor/">
+                        <img className='logo' src="/latiendadelpintor/img/flamuko-logo.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" />
+                    </Link> */}
+                    <a href="/latiendadelpintor/">
+                        <img className='logo' src="/latiendadelpintor/img/flamuko-logo.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" />
+                    </a>
                 </div>
-                <div className="col-12 col-sm-12 col-md-9 form1 d-flex align-items-center">
+                <div className="col-12 col-sm-12 col-md-6 form1 d-flex align-items-center">
                     {
                         (this.state.pathname !== "/latiendadelpintor" && this.state.pathname !== "/latiendadelpintor/") 
                             ?   <Buscador 
                                     busqueda={this.props.busqueda}
                                 />
-                            :   ""
+            
+                            :   <div className="col-12" style={{width:"600px"}}></div>
+
                     }
                 </div>
+                <div className="col-12 col-sm-12 col-md-3 sesion-dropdown">
+                    <TopNavBar />
+                </div>
             </div>
+            
         );
     }
 }

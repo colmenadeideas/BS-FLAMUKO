@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import {getCookie} from './Helpers'
 
 class CheckLogin extends Component {
+
+    state = {
+        email: ""
+    }
+
     aceptarLogin = () => {
         var duracionCookie2 = 2 * 48 * 3600
         document.cookie = `estado=login; max-age=${duracionCookie2};`;
@@ -30,9 +36,11 @@ class CheckLogin extends Component {
             button[i].classList.remove('call-button-active') 
         }
     }
+
+
     render() { 
-        var email = document.cookie.substr(21, 21).replace("; estado=", "")
-        console.log(document.cookie)
+        var email = getCookie('email')
+        console.log(email)
         this.botonesDisabled();
         return (  
             <div className="modal-dialog modal-dialog-centered" role="document">

@@ -8,13 +8,15 @@ const SingleExistencia = (props) => {
             Disponible en:
             <div className="address-area">
                 {
-                    props.existencia.map((tienda, key) => (
+                    props.existencia.map((tienda, key) => {
+                        console.log(tienda)
+                        return(
                         <SingleTienda 
                             tienda={tienda}
                             producto={props.producto}
                             key={key}
                         />
-                    ))
+                    )})
                 }
             </div>
 		</div>

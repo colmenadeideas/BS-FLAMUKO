@@ -54,6 +54,25 @@ class Filtros extends Component {
             })  
         }
     }
+
+    obtenerIdPresentacion = (idPresentacion) => {
+        
+        if(!document.location.pathname.includes("/latiendadelpintor/detail")) {
+            this.props.filtrosPresentacion(idPresentacion)
+        }
+
+        let presentacion = this.state.presentaciones.find(presentacion => (
+            presentacion.id === idPresentacion
+        ))
+
+        if (this.state.presentacion !== presentacion) {
+            this.setState({
+                // presentaciones: presentaciones,
+                presentacion: presentacion.nombre
+            })  
+        }
+    }
+
     obtenerIdEstado = (idEstado) => {
         if(!document.location.pathname.includes("/latiendadelpintor/detail")) {
             this.props.filtrosEstado(idEstado)
@@ -65,17 +84,8 @@ class Filtros extends Component {
             estado: estado[0].nombre
         })
     } 
-    obtenerIdPresentacion = (idPresentacion) => {
-        if(!document.location.pathname.includes("/latiendadelpintor/detail")) {
-            this.props.filtrosPresentacion(idPresentacion)
-        }
-        let presentacion = this.state.presentaciones.filter(presentacion => (
-            presentacion.id === idPresentacion
-        ))
-        this.setState({
-            presentacion: presentacion[0].nombre
-        })
-    }
+    
+
     toogleLineas = () => {
         if (this.state.toogleLineas.mostrar) {
             this.setState({
@@ -208,7 +218,8 @@ class Filtros extends Component {
                                                 <Presentacion 
                                                     presentacion={presentacion}
                                                     key={presentacion.id}
-                                                    idPresentacion={this.obtenerIdPresentacion}
+                                                    name={'Crsitiam probando'}
+                                                    obtenerIdPresentacion={this.obtenerIdPresentacion}
                                                 />
                                             ))
                                         }
@@ -319,14 +330,16 @@ class Filtros extends Component {
                                         <Presentacion 
                                             presentacion={presentacion}
                                             key={presentacion.id}
-                                            idPresentacion={this.obteneridPresentacion}
+                                            name={'Crsitiam probando'}
+                                            obtenerIdPresentacion={this.obtenerIdPresentacion}
                                         />
                                     ))
                                 :   (this.state.presentaciones.slice(0, 4)).map(presentacion => (
                                         <Presentacion 
                                             presentacion={presentacion}
                                             key={presentacion.id}
-                                            idPresentacion={this.obteneridPresentacion}
+                                            name={'Crsitiam probando'}
+                                            obtenerIdPresentacion={this.obtenerIdPresentacion}
                                         />
                                     ))
                         }

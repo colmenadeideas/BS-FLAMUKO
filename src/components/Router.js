@@ -6,6 +6,7 @@ import SingleProducto from './SingleProducto';
 import Header from './Header';
 import Footer from './Footer';
 import Principal from './Principal';
+import NotFound from './NotFound'
 
 class Router extends Component {
     state = {
@@ -65,6 +66,9 @@ class Router extends Component {
                                 />
                             )
                         }} />
+                        
+                        <Route component ={NotFound}  />
+
                     </Switch>
                     <Footer />
                 </React.Fragment>
