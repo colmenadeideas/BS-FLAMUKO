@@ -182,6 +182,7 @@ class SingleProducto extends Component {
     render() { 
         return (  
             <React.Fragment>
+                <div className="container">
                     {this.state.errorAlCargar ? <NotFound/> : null}
 
                     {
@@ -189,6 +190,8 @@ class SingleProducto extends Component {
                             ?   <Cargando />
                             :   this.showProduct()
                     }
+                </div>
+                    
             </React.Fragment>
         );
     }

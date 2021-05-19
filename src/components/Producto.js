@@ -45,12 +45,15 @@ const Producto = (props) => {
     }
 
     return (  
-        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+        
             <Link className="card-link" to={`/latiendadelpintor/detail/${id}`}>
                 {/* <div className="card result-card" style={{background: color}}> */}
                 <div className="card result-card" style={ChangeTextColor(color)}>
 
-                    <h4>{nombre}</h4>
+                    <div className="text-section">
+                        <h4>{nombre}</h4>
+                        <p>{nombre.split(' ')[0]}</p>
+                    </div>
                     {/* <div className="presentacion">
                         <div></div>
                         <h4>{envase}</h4>
@@ -70,7 +73,6 @@ const Producto = (props) => {
                     <img src={`/latiendadelpintor/img/bote-pintura/${pintura[0]}.png`} className="result-card__img" alt={nombre} />
                 </div>
             </Link>
-        </div>
     );
 }
  

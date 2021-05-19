@@ -167,27 +167,34 @@ class Login extends Component {
                                         </div>
                                     </div> 
                             :   <div className="modal-dialog modal-dialog-centered" role="document">
-                                    <div className="modal-content">
+                                    <div className="modal-content login-popup">
                                         <div className="modal-header">
-                                            <h2 className="modal-title" id="exampleModalLongTitle">Registrate</h2>
                                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div className="modal-body">
+                                            <h2>¡Nos gustaría mantenernos en contacto! Te invitamos a completar tus datos</h2>
                                             <form className="row justify-content-center">
                                                 <input required onChange={this.chechIfEmpty} className="input-form" minLength={5} type="text" placeholder="Nombre" ref={this.nombreRef} /><div className="w-100"></div>
-                                                <input required onChange={this.chechIfEmpty} className="input-form" minLength={5} type="email" placeholder="Email" ref={this.emailRef} /><div className="w-100"></div>
-                                                <input required onChange={this.chechIfEmpty} className="input-form" minLength={5} type="number" placeholder="Telefono" ref={this.telefonoRef} /><div className="w-100"></div>
+                                                <input required onChange={this.chechIfEmpty} className="input-form" minLength={5} type="email" placeholder="Tu Correo Electrónico" ref={this.emailRef} /><div className="w-100"></div>
+                                                <input required onChange={this.chechIfEmpty} className="input-form" minLength={5} type="number" placeholder="Telefono Móvil" ref={this.telefonoRef} /><div className="w-100"></div>
                                                 <div className="form-check">
                                                     <input type="checkbox" className="form-check-input" id="Check" defaultChecked />
-                                                    <label className="form-check-label" htmlFor="Check">He leído y acepto los términos y condiciones de uso</label>
+                                                    <label className="form-check-label" htmlFor="Check">
+                                                        Estoy de acuerdo con suministrar mis datos y ser contactado<br/> para promociones
+                                                    </label>
                                                 </div>
                                             </form>
                                         </div>
                                         <div className="modal-footer">
-                                            <button type="submit" className="btn btn-primary" disabled={this.state.formVacio} onClick={this.registrarUsuario} data-dismiss="modal">Ingresar</button>
-                                            <p>o <button onClick={this.toogleSesion} className="toogle-sesion">Iniciar Sesión</button></p>
+                                            <div className="">
+                                                <button type="submit" className="submit-button" disabled={this.state.formVacio} onClick={this.registrarUsuario} data-dismiss="modal">Enviar Datos</button>
+                                            </div>
+                                            <div className="">
+                                                <p><button onClick={this.toogleSesion} className="toogle-sesion">No gracias, sólo muéstrame la información</button></p>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div> 

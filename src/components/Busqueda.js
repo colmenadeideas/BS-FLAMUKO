@@ -8,7 +8,17 @@ class Busqueda extends Component {
     linea: [],
     estado: "",
     presentacion: "",
-    filtros: true
+    filtros: true,
+    filtroLinea: "",
+    filtroPresentacion:"",
+    filtroEstado:""
+  }
+
+  setFilter = ( value) => {
+    this.setState({
+      value
+    })
+
   }
 
   filtrosLinea = (nuevalinea) => {

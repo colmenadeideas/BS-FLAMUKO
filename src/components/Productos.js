@@ -57,22 +57,22 @@ class Productos extends Component {
     screenSize = () => {
         if(window.outerWidth >= 992) {
             this.setState({
-                todosPerPage: 32,
+                todosPerPage: 27,
                 screenWidth: window.outerWidth
             })
         } if (window.outerWidth >= 768 && window.outerWidth <= 991) {
             this.setState({
-                todosPerPage: 24,
+                todosPerPage: 18,
                 screenWidth: window.outerWidth
             })
         } if (window.outerWidth >= 576 && window.outerWidth <= 767) {
             this.setState({
-                todosPerPage: 16,
+                todosPerPage: 9,
                 screenWidth: window.outerWidth
             })
         } if (window.outerWidth >= 0 && window.outerWidth <= 575) {
             this.setState({
-                todosPerPage: 10,
+                todosPerPage: 9,
                 screenWidth: window.outerWidth
             })
         }
@@ -90,17 +90,21 @@ class Productos extends Component {
 
         // Logic for displaying current productos
         const indexOfLastTodo = currentPage * todosPerPage;
-        const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-        const currentProductos = productos.slice(indexOfFirstTodo, indexOfLastTodo);
+        const indexOfFirstTodo = indexOfLastTodo - todosPerPage ;
+        const currentProductos = productos.slice(indexOfFirstTodo, indexOfLastTodo + 1);
   
         const renderTodos = currentProductos.map((producto, index) => {
             return (
                 //si no tiene color asociado no se mostrara en la muestra de resultados
                 (producto.color !== "" )
-                    ?   <Producto  
+                
+                    ?  
+                    <div className="col-lg-4 col-md-4 col-sm-6 col-12"> 
+                        <Producto  
                             key={index}
                             producto={producto}                                     
                         />
+                    </div>
                     :   ""
             );
         });
@@ -126,7 +130,7 @@ class Productos extends Component {
         return (  
             <React.Fragment>
                 <div className="row border-bottom resul1 align-items-center">
-                    <h6>{productos.length} resultados para <span>{busqueda.replace('/', '')}</span></h6>
+                    <h6>{productos.length} resultados para <span>"{busqueda.replace('/', '')}"</span></h6>
                     <span className="toogle-button" onClick={this.toogleFiltros}>Aplicar Filtros  <i className="fas fa-bars"></i></span>
                 </div>				
                 <div className="row product-display">

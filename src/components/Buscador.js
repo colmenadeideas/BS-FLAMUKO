@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-
+import Example from './AutocompletePrueba'
 
 class Buscador extends Component {
     
@@ -20,7 +20,7 @@ class Buscador extends Component {
     handleChange = (e) => {
         var busqueda = e.currentTarget.value
         if(busqueda.length > 2){
-            this.getSugerencias(busqueda)
+            // this.getSugerencias(busqueda)
         } else {
             this.setState({
                 sugerencias: []
@@ -65,10 +65,17 @@ class Buscador extends Component {
         })
     }
 
-    setBusqueda = (sugerencia) => {
+    // setBusqueda = (sugerencia) => {
+    //     this.setState({
+    //         busqueda: sugerencia,
+    //         sugerencias: []
+    //     })
+
+    // }
+
+    setBusqueda = (busqueda) => {
         this.setState({
-            busqueda: sugerencia,
-            sugerencias: []
+            busqueda: busqueda,
         })
 
     }
@@ -114,9 +121,10 @@ class Buscador extends Component {
         return (
             <React.Fragment>
                 <form id="form-search" className="form-inline" onSubmit={this.handleSubmit}>
-                    <input type='text' ref={this.inputBusqueda} onChange={this.handleChange}  className="form-control valid" value={this.state.busqueda} placeholder="Buscar por producto o color" />
+                    <Example setBusqueda={this.setBusqueda} />
+                    {/* <input type='text' ref={this.inputBusqueda} onChange={this.handleChange}  className="form-control valid" value={this.state.busqueda} placeholder="Buscar por producto o color" />*/}
                     <button type="submit" className="btn btn-primary" onClick={this.handleClick}><i className="fa fa-search"></i> BUSCAR</button>
-                    { this.state.sugerencias.length < 1 ? null : (
+                    {/* { this.state.sugerencias.length < 1 ? null : (
                         <div className="sugerencia-box" style={this.state.inputStyleValues}>
                             
                             {this.state.sugerencias.map(sug => (
@@ -126,7 +134,7 @@ class Buscador extends Component {
                             ))}
                             
                         </div>
-                    )}
+                    )} */}
                 </form>
                 
                 

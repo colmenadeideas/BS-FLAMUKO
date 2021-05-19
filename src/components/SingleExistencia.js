@@ -9,7 +9,7 @@ const SingleExistencia = (props) => {
             <div className="address-area">
                 {
                     props.existencia.map((tienda, key) => {
-                        console.log(tienda)
+                        
                         return(
                         <SingleTienda 
                             tienda={tienda}

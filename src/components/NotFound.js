@@ -1,6 +1,6 @@
 import React from 'react'
 import {useParams} from 'react-router-dom'
-
+import {Link} from 'react-router-dom'
 
 const NotFound = () => {
 
@@ -10,9 +10,9 @@ const NotFound = () => {
         <div className="container not-found-page">
             <div className="">
                 <div className="not-found-content">
-                    <h2>Ups! No pudimos encontrar {result}</h2>
-                    <span>Error 404</span>
-                    <img className='not-found-img' src="/latiendadelpintor/img/flamuko-logo.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" />
+                    <img className='not-found-img' src="/latiendadelpintor/img/not-found-image.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" />
+                    <h2>Vaya, tu búsqueda no produjo resultados</h2>
+                    <Link to="/latiendadelpintor"><span>Intenta realizar una nueva búsqueda</span></Link>
                 </div>
             </div>
         </div>

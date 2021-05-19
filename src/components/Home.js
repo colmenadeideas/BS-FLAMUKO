@@ -244,26 +244,11 @@ class Home extends Component {
     render() {
         return (
             <React.Fragment>
-                {this.state.errorAlCargar ? <Error/> : null}
-                {this.state.cargando ? <Cargando /> : null}
-                {!this.state.cargando && !this.state.errorAlCargar ? 
-                            <Busqueda
-                            busqueda={this.obtenerBusqueda} 
-                            resultados={this.state.resultados}  
-                            respuesta={this.state.respuesta}  
-                            idEstado={this.obtenerBusquedaFiltrada}
-                            filtrado={this.state.filtrado}
-                            cargando={this.state.cargandoFiltrado}
-                            linea={this.filtrosLinea}
-                            estado={this.filtrosEstado}
-                            presentacion={this.filtrosPresentacion}
-                            borrarEstado={this.borrarEstado}
-                        />
-                            : null}
-                {/* {
-                    (this.state.cargando)
-                        ?   <Cargando />
-                        :   <Busqueda
+                <div className="container">
+                    {this.state.errorAlCargar ? <Error/> : null}
+                    {this.state.cargando ? <Cargando /> : null}
+                    {!this.state.cargando && !this.state.errorAlCargar ? 
+                                <Busqueda
                                 busqueda={this.obtenerBusqueda} 
                                 resultados={this.state.resultados}  
                                 respuesta={this.state.respuesta}  
@@ -275,7 +260,25 @@ class Home extends Component {
                                 presentacion={this.filtrosPresentacion}
                                 borrarEstado={this.borrarEstado}
                             />
-                } */}
+                                : null}
+                    {/* {
+                        (this.state.cargando)
+                            ?   <Cargando />
+                            :   <Busqueda
+                                    busqueda={this.obtenerBusqueda} 
+                                    resultados={this.state.resultados}  
+                                    respuesta={this.state.respuesta}  
+                                    idEstado={this.obtenerBusquedaFiltrada}
+                                    filtrado={this.state.filtrado}
+                                    cargando={this.state.cargandoFiltrado}
+                                    linea={this.filtrosLinea}
+                                    estado={this.filtrosEstado}
+                                    presentacion={this.filtrosPresentacion}
+                                    borrarEstado={this.borrarEstado}
+                                />
+                    } */}
+                </div>
+                
             </React.Fragment>
         );
     }
