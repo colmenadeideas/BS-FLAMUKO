@@ -20,3 +20,15 @@ export function setCookie(cname, cvalue, exdays) {
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
+export const decodeLocalData = () => {
+    //Toma los datos almacenados en localStorage y los vuelve JSON
+    const data = JSON.parse(localStorage.getItem('LTP'))
+
+    if(!data) return {email: "", sesion: "", estado: ""}
+
+    const email = atob('dW5kZWZpbmVk')
+    console.log(email)
+    const {sesion, estado} = data
+    return {email, sesion, estado}
+}

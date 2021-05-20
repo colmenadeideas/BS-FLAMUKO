@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {getCookie} from './Helpers'
-import Login from './Login';
+import Login from './LoginRefactor';
+import {decodeLocalData} from './Helpers'
 
 class SingleTienda extends Component {
 
@@ -9,24 +10,19 @@ class SingleTienda extends Component {
         estado: "",
         email: "",
         sesion: "",
-        botonesActive: false
+        botonesActive: false,
     }
 
     componentDidMount() {
-        this.obtenerCookies()
+        this.obtenerData()
     }
 
     componentDidUpdate(){
-        this.obtenerCookies()
+        this.obtenerData()
     }
 
     botonesActive = () => {
         
-
-        // let button = document.querySelectorAll('.call-button')
-        // for (let i = 0; i < button.length; i++) {
-        //     button[i].classList.add('active') 
-        // }
         this.setState({
             botonesActive: true
         })
@@ -48,15 +44,16 @@ class SingleTienda extends Component {
     //         })
     //     }
     // }
-    obtenerCookies = () =>{
-        const email = getCookie('email')
-        const sesion = getCookie('sesion')
-        const estado = getCookie('estado')
+    
+
+    obtenerData = () =>{
+        const data = JSON.parse(localStorage.getItem('LTP'))
+        
+        const {email, sesion, estado} = data
         const status = email && sesion && estado
         if(email === this.state.email && sesion === this.state.sesion && estado === this.state.estado) return
-        // console.log(email)
-        // console.log(sesion)
-        // console.log(estado)
+        
+
         if(status){
             this.setState({
                 email: email,
@@ -195,7 +192,7 @@ class SingleTienda extends Component {
                         <Login 
                             producto={this.props.producto.nombre}
                             login={this.login}
-                            obtenerCookies={this.obtenerCookies}
+                            obtenerData={this.obtenerData}
                         />
                     </div>
                 }

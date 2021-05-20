@@ -42,7 +42,7 @@ const Example = ({setBusqueda}) => {
     
 
     const onChange = (event, { newValue }) => {
-        console.log(suggestions)
+        
         setValue(newValue)
         setBusqueda(newValue)
     };
@@ -53,11 +53,13 @@ const Example = ({setBusqueda}) => {
         
         const inputReplace1 = data.value.replace(' ', '%20')
         const inputReplace2 = inputReplace1.replace(' ', '%20')
+
+        
     
         const url = `http://lab.besign.com.ve/flamuko/html/api/autocomplete/all?term=${inputReplace2}`
         axios.get(url)
         .then(res=>{
-            // console.log(res.data)
+            
             const sugerencias = res.data.slice(0, 9)
             setSuggestions(sugerencias)
 
@@ -82,7 +84,7 @@ const Example = ({setBusqueda}) => {
         const url = `http://lab.besign.com.ve/flamuko/html/api/autocomplete/all?term=${inputReplace2}`
         axios.get(url)
         .then(res=>{
-            // console.log(res.data)
+            
             const sugerencias = res.data
             return sugerencias
         })

@@ -57,10 +57,10 @@ class Home extends Component {
         let producto = this.state.busqueda
         let url = `http://lab.besign.com.ve/flamuko/html/api/search/all/${producto.replace('%20', '-')}`
         // let url = `http://localhost/flamuko/html/api/search/all/${producto.replace(' ', '-')}`
-        // console.log(url)
+        
         axios.get(url)
             .then(res => {
-                console.log(res.data)
+                
                 if (res.data.productos) {
                     this.setState({
                         productos: res.data.productos,
@@ -82,7 +82,6 @@ class Home extends Component {
             })
             .catch(err=>{
                 console.log(err)
-                console.log('Esta reconociendo el error')
                 this.setState({
                     errorAlCargar: true,
                     respuesta: false,
@@ -97,7 +96,6 @@ class Home extends Component {
         //let url = `http://localhost/flamuko/html/api/show/lineas`
         axios.get(url)
             .then(res => {
-                console.log(res.data)
                 this.setState({
                     lineas: res.data
                 }, () => {

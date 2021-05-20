@@ -32,19 +32,19 @@ class Header extends Component {
                         <img className='logo' src="/latiendadelpintor/img/flamuko-logo.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" />
                     </a>
                 </div>
-                <div className="col-12 col-sm-12 col-md-6 form1 d-flex align-items-center">
+                <div className="col-12 col-sm-12 col-md-6 form1 d-flex align-items-center form-search-wrapper">
                     {
                         (this.state.pathname !== "/latiendadelpintor" && this.state.pathname !== "/latiendadelpintor/") 
                             ?   <Buscador 
                                     busqueda={this.props.busqueda}
                                 />
             
-                            :   <div className="col-12" style={{width:"600px"}}></div>
+                            :   <div className="col-12" style={{width:"700px"}}></div>
 
                     }
                 </div>
                 <div className="col-12 col-sm-12 col-md-3 sesion-dropdown">
-                    <TopNavBar />
+                    <TopNavBar email={this.props.email}/>
                 </div>
             </div>
             

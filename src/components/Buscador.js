@@ -55,7 +55,7 @@ class Buscador extends Component {
         const url = `http://lab.besign.com.ve/flamuko/html/api/autocomplete/all?term=${inputReplace2}`
         axios.get(url)
         .then(res=>{
-            // console.log(res.data)
+            
             this.setState({
                 sugerencias: res.data.slice(0, 9),
             })
@@ -65,14 +65,6 @@ class Buscador extends Component {
         })
     }
 
-    // setBusqueda = (sugerencia) => {
-    //     this.setState({
-    //         busqueda: sugerencia,
-    //         sugerencias: []
-    //     })
-
-    // }
-
     setBusqueda = (busqueda) => {
         this.setState({
             busqueda: busqueda,
@@ -80,61 +72,15 @@ class Buscador extends Component {
 
     }
 
-    // componentDidUpdate(){
-    //     const inputValues = this.inputBusqueda.current.getBoundingClientRect()
-    //     this.setState({
-    //         inputStyleValues: {
-    //             top: inputValues.bottom,
-    //             width: inputValues.width,
-    //             right: inputValues.x
-    //         }
-    //     })
-    // }
-    // static getDerivedStateFromProps(nextProps, prevState) {
-    //     console.log(nextProps);
-    //     console.log(prevState);
-    //     if (nextProps.busqueda !== prevState.busqueda) {
-    //         if (nextProps.busqueda) {
-    //             return {
-    //                 busqueda: '',
-    //                 resultado: false
-    //             }        
-    //         }
-    //     }
-    // }
-    // useEffect() {
-    //     console.log(this.props.busqueda)
-    //     // if (this.props.busqueda !== this.state.resultado) {
-    //         console.log(this.props.busqueda)
-    //         this.setState({
-    //             resultado: this.props.busqueda
-    //         })  
-    //         if (this.props.busqueda) {
-    //             this.setState({
-    //                 busqueda: ''
-    //             })            
-    //         }
-    //     // }
-    // }
     render() {
 
         return (
             <React.Fragment>
                 <form id="form-search" className="form-inline" onSubmit={this.handleSubmit}>
                     <Example setBusqueda={this.setBusqueda} />
-                    {/* <input type='text' ref={this.inputBusqueda} onChange={this.handleChange}  className="form-control valid" value={this.state.busqueda} placeholder="Buscar por producto o color" />*/}
+                   
                     <button type="submit" className="btn btn-primary" onClick={this.handleClick}><i className="fa fa-search"></i> BUSCAR</button>
-                    {/* { this.state.sugerencias.length < 1 ? null : (
-                        <div className="sugerencia-box" style={this.state.inputStyleValues}>
-                            
-                            {this.state.sugerencias.map(sug => (
-                                <div key={sug.id} className="sugerencia" onClick={() => this.setBusqueda(sug.term.toLowerCase())}>
-                                    <div>{sug.term.toLowerCase()}</div>
-                                </div>
-                            ))}
-                            
-                        </div>
-                    )} */}
+                    
                 </form>
                 
                 

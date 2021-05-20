@@ -15,7 +15,16 @@ class Router extends Component {
             lineas: [],
             estado: ''
         },
+        email: "",
         busqueda: Boolean
+    }
+    componentDidMount(){
+        this.loginSesion()
+    }
+
+    componentDidUpdate(){
+        console.log('Actualizando...')
+        this.loginSesion()
     }
     pathname = (e) => {
         if (e !== this.state.pathname) {
@@ -29,12 +38,24 @@ class Router extends Component {
             busqueda: e        
         })
     }
+
+    loginSesion = () => {
+        const data  = JSON.parse(localStorage.getItem('LTP'))
+        const email = data ? data.user : ""
+        if(email === this.state.email) return
+        this.setState({
+            email: email
+        })
+    }
     render() { 
+
+        console.log(this.state.pathname)
         return (  
             <BrowserRouter>
                 <React.Fragment>
                     <div className="" id="header">
-                        <Header 
+                        <Header
+                            email={this.state.email} 
                             pathname={this.state.pathname}
                             busqueda={this.state.busqueda}
                         />
@@ -64,6 +85,7 @@ class Router extends Component {
                                 return (
                                     <SingleProducto 
                                         idProducto={idProducto}
+                                        pathname={this.state.pathname}
                                     />
                                 )
                             }} />

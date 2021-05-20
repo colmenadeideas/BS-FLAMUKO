@@ -1,5 +1,5 @@
 import React from 'react'
-import SingleTienda from './SingleTienda';
+import SingleTienda from './SingleTiendaRefactor';
 
 const SingleExistencia = (props) => {
     // console.log(props.existencia)

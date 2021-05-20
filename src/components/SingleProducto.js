@@ -6,6 +6,7 @@ import FiltrosSingle from './FiltrosSingle';
 import Error from './Error';
 import LeyendaExitencia from './leyendaExistencia';
 import NotFound from './NotFound';
+import { Link } from 'react-router-dom';
 
 class SingleProducto extends Component {
     state = {  
@@ -26,7 +27,7 @@ class SingleProducto extends Component {
         //let url = `http://localhost/flamuko/html/api/detail/${this.props.idProducto}`
         await axios(url)
             .then(res => {
-                console.log(res.data.producto[0])
+                
                 this.setState({
                     producto: res.data.producto[0],
                     existencia: res.data.existencia,
@@ -37,7 +38,6 @@ class SingleProducto extends Component {
             })
             .catch( err =>{
                 console.log(err)
-                console.log('Esta reconociendo el error')
                 this.setState({
                     errorAlCargar: true,
                     cargando: false,
@@ -88,6 +88,10 @@ class SingleProducto extends Component {
         this.setState({
             filtrado: false
         })
+    }
+
+    goBack() {
+        window.history.back();
     }
     showProduct = ( ) => {
         if(this.state.producto.length === 0) return
@@ -142,9 +146,21 @@ class SingleProducto extends Component {
                                         borrarFiltro={this.borrarFiltro}
                                     />
                                 </div>
+                                
                                 <div className="main col-sm-9 col-lg-10">
                                     <div className="row product-display no-gutters">
-                                        <LeyendaExitencia/>
+                                        
+                                        <div className="container-fluid top-box">
+                                            <div className="row">
+                                                <div className="col-md-2 back">
+                                                    <button onClick={this.goBack}>{`< Volver al listado`}</button>
+                                                </div>
+                                                <div className="col-md-10 leyenda-wrapper">
+                                                    <LeyendaExitencia/>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
                                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <h4 className="nombre-producto">{nombre}</h4>
                                             <div className="card result-card-detail div-img" style={{background: color}}>					
