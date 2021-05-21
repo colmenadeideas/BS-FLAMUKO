@@ -25,9 +25,11 @@ input[type="number"]::-webkit-inner-spin-button {
 .filtros {
     grid-area: Filtros;
 }
+*/
 .main {
-    grid-area: Main;
-} */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+} 
 
 /* Header */
 #header {
@@ -248,6 +250,8 @@ form a {
 .home-info .icon{
     width: 35px;
     height: 35px;
+    margin-bottom: 12px;
+
 }
 .home-info .icon svg{
     width: 32px;
@@ -278,7 +282,7 @@ form a {
 
 /* Productos */
 .product-display { 
-    padding: 20px 50px ;
+    padding: 0px 50px ;
 }
 .resul1{
     padding: 10px 0px 0px 65px;
@@ -525,20 +529,26 @@ button.active-filter::after {
 
 /* Producto */
 .nombre-producto {
-    text-align: center;
+    text-align: left;
 }
 .call-button {
     border: solid 1px #A9A9A9;
     border-radius: 5px;
-    padding: 7px 15px;
+    padding: 10px 11px 9px 19px;
     margin:0 10px 0 0;
     transition: all ease 0.5s;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #56616A;
 }
 .call-button.active {
     background: #28a745 !important;
     border-color: #28a745 !important;
     color: #FFF !important;
 }
+.call-button .icon
 .call-button.active:hover {
     background: #1a6e2e !important;
     border-color: #1a6e2e !important;
@@ -572,11 +582,15 @@ a.call-button, a.call-button:link {
     background: #DC3545 
 }
 
-.availability.small{
-    height: 10px; 
-    width: 10px;
+.top-box .row{
+    padding: 8px;
 }
 
+.top-box{
+    margin: 8px 0 65px 0 !important;
+    padding: 0 !important;
+    border-bottom: 1px solid #CCC;
+}
 .product-display .top-box button{
     font-family: Roboto;
     font-style: normal;
@@ -595,23 +609,30 @@ a.call-button, a.call-button:link {
     padding: 0px !important;
 }
 
-.top-box .leyenda-wrapper,
-.top-box .back{
-    margin-bottom: 12px;
-}
+
+
 .leyenda-existencia{
+    width: 440PX;
     font-size: 12px;
-    padding-left: 10px;
-    width: auto;
-    background-color: #eee;
+    line-height: 14px;
     display: flex;
     align-items: center;
-}
+    text-transform: uppercase;
 
+    color: #7A7878;
+
+}
+.leyenda-existencia .container{
+    margin: 0 !important;
+    padding: 0 !important;
+}
 .leyenda-existencia .row{
-    background-color: #eee ;
-    width: 100% !important;
+    /* background-color: #eee ; */
+    max-width: 100% !important;
+    margin: 0 !important;
     padding: 12px 0;
+    display: flex;
+    align-items: center;
 }
 .leyenda-wrapper{
     display: flex;
@@ -677,7 +698,7 @@ a.call-button, a.call-button:link {
 .div-img {
     width: 70%;
     height: 80%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     display: flex;
     justify-content: center;
     align-items: center
@@ -1020,6 +1041,12 @@ button:focus {
     #header {
         text-align: center;
         justify-content: center;
+    }
+    .home-info .como-usar.bold{
+        margin-bottom: 12px;
+    }
+    .icon-wrapper{
+        margin-bottom: 12px;
     }
 }
 
