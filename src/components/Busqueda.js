@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Productos from './Productos';
 import Filtros from './Filtros';
 import Cargando from './Cargando';
+import NotFound from './NotFound'
 
 class Busqueda extends Component {
   state = {  
@@ -137,7 +138,7 @@ class Busqueda extends Component {
       console.log(resultado)
     }
 
-    const noResultados =  <h1 className="slide">No se encontraron resultados</h1>
+    const noResultados =  <NotFound />
     const resultados =  <div className="container-fluid slide">
                           <div className="row">
                             <div id="filtros" className="filtros col-sm-3 col-lg-2">
