@@ -21,13 +21,9 @@ class Header extends Component {
     render() { 
         return (  
             
-            <div className='row slide'>   
+            <div className='row slide d-flex justify-content-between'>   
                 <div className="col-12 col-sm-12 col-md-3">
 
-                    {/* <img className='logo' src="/latiendadelpintor/img/flamuko-logo.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" /> */}
-                    {/* <Link to="/latiendadelpintor/">
-                        <img className='logo' src="/latiendadelpintor/img/flamuko-logo.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" />
-                    </Link> */}
                     <a href="/latiendadelpintor/">
                         <img className='logo' src="/latiendadelpintor/img/flamuko-logo.png" alt="La Tienda del Pintor" title="La Tienda del Pintor" />
                     </a>

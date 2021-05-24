@@ -548,16 +548,18 @@ button.active-filter::after {
     border-color: #28a745 !important;
     color: #FFF !important;
 }
-.call-button .icon
+
 .call-button.active:hover {
     background: #1a6e2e !important;
     border-color: #1a6e2e !important;
 }
+
 button.call-button, button.call-button:link,
 a.call-button, a.call-button:link { 
     color: #585858; 
     text-decoration: none; 
 }
+
 .call-button:hover { 
     background: #EAEAEA;
 }
