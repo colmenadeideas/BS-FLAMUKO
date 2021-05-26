@@ -4,7 +4,7 @@ import {ChangeTextColor, hexToRGB} from './styleFunctions'
 
 const Producto = (props) => {
     const pinturas = ['ARM026', 'ARM072', 'ARM81', 'ARM085', 'ARM156', 'ARM582', 'ARM590', 'ARM596', 'FLA18', 'FLA20', 'FLA40', 'FLA70', 'FLA355', 'REG359']
-    const {cod, nombre, id, color, presentacion} = props.producto
+    const {cod, nombre, id, color, presentacion, linea} = props.producto
     // console.log(presentacion)
     let envase
     let icon = ''
@@ -51,8 +51,12 @@ const Producto = (props) => {
                 <div className="card result-card" style={ChangeTextColor(color)}>
 
                     <div className="text-section">
-                        <h4>{nombre}</h4>
-                        <p>{nombre.split(' ')[0]}</p>
+                        {/* <h4>{`${nombre[0].toUpperCase() + nombre.slice(1, nombre.length)}`}</h4> */}
+                        <h4>{`${nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase()}`}</h4>
+                        {/* <p>{nombre.split(' ')[0]}</p> */}
+                        {linea === "758" ? <p>Armonía</p> : null }
+                        {linea === "759" ? <p>Fla-wall</p> : null }
+                        {linea === "760" ? <p>Regional</p> : null }
                     </div>
                     {/* <div className="presentacion">
                         <div></div>
@@ -61,7 +65,7 @@ const Producto = (props) => {
                     {
                         (envase !== '')
                             ?   <div className="btn-link-bottom presentacion">
-                                    <h4 className="presentacion__title"><b>{envase}</b></h4>
+                                    <h4 className="presentacion__title"><b>{`${envase.charAt(0).toUpperCase() + envase.slice(1).toLowerCase()}`}</b></h4>
                                     {icon !== ''
                                         ?   <div><img src={`/latiendadelpintor/img/${icon}`} className="presentacion__img" alt="icon" /></div>
                                         :   <div><i className="fas fa-brush"></i></div>

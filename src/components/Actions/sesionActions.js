@@ -1,28 +1,31 @@
 import * as actions from './ActionTypes'
 import axios from 'axios'
 
-export function enviarRegistroAction(usuario){
+export function localSesionAction(usuario){
+
+
+    const sesion = {...usuario, sesion:"activa", estado:"login"}
+    localStorage.setItem('LTP_sesion', JSON.stringify(sesion))
+    
+
+}
+
+export function enviarRegistroAction(search){
 
     return async (dispatch) => {
 
         dispatch(registroInit())
                 
         try {
+            const userData = JSON.parse(localStorage.getItem('LTP_sesion'))
+            const usuario = {name:userData.name, username:userData.username, phone: userData.phone, search:search}
             let url = `http://lab.besign.com.ve/flamuko/html/api/save`
             
             const res = await axios.post(url, usuario)
+            console.log(res)
             if (res.data === 'SignUp' || res.data === 'Login') {
                 
-                const data = {
-                    user: usuario.username,
-                    sesion: "activa",
-                    estado: "login",
-                }
-
-
-
-                localStorage.setItem('LTP', JSON.stringify(data))
-                dispatch(registroSuccess(data.user))
+                dispatch(registroSuccess(usuario.username))
             }
         } catch (error) {
             console.log(error)

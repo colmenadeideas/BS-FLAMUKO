@@ -23,7 +23,7 @@ export function setCookie(cname, cvalue, exdays) {
 
 export const decodeLocalData = () => {
     //Toma los datos almacenados en localStorage y los vuelve JSON
-    const data = JSON.parse(localStorage.getItem('LTP'))
+    const data = JSON.parse(localStorage.getItem('LTP_sesion'))
 
     if(!data) return {email: "", sesion: "", estado: ""}
 

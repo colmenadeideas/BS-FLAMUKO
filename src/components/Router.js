@@ -40,7 +40,7 @@ class Router extends Component {
     }
 
     loginSesion = () => {
-        const data  = JSON.parse(localStorage.getItem('LTP'))
+        const data  = JSON.parse(localStorage.getItem('LTP_sesion'))
         const email = data ? data.user : ""
         if(email === this.state.email) return
         this.setState({

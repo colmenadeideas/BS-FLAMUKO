@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+    --font-family:Roboto,"Loki", Arial, Sans-serif;
+}
 * {
     padding: 0;
     margin: 0;
-    font-family: Roboto;
+    font-family: var(--font-family);
     /* font-family: "Source Sans Pro"; */
 }
 body {
@@ -39,22 +43,39 @@ input[type="number"]::-webkit-inner-spin-button {
     min-height: 100px;
     padding: 20px;
 }
-.logo {
-    margin-left: 95px;
+
+.header-box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-box .row{
+    padding: 0 !important;
+    width: 100% !important;
+}
+.logo-box{
+    padding-left: 77px !important;
+}
+.logo{
+    width: 126px;
+    height: 106px;
 }
 #form-search {
-    width: 600px;
-    margin: 0px 100px;
+    min-width: 544px !important;
+    display: flex;
+
 }
 #form-search input {
     position: relative;
-    width: 75%;
+    width: 407px !important;
     border-radius: 20px 0 0 20px;
     border: none;
     padding: 23px 20px;
 }
 #form-search a, #form-search button {
-    width: 25%;
+    width: 137px;
     border-radius: 0 20px 20px 0;
     padding: 10px 0;
 }
@@ -74,7 +95,7 @@ form a {
     box-shadow: unset !important;
 }
 
-.logout-button {
+.logout-button, .login-button, .login-button {
     background: none;
     border: none;
     font-size: 14px;
@@ -82,7 +103,20 @@ form a {
     text-align: center;
     cursor: pointer;
 }
-.logout-button, .indicador-sesion p{
+.indicador-sesion{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.logout-button, .login-button{
+    width: auto;
+}
+.indicador-sesion p{
+    
+    margin-bottom: 0px !important;
+}
+.logout-button, .login-button, .indicador-sesion p{
     font-size: 14px;
     line-height: 24px;
     display: flex;
@@ -91,15 +125,17 @@ form a {
     color: #FFFFFF;
     transition: 500ms;
 }
-.logout-button:hover { 
+.logout-button:hover, .login-button:hover { 
     color: #ccc;
 }
-.logout-button:focus { 
+.logout-button:focus, .login-button:focus { 
     outline: none; 
 }
-.sesion-dropdown{
+.sesion-box{
     display: grid;
     place-items: center;
+    margin-right: 0 !important;
+    padding-right: 50px !important;
 }
 .sugerencia-box{
     position: absolute;
@@ -160,7 +196,7 @@ form a {
     margin: 5px;
 }
 .container-suggestions{
-    width: 75%;
+    width: 407px !important;
     position: relative;
 }
 
@@ -192,7 +228,7 @@ form a {
     box-sizing: border-box;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-    padding: 36px;
+    padding: 21px;
 }
 
 .home-info .como-usar {
@@ -234,13 +270,24 @@ form a {
     align-items: center;
 }
 .home-background div h2{
-    font-size: 48px !important;
+    font-family: var(--font-family);
+    font-style: normal;
     font-weight: bold;
+    font-size: 64px;
+    line-height: 75px;
+    color: #444160;
     margin-bottom: 40px;
 }
 .home-background div p{
-    font-size: 18px;
-    margin-bottom:24px;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 28px !important;
+    color: #000000;
+
 }
 .icon-wrapper{
     display: flex;
@@ -257,9 +304,9 @@ form a {
     width: 32px;
     height: 32px;
 }
-/* .home-sugerencia{
-    margin-bottom: 100px !important;
-} */
+.home-sugerencia{
+    padding: 0 !important;
+}
 .home-sugerencia p{
     font-size: 12px;
     line-height: 14px;
@@ -270,13 +317,13 @@ form a {
 }
 
 .home-sugerencia h4{
+    font-style: normal;
+    font-weight: normal;
     font-size: 24px;
     line-height: 28px;
     display: flex;
     align-items: center;
-    text-align: center;
 
-    color: #444160;
 }
 /* Fin Principal */
 
@@ -351,7 +398,6 @@ form a {
 .result-card h4 {
     /* color:#585858;  */
     font-size: 0.9rem; 
-    text-transform: lowercase; 
     margin: 20px 15px 0 15px;
     font-style: normal;
     font-weight: normal;
@@ -365,15 +411,16 @@ form a {
 .result-card p {
     /* color:#585858;  */
     font-size: 0.9rem; 
-    text-transform: lowercase; 
+    text-transform: uppercase; 
     margin: 4px 15px 0 15px;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
     line-height: 14px;
     display: flex;
     align-items: center;
+    color: rgba(255, 255, 255, 0.7);
     text-align: right;
 }
 
@@ -409,7 +456,7 @@ form a {
     height: 215px;
 }
 .not-found-content h2{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
@@ -422,7 +469,7 @@ form a {
     margin-bottom:19px !important;
 }
 .not-found-content span{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
@@ -594,7 +641,7 @@ a.call-button, a.call-button:link {
     border-bottom: 1px solid #CCC;
 }
 .product-display .top-box button{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -836,7 +883,8 @@ button:focus {
     color: white;
 }
 .static { 
-    position: static; 
+    position: static;
+    padding-left: 0 !important;
 }
 .boton-check {
     padding: 3px 0px;
@@ -1032,9 +1080,32 @@ button:focus {
 }
 
 /*MEDIA QUERYS*/
+@media (max-width: 1180px){
+    .container-suggestions{
+        width: 100% !important;
+    }
+    #form-search{
+        min-width: auto !important;
+        width: 100%;
+    }
+
+    .logo-box{
+        padding-left: 77px !important;
+    }
+
+    #form-search input {
+        width: 100% !important;
+    }
+    #form-search a, #form-search button {
+        width: 25%;
+    }
+}
 @media (max-width: 767px){
-    .logo {
+    .logo{
         margin: 0 0 15px 0;
+    }
+    .logo-box{
+        padding-left: 15px !important;
     }
     #form-search {
         width: 100%;
@@ -1049,6 +1120,13 @@ button:focus {
     }
     .icon-wrapper{
         margin-bottom: 12px;
+    }
+    .indicador-sesion{
+        align-items: center;
+        margin-top: 20px;
+    }
+    .indicador-sesion p, .indicador-sesion .logout-button{
+        text-align: center;
     }
 }
 

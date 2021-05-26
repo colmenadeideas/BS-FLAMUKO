@@ -76,7 +76,7 @@ class Buscador extends Component {
 
         return (
             <React.Fragment>
-                <form id="form-search" className="form-inline" onSubmit={this.handleSubmit}>
+                <form id="form-search" className="" onSubmit={this.handleSubmit}>
                     <Example setBusqueda={this.setBusqueda} />
                    
                     <button type="submit" className="btn btn-primary" onClick={this.handleClick}><i className="fa fa-search"></i> BUSCAR</button>

@@ -47,7 +47,7 @@ class SingleTienda extends Component {
     
 
     obtenerData = () =>{
-        const data = JSON.parse(localStorage.getItem('LTP'))
+        const data = JSON.parse(localStorage.getItem('LTP_sesion'))
         
         const {email, sesion, estado} = data
         const status = email && sesion && estado

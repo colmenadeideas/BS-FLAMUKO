@@ -14,6 +14,8 @@ class Principal extends Component {
             <div className="home-background">
                 <div>
                     <h2>¡Pinta tu Vida!</h2>
+                    <p>Localiza aqui productos o colores</p>
+
                     <div className="form-search-wrapper">
                         <Buscador 
                             busqueda={this.props.busqueda}
@@ -74,12 +76,12 @@ class Principal extends Component {
                     <div className="row">
                         <div className="col-md-6">
                             <p>Aprende a seleccionar la línea ideal para ti</p>
-
+                            <h4>¿Qué tipo de pintura necesito?</h4>
                             <div className="accordion" id="accordionExample">
                                 <div className="accordion-item">
                                     <h2 className="accordion-header" id="headingOne">
-                                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Flawall
+                                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            Fla-wall
                                         </button>
                                     </h2>
                                     <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -91,7 +93,7 @@ class Principal extends Component {
                                 <div className="accordion-item">
                                     <h2 className="accordion-header" id="headingTwo">
                                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Armonia
+                                            Armonía
                                         </button>
                                     </h2>
                                     <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">

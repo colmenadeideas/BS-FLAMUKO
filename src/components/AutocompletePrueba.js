@@ -95,7 +95,7 @@ const Example = ({setBusqueda}) => {
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: 'Buscar por producto o color',
+      placeholder: 'Busca tu producto o color',
       className:"form-control valid",
       value,
       onChange: onChange

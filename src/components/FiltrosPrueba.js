@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Linea from './Linea';
 import Estado from './Estado';
 import Presentacion from './Presentacion';
 import {setEstadoFiltro, setPresentacionFiltro, setLineaFiltro, borrarPresentacionFiltro, borrarEstadoFiltro, borrarLineaFiltro} from './Actions/filtroActions'
-import { connect } from 'react-redux'
 
 class Filtros extends Component {
     state = {  
@@ -28,11 +28,11 @@ class Filtros extends Component {
     }
 
     componentDidMount() {
-        const { lineas, estados, presentacion, filtros } = this.props
+        const { lineas, estados, presentaciones, filtros } = this.props
         this.setState({
             lineas,
             estados,
-            presentaciones: presentacion
+            presentaciones: presentaciones
         })
         if (filtros) {
             this.setState({
@@ -53,7 +53,8 @@ class Filtros extends Component {
             let lineas = [...this.state.linea, linea[0].nombre]
             this.setState({
                 linea: lineas
-            })  
+            })
+            this.props.setLineaFiltro(lineas)   
         }
     }
 
@@ -71,7 +72,8 @@ class Filtros extends Component {
             this.setState({
                 // presentaciones: presentaciones,
                 presentacion: presentacion.nombre
-            })  
+            })
+            this.props.setPresentacionFiltro(presentacion.nombre)  
         }
     }
 
@@ -85,6 +87,7 @@ class Filtros extends Component {
         this.setState({
             estado: estado[0].nombre
         })
+        this.props.setEstadoFiltro(estado[0].nombre) 
     } 
     
 
@@ -244,8 +247,14 @@ class Filtros extends Component {
                     <h3>Ubicación</h3>
                     <div id="current-filters-ubicacion" className="current-filters">
                         {
-                            (this.state.estado.length > 0)
-                            ?   <button type="submit" className="active-filter" onClick={this.borrarFiltro} value={this.state.estado}>{this.state.estado}</button>
+                            // (this.state.estado.length > 0)
+                            // ?   <button type="submit" className="active-filter" 
+                            //     onClick={this.borrarFiltro} value={this.state.estado}>{this.state.estado}</button>
+                            // :   ""
+
+                            (this.props.estadoFiltro.length > 0)
+                            ?   <button type="submit" className="active-filter" 
+                                onClick={() => this.props.borrarEstadoFiltro} value={this.state.estadoFiltro}>{this.state.estadoFiltro}</button>
                             :   ""
                         }
                     </div>
@@ -284,9 +293,16 @@ class Filtros extends Component {
                     <h3>Línea</h3>
                     <div id="current-filters-linea" className="current-filters">
                         {
+                            // (this.state.linea.length > 0)
+                            // ?   this.state.linea.map((linea, key) => (
+                            //         <button type="submit" key={key} className="active-filter" onClick={this.borrarFiltro} value={linea}>{linea}</button>
+                            //     ))
+                            // :   ""
+
                             (this.state.linea.length > 0)
                             ?   this.state.linea.map((linea, key) => (
-                                    <button type="submit" key={key} className="active-filter" onClick={this.borrarFiltro} value={linea}>{linea}</button>
+                                    <button type="submit" key={key} className="active-filter" 
+                                    onClick={() => this.props.borrarLineaFiltro} value={linea}>{linea}</button>
                                 ))
                             :   ""
                         }
@@ -320,8 +336,13 @@ class Filtros extends Component {
                 <h3>Presentación</h3>
                     <div id="current-filters-presentacion" className="current-filters">
                         {
-                            (this.state.presentacion.length > 0)
-                            ?   <button type="submit" className="active-filter" onClick={this.borrarFiltro} value={this.state.presentacion}>{this.state.presentacion}</button>
+                            // (this.state.presentacion.length > 0)
+                            // ?   <button type="submit" className="active-filter" onClick={this.borrarFiltro} value={this.state.presentacion}>{this.state.presentacion}</button>
+                            // :   ""
+
+                            (this.props.presentacionFiltro.length > 0)
+                            ?   <button type="submit" className="active-filter" 
+                                onClick={()=> this.props.borrarPresentacionFiltro} value={this.state.presentacionFiltro}>{this.state.presentacionFiltro}</button>
                             :   ""
                         }
                     </div>
@@ -355,7 +376,7 @@ class Filtros extends Component {
     }
 }
 
-// export default Filtros;
+
 function mapStateToProps(state){
     return {
         lineaFiltro: state.lineaFiltro,
@@ -377,3 +398,4 @@ function mapDispatchToProps(){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps())(Filtros)
+// export default Filtros;

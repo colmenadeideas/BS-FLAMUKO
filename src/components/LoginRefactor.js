@@ -34,7 +34,16 @@ const Login = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(actions.enviarRegistroAction(data))
+
+        actions.localSesionAction(data)
+
+        if(props.producto !== ""){
+            dispatch(actions.enviarRegistroAction(data))
+        } else {
+            console.log('Si esta reconociendo esto')
+            dispatch(actions.registroSuccess(data.username))
+        }
+
     }
 
 

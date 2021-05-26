@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+// import Productos from './Productos';
+// import Filtros from './Filtros';
 import Productos from './Productos';
 import Filtros from './Filtros';
 import Cargando from './Cargando';
@@ -92,6 +94,7 @@ class Busqueda extends Component {
   render() { 
     const { productos, lineas, estados, busqueda, presentacion } = this.props.resultados
     let filtradoLinea = [];
+    
     // let filtradoEstado = [];
     let resultado = [];
     // if (this.state.estado && this.state.linea.length === 0) {
