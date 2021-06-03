@@ -190,7 +190,7 @@ const SingleProducto = (props) => {
     return(
         <>
             <div className="container">
-                {errorAlCargar ? <NotFound/> : null}
+                {errorAlCargar ? <NotFound sugerencia={false} /> : null}
                 {cargando && !errorAlCargar ? <Cargando />: null}
                 {productoObj.nombre !== undefined? showProduct(): null}
             </div>

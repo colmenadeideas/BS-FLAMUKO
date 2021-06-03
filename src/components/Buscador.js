@@ -55,6 +55,8 @@ class Buscador extends Component {
         const url = `http://lab.besign.com.ve/flamuko/html/api/autocomplete/all?term=${inputReplace2}`
         axios.get(url)
         .then(res=>{
+
+            console.log(res)
             
             this.setState({
                 sugerencias: res.data.slice(0, 9),

@@ -154,11 +154,11 @@ class SingleTienda extends Component {
         const llamar = `tel:${telefono}`
         return (  
             <React.Fragment>
-                <div className="col-lg-12 static">
+                <div className="col-lg-12 static single-tienda">
                     <h6><div className={`availability ${valor}`}></div> {nombre}</h6>
                     {
                         (direccion)
-                            ?   <small>
+                            ?   <small className="direccion-texto">
                                     <i className="fa fa-map-marker-alt"></i> {direccion}
                                     <br/><br/>
                                 </small>

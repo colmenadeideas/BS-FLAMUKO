@@ -51,9 +51,9 @@ const Producto = (props) => {
                 <div className="card result-card" style={ChangeTextColor(color)}>
 
                     <div className="text-section">
-                        {/* <h4>{`${nombre[0].toUpperCase() + nombre.slice(1, nombre.length)}`}</h4> */}
-                        <h4>{`${nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase()}`}</h4>
-                        {/* <p>{nombre.split(' ')[0]}</p> */}
+                        
+                        <h4>{nombre}</h4>
+                        
                         {linea === "758" ? <p>Armonía</p> : null }
                         {linea === "759" ? <p>Fla-wall</p> : null }
                         {linea === "760" ? <p>Regional</p> : null }
@@ -65,7 +65,7 @@ const Producto = (props) => {
                     {
                         (envase !== '')
                             ?   <div className="btn-link-bottom presentacion">
-                                    <h4 className="presentacion__title"><b>{`${envase.charAt(0).toUpperCase() + envase.slice(1).toLowerCase()}`}</b></h4>
+                                    <h4 className="presentacion__title">{envase}</h4>
                                     {icon !== ''
                                         ?   <div><img src={`/latiendadelpintor/img/${icon}`} className="presentacion__img" alt="icon" /></div>
                                         :   <div><i className="fas fa-brush"></i></div>

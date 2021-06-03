@@ -77,8 +77,8 @@ class FiltrosSingle extends Component {
                             </a>
                         </React.Fragment>
         return (  
-            <div className="col-12">
-                <div className="filters-area">
+            <div>
+                <div className="filters-area filtro-ubicacion">
                     <h3>Ubicación</h3>
                     <div id="current-filters-ubicacion" className="current-filters">
                         {

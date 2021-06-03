@@ -141,7 +141,9 @@ class Busqueda extends Component {
       console.log(resultado)
     }
 
-    const noResultados =  <NotFound />
+
+    
+    const noResultados =  <NotFound sugerencia={true} />
     const resultados =  <div className="container-fluid slide">
                           <div className="row">
                             <div id="filtros" className="filtros col-sm-3 col-lg-2">

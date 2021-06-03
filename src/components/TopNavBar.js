@@ -34,13 +34,32 @@ const TopNavBar = () => {
         if(data) dispatch(actions.registroSuccess(data.username))
     }
 
+    const setEmail = (email) =>{
+        const mail = email.split('@');
+        const first = mail[0]
+        
+
+        const mailSign = mail[1].split('.')
+
+        const middle = mailSign[0]
+        const last = mailSign[1]
+
+        let newWord = ""
+        for(let i = 0; i < middle.length; i++){
+            newWord = `${newWord}*`
+        }
+        const newEmail = `${first}@${newWord}.${last}`
+
+        return newEmail
+    }
+
     
     return(
         <>
         <div className="indicador-sesion">
             {email !== '' ?
               <>
-                <p className="">Estás buscando como {email}</p>
+                <p className="">Estás buscando como <strong>{setEmail(email)}</strong></p>
                 <button className="logout-button" onClick={signOut}>¿No eres tú? Haz click aquí</button>
               </>
               : 

@@ -34,6 +34,7 @@ const Example = ({setBusqueda}) => {
 
     const [value, setValue]             = useState('')
     const [suggestions, setSuggestions] = useState([])
+    const [timeoutID, setTimeoutID]     = useState(null)
     // Autosuggest is a controlled component.
     // This means that you need to provide an input value
     // and an onChange handler that updates this value (see below).
@@ -50,23 +51,33 @@ const Example = ({setBusqueda}) => {
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
     const onSuggestionsFetchRequested = (data) => {
-        
-        const inputReplace1 = data.value.replace(' ', '%20')
-        const inputReplace2 = inputReplace1.replace(' ', '%20')
 
-        
-    
-        const url = `http://lab.besign.com.ve/flamuko/html/api/autocomplete/all?term=${inputReplace2}`
-        axios.get(url)
-        .then(res=>{
+        if (timeoutID) clearTimeout(timeoutID)
+        const newTimeoutID = setTimeout(function () {
+
+            const input = data.value.replaceAll(' ', '%20')
+            //const inputReplace2 = inputReplace1.replace(' ', '%20')
+
             
-            const sugerencias = res.data.slice(0, 9)
-            setSuggestions(sugerencias)
+        
+            const url = `http://lab.besign.com.ve/flamuko/html/api/autocomplete/all?term=${input}`
+            axios.get(url)
+            .then(res=>{
+                console.log(res)
+                const sugerencias = res.data.slice(0, 9)
+                setSuggestions(sugerencias)
 
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+            
+            
+
+        }, 1000);
+        setTimeoutID(newTimeoutID)
+        
+        
     };
 
   // Autosuggest will call this function every time you need to clear suggestions.

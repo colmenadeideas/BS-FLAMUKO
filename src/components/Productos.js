@@ -15,10 +15,12 @@ class Productos extends Component {
     }
 
     componentDidUpdate() {
+        console.log(this.props.productos)
         if (this.state.productos === this.props.productos) return null
         this.setState({
             productos: this.props.productos
         })
+        
     }
 
     handleClick = (e) => {
@@ -90,22 +92,25 @@ class Productos extends Component {
 
         // Logic for displaying current productos
         const indexOfLastTodo = currentPage * todosPerPage;
+        console.log(indexOfLastTodo)
         const indexOfFirstTodo = indexOfLastTodo - todosPerPage ;
-        const currentProductos = productos.slice(indexOfFirstTodo, indexOfLastTodo + 1);
+        console.log(indexOfFirstTodo)
+
+        const currentProductos = productos.slice(indexOfFirstTodo, indexOfLastTodo);
   
         const renderTodos = currentProductos.map((producto, index) => {
             return (
                 //si no tiene color asociado no se mostrara en la muestra de resultados
-                (producto.color !== "" )
+                // (producto.color === "" )
                 
-                    ?  
-                    <div className="col-lg-4 col-md-4 col-sm-6 col-12"> 
+                //     ?  
+                    <div key={producto.id} className="col-lg-4 col-md-4 col-sm-6 col-12"> 
                         <Producto  
                             key={index}
                             producto={producto}                                     
                         />
                     </div>
-                    :   ""
+                    // :   ""
             );
         });
   
@@ -129,11 +134,11 @@ class Productos extends Component {
         });
         return (  
             <React.Fragment>
-                <div className="row border-bottom resul1 align-items-center">
-                    <h6>{productos.length} resultados para <span>"{busqueda.replace('/', '')}"</span></h6>
+                <div className="row productos-indicador align-items-center">
+                    <h6>{productos.length} Resultados para <span>"{busqueda.replace('/', '')}"</span></h6>
                     <span className="toogle-button" onClick={this.toogleFiltros}>Aplicar Filtros  <i className="fas fa-bars"></i></span>
                 </div>				
-                <div className="row product-display">
+                <div className="row product-display productos-display">
                     {renderTodos}
                 </div>
                 {

@@ -15,8 +15,8 @@ const SingleExistencia = (props) => {
     // }, [])
 
     return (  
-        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            Encuentra este producto en:
+        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 lista-existencia">
+            <span className="texto-existencia">Encuentra este producto en:</span> 
             <div className="address-area">
                 {
                     props.existencia.map((tienda, key) => {

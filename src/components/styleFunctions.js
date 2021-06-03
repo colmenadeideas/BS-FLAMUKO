@@ -65,7 +65,8 @@ export function hexToRGB(h) {
 
 
 export function ChangeTextColor(h){
-    const colorRGB = hexToRGB(h)
+    const color = h === "" ? "#FFFFFF" : h
+    const colorRGB = hexToRGB(color)
     const r = colorRGB.red * 0.2126
     const g = colorRGB.green * 0.7152
     const b = colorRGB.blue * 0.0722
@@ -76,5 +77,5 @@ export function ChangeTextColor(h){
     const lightness = light * (-100000)
     const textColor  = `hsl(0, 0%, ${lightness}%)`
     
-    return {backgroundColor: h, color: textColor}
+    return {backgroundColor: color, color: textColor}
 }

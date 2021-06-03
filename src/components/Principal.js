@@ -1,11 +1,50 @@
 import React, { Component } from 'react'
 import Buscador from './Buscador';
 import {hexToHSL} from './styleFunctions'
-import {producto1, producto2} from './pruebaSugerenciaHome'
 import Producto from './Producto'
 import Login from './LoginRefactor'
+import axios from 'axios';
 
 class Principal extends Component {
+
+    state = {
+        productos:[],
+        error:false,
+        loading:false
+    }
+
+    componentDidMount(){
+        this.getRandomProductos()
+        this.props.setFromHome(true)
+    }
+
+    getRandomProductos = () => {
+        const cantidad = 2
+        const url = `http://lab.besign.com.ve/flamuko/html/api/random/${cantidad}`
+
+        this.setState({
+            loading:true
+        })
+        
+        axios.get(url)
+            .then(res => {
+                console.log(res)
+                const productos = res.data.productos
+                this.setState({
+                    productos: productos,
+                    loading:false,
+                    error:false
+                })
+            })
+            .catch(err => {
+                console.log(err)
+                this.setState({
+                    loading:false,
+                    error:true
+                })
+            })
+    }
+
     render() { 
 
         const color = hexToHSL('#0000FF')
@@ -28,7 +67,7 @@ class Principal extends Component {
                 <div className="container home-como-usar">
                     <div className="row home-info">
                         <div className="col-lg-3 col-md-12 como-user-wrapper">
-                            <div className="como-usar bold">
+                            <div className="como-usar como-usar-title bold">
                                 ¿Cómo usar el localizador de Pinturas?
                             </div>
                         </div>
@@ -74,9 +113,9 @@ class Principal extends Component {
                 </div>
                 <div className="container home-sugerencia">
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-6 information-box">
                             <p>Aprende a seleccionar la línea ideal para ti</p>
-                            <h4>¿Qué tipo de pintura necesito?</h4>
+                            <h4 className="title-home">¿Qué tipo de pintura necesito?</h4>
                             <div className="accordion" id="accordionExample">
                                 <div className="accordion-item">
                                     <h2 className="accordion-header" id="headingOne">
@@ -116,12 +155,34 @@ class Principal extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 information-box">
                             <p>Inspiracion para ti</p>
-                            <h4>¿Qué ambiente crearías con estos colores?</h4>
+                            <h4 className="title-home">¿Qué ambiente crearías con estos colores?</h4>
                             <div className="row">
 
-                                <div className="col-md-6">
+                                {this.state.loading ?  <div className="spinner-border" role="status">
+                                                <span className="visually-hidden">Loading...</span>
+                                            </div> : null}
+
+                                {this.state.error ?  <div className="alert alert-danger">
+                                                Lo sentimos. Hubo un error al cargar estos productos. Intenta recargar la pagina
+                                            </div> : null}            
+
+                                {this.state.loading || this.state.error ? null : 
+                                
+                                this.state.productos.map((producto, index) => 
+                                
+                                <div key={producto.id} className="col-md-6">
+                                    <Producto  
+                                    key={producto.id}
+                                    producto={producto}                                     
+                                    />
+                                </div>
+                                
+                                
+                                )}
+
+                                {/* <div className="col-md-6">
                                     <Producto  
                                     producto={producto1}                                     
                                     />
@@ -130,7 +191,7 @@ class Principal extends Component {
                                     <Producto 
                                     producto={producto2}                                     
                                     />  
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

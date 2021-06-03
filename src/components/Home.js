@@ -30,6 +30,7 @@ class Home extends Component {
         }
     }
     componentDidMount() {
+        this.props.setFromHome(false)
         if (this.props.busqueda === this.state.busqueda) return null
 
         this.obtenerBusqueda()

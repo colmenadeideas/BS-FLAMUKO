@@ -85,9 +85,9 @@ const Login = (props) => {
                                         <div className="modal-body">
                                             <h2>¡Nos gustaría mantenernos en contacto! Te invitamos a completar tus datos</h2>
                                             <form className="row justify-content-center">
-                                                <input required onChange={handleOnChange} id="name" className="input-form" minLength={5} type="text" placeholder="Nombre" /><div className="w-100"></div>
-                                                <input required onChange={handleOnChange} id="username" className="input-form" minLength={5} type="email" placeholder="Tu Correo Electrónico" /><div className="w-100"></div>
-                                                <input required onChange={handleOnChange} id="phone" className="input-form" minLength={5} type="number" placeholder="Telefono Móvil" /><div className="w-100"></div>
+                                                <input required onChange={handleOnChange} id="name" className="input-form" minLength={5} type="text" placeholder="Nombre" required={true} /><div className="w-100"></div>
+                                                <input required onChange={handleOnChange} id="username" className="input-form" minLength={5} type="email" placeholder="Tu Correo Electrónico" required={true} /><div className="w-100"></div>
+                                                <input required onChange={handleOnChange} id="phone" className="input-form" minLength={5} type="number" placeholder="Telefono Móvil" required={true}  /><div className="w-100"></div>
                                                 <div className="form-check">
                                                     <input type="checkbox" className="form-check-input" id="Check" defaultChecked />
                                                     <label className="form-check-label" htmlFor="Check">
@@ -99,11 +99,11 @@ const Login = (props) => {
                                         <div className="modal-footer">
                                             <div className="">
                                                 <button type="submit" className="submit-button" 
-                                                disabled={!(isDataFilled.name, isDataFilled.username, isDataFilled.phone)} 
+                                                disabled={!(isDataFilled.name && isDataFilled.username && isDataFilled.phone)} 
                                                 onClick={handleSubmit} 
                                                 data-dismiss="modal">Enviar Datos</button>
                                             </div>
-                                            <div className="">
+                                            <div className="close-modal-wrapper">
                                                 <p><button onClick={setAsUnregistered} data-dismiss="modal" className="toogle-sesion">No gracias, sólo muéstrame la información</button></p>
                                                 
                                             </div>

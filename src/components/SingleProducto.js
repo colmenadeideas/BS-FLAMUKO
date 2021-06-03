@@ -20,6 +20,7 @@ class SingleProducto extends Component {
     }
     componentDidMount() {
         this.obtenerProducto()
+        this.props.setFromHome(false)
     }
 
     obtenerProducto = async () => {
@@ -148,7 +149,7 @@ class SingleProducto extends Component {
                                 </div>
                                 
                                 <div className="main col-sm-9 col-lg-10">
-                                    <div className="row product-display no-gutters">
+                                    <div className="row product-display leyenda-parent box no-gutters">
                                         
                                         <div className="container-fluid top-box">
                                             <div className="row">
@@ -161,20 +162,30 @@ class SingleProducto extends Component {
                                                 
                                             </div>
                                         </div>
-                                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    </div>
+                                    <div className="row product-display product-detail no-gutters">
+                                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 presentacion-detail-wrapper">
                                             <h4 className="nombre-producto">{nombre}</h4>
                                             <div className="card result-card-detail div-img" style={{background: color}}>					
                                                 <img className="img-producto" src={`/latiendadelpintor/img/bote-pintura/${pintura[0]}.png`} alt={nombre}/>
                                             </div>
                                             {
                                                 (envase !== '')
-                                                    ?   <div className="presentacion presentacion-detail">
-                                                            <h4 className="presentacion__title"><b>{envase}</b></h4>
+
+                                                    ?   
+                                                    <>
+                                                        
+                                                        <p>Disponible en PRESENTACIÓN</p> 
+                                                        
+                                                        <div className="presentacion presentacion-detail">
                                                             {icon !== ''
                                                                 ?   <div><img src={`/latiendadelpintor/img/${icon}`} className="presentacion__img" alt="icon" /></div>
                                                                 :   <div><i className="fas fa-brush"></i></div>
                                                             }
+                                                            <h4 className="presentacion__title"><b>{envase}</b></h4>
+
                                                         </div>
+                                                    </>
                                                     :   ''
                                             }
                                         </div>

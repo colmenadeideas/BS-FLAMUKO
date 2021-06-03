@@ -16,6 +16,7 @@ class Router extends Component {
             estado: ''
         },
         email: "",
+        fromHome: false,
         busqueda: Boolean
     }
     componentDidMount(){
@@ -47,6 +48,12 @@ class Router extends Component {
             email: email
         })
     }
+
+    setFromHome = (value) => {
+        this.setState({
+            fromHome: value
+        })
+    }
     render() { 
 
         console.log(this.state.pathname)
@@ -55,16 +62,19 @@ class Router extends Component {
                 <React.Fragment>
                     <div className="" id="header">
                         <Header
+                            
                             email={this.state.email} 
                             pathname={this.state.pathname}
                             busqueda={this.state.busqueda}
+                            fromHome={this.state.fromHome}
                         />
                     </div>
-                    <div className="">
+                    <div className="content">
                         <Switch>
                             <Route exact path="/latiendadelpintor" render={() => (
                                 <Principal
                                     busqueda={this.state.busqueda}
+                                    setFromHome={this.setFromHome}
                                 />
                             )} />
                             <Route exact path="/latiendadelpintor/:nombreProducto" render={(props) => {
@@ -75,6 +85,8 @@ class Router extends Component {
                                         <Home 
                                             busqueda={nombreProducto}    
                                             resultado={this.busqueda}  
+                                            setFromHome={this.setFromHome}
+
                                         />
                                     </React.Fragment>
                                 )
@@ -86,6 +98,8 @@ class Router extends Component {
                                     <SingleProducto 
                                         idProducto={idProducto}
                                         pathname={this.state.pathname}
+                                        setFromHome={this.setFromHome}
+
                                     />
                                 )
                             }} />
