@@ -4,6 +4,8 @@ export const REGISTRO_ERROR     = "REGISTRO_ERROR"
 export const BUSQUEDA_SIN_REGISTRO = "BUSQUEDA_SIN_REGISTRO"
 export const LOGOUT = 'LOGOUT'
 
+export const SHOW_LOGIN = "SHOW_LOGIN"
+
 export const SET_PRESENTACION_FILTRO    = 'SET_PRESENTACION_FILTRO'
 export const SET_ESTADO_FILTRO          = 'SET_ESTADO_FILTRO'
 export const SET_LINEA_FILTRO           ="SET_LINEA_FILTRO"

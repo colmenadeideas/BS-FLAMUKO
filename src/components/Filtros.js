@@ -241,6 +241,15 @@ class Filtros extends Component {
         return (  
             <div>
                 <div className="filters-area filtro-ubicacion">
+                    <div className="close-filtros">
+                        <button onClick={this.cerrarFiltros} >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
+                        </svg>
+                        </button>
+                    </div>
+                    <button className="done-button" onClick={this.cerrarFiltros}>Aplicar filtros</button>
+
                     <h3>Ubicación</h3>
                     <div id="current-filters-ubicacion" className="current-filters">
                         {
@@ -278,7 +287,6 @@ class Filtros extends Component {
                             Ver {this.state.toogleEstados.mensaje}
                         </a>
                     </ul>
-                    <button className="done-button" onClick={this.cerrarFiltros}>Listo</button>
                 </div>
                 <div className="filters-area">
                     <h3>Línea</h3>

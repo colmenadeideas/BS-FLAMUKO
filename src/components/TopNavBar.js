@@ -4,7 +4,7 @@ import {getCookie} from './Helpers'
 import {decodeLocalData} from './Helpers'
 import * as actions from './Actions/sesionActions'
 import { useDispatch, useSelector } from 'react-redux';
-import Login from './LoginRefactor'
+import LoginPage from './Login/LoginPage'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faBell, faInbox, faBars } from '@fortawesome/free-solid-svg-icons'
 
@@ -17,6 +17,7 @@ const TopNavBar = () => {
         getLocalData()
     }, [])
 
+    const handleOnShow = () => dispatch(actions.handleOnShowLogin(true))
 
     const email = useSelector(state => state.sesionReducer.email)
 
@@ -59,11 +60,13 @@ const TopNavBar = () => {
         <div className="indicador-sesion">
             {email !== '' ?
               <>
-                <p className="">Estás buscando como <strong>{setEmail(email)}</strong></p>
+                <div className="text">
+                    <p className="">Estás buscando como</p><span>{setEmail(email)}</span>
+                </div>
                 <button className="logout-button" onClick={signOut}>¿No eres tú? Haz click aquí</button>
               </>
               : 
-              <button className="login-button" data-toggle="modal" data-target="#modalRegister">Iniciar Sesion</button>
+              <button className="login-button" onClick={handleOnShow} >Iniciar Sesion</button>
               
 
               }
@@ -71,7 +74,7 @@ const TopNavBar = () => {
         </div>
             {
                 <div className="modal fade" id="modalRegister" tabIndex="-1" role="dialog" aria-labelledby="modalRegister" aria-hidden="true">
-                    <Login 
+                    <LoginPage
                         producto={""}
                     />
                 </div>

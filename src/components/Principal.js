@@ -114,7 +114,7 @@ class Principal extends Component {
                 <div className="container home-sugerencia">
                     <div className="row">
                         <div className="col-md-6 information-box">
-                            <p>Aprende a seleccionar la línea ideal para ti</p>
+                            <p className="descripcion">Aprende a seleccionar la línea ideal para ti</p>
                             <h4 className="title-home">¿Qué tipo de pintura necesito?</h4>
                             <div className="accordion" id="accordionExample">
                                 <div className="accordion-item">
@@ -156,13 +156,18 @@ class Principal extends Component {
                             </div>
                         </div>
                         <div className="col-md-6 information-box">
-                            <p>Inspiracion para ti</p>
+                            <p className="descripcion">Inspiracion para ti</p>
                             <h4 className="title-home">¿Qué ambiente crearías con estos colores?</h4>
                             <div className="row">
 
-                                {this.state.loading ?  <div className="spinner-border" role="status">
-                                                <span className="visually-hidden">Loading...</span>
-                                            </div> : null}
+                                {this.state.loading ?  
+                                            <div className="spinner-box">
+                                                <div className="spinner-border" role="status">
+                                                    <span className="visually-hidden">Loading...</span>
+                                                </div> 
+                                            </div> 
+                                            
+                                            : null}
 
                                 {this.state.error ?  <div className="alert alert-danger">
                                                 Lo sentimos. Hubo un error al cargar estos productos. Intenta recargar la pagina

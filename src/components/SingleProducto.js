@@ -164,7 +164,7 @@ class SingleProducto extends Component {
                                         </div>
                                     </div>
                                     <div className="row product-display product-detail no-gutters">
-                                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 presentacion-detail-wrapper">
+                                        <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 presentacion-detail-wrapper">
                                             <h4 className="nombre-producto">{nombre}</h4>
                                             <div className="card result-card-detail div-img" style={{background: color}}>					
                                                 <img className="img-producto" src={`/latiendadelpintor/img/bote-pintura/${pintura[0]}.png`} alt={nombre}/>

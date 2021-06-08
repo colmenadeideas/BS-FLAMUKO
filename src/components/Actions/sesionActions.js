@@ -60,3 +60,8 @@ export const logoutAction = () => ({
     type: actions.LOGOUT,
     payload: true
 })
+
+export const handleOnShowLogin = (value) => ({
+    type: actions.SHOW_LOGIN,
+    payload: value
+})

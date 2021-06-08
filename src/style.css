@@ -2,6 +2,7 @@
 
 :root{
     --font-family:Roboto, Arial, Sans-serif;
+    --font-color:#56616A;
 }
 * {
     padding: 0;
@@ -11,6 +12,7 @@
 }
 body {
     overflow-x: hidden;
+    color: var(--font-color) !important;
 }
 input[type="number"]::-webkit-outer-spin-button, 
 input[type="number"]::-webkit-inner-spin-button {
@@ -33,6 +35,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .main {
     padding-left: 0 !important;
     padding-right: 0 !important;
+    padding-bottom: 20px;
 } 
 .content{
     padding-bottom: 20px;
@@ -126,11 +129,22 @@ form a {
 .logout-button, .login-button{
     width: auto;
 }
+.indicador-sesion .text{
+    display: flex;
+}
 .indicador-sesion p{
     
     margin-bottom: 0px !important;
 }
 
+.indicador-sesion span{
+    font-weight: bold;
+    color: #FFFFFF;
+    
+}
+.indicador-sesion span::before{
+    content: "\00a0 ";
+}
 .indicador-sesion p strong:before { content: "\00a0 "; }
 
 .logout-button, .login-button, .indicador-sesion p{
@@ -328,7 +342,7 @@ form a {
     line-height: 30px;
     text-align: center;
     margin-bottom: 28px !important;
-    color: #000000;
+    color: var(--font-color);
 
 }
 .icon-wrapper{
@@ -349,7 +363,7 @@ form a {
 .home-sugerencia{
     padding: 0 !important;
 }
-.home-sugerencia p{
+.home-sugerencia p.descripcion{
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -357,7 +371,7 @@ form a {
     display: flex;
     align-items: center;
     text-transform: uppercase;
-    color: #56616A;
+    color: var(--font-color);
     margin-bottom: 13px !important;
 }
 
@@ -395,7 +409,7 @@ form a {
     line-height: 16px;
     display: flex;
     align-items: center;
-    color: #56616A;
+    color: var(--font-color);
     margin-bottom: 0 !important;
 }
 /* Fin Productos */
@@ -415,6 +429,7 @@ form a {
     justify-content: flex-end;
     align-items: center;
     font-size: 13px !important;
+    border-radius: 0px 0px 5px 5px;
 }
 .presentacion div {
     width: 30px;
@@ -437,7 +452,6 @@ form a {
 
 .result-card { 
     height: 198px;
-    width: 282px; 
     position: relative;
     margin-bottom: 23px;
     /* box-shadow: 2px 3px 15px rgba(0,0,0,0.2); */
@@ -521,7 +535,7 @@ form a {
     align-items: center;
     text-align: center;
 
-    color: #000000;
+    color: var(--font-color);
     margin-bottom:19px !important;
 }
 .not-found-content span, .not-found-content p{
@@ -559,7 +573,7 @@ form a {
     font-weight: bold;
     font-size: 15px;
     line-height: 18px;
-    color: #56616A;
+    color: var(--font-color);
 }
 .filtro-ubicacion h3{
     padding-top: 30px !important;
@@ -587,7 +601,7 @@ form a {
     font-size: 16px;
     line-height: 33px;
 
-    color: #56616A;
+    color: var(--font-color);
 }
 .current-filters { 
     width: 100%; 
@@ -641,13 +655,14 @@ form a {
 button.active-filter::after {
     content: 'x';
     position: absolute;
-    left: 140px;
+    left: 130px;
 }
 .filters-area .active-filter:hover { 
     background: #EAEAEA 
 }
-.cancel-button, .toogle-button, .done-button {
+.cancel-button, .toogle-button, .done-button, .close-filtros {
     display: none;
+
 }
 /* Fin Filtros */
 
@@ -685,8 +700,10 @@ button.active-filter::after {
 }
 .result-card-detail{
     margin-top: 25px;
-    width: 400px !important;
+    width: 80% !important;
+    /* width: 400px !important; */
     min-height: 370px;
+    border-radius: 5px !important;
 }
 .call-button {
     border: solid 1px #A9A9A9;
@@ -698,7 +715,7 @@ button.active-filter::after {
     font-size: 14px;
     line-height: 16px;
 
-    color: #56616A;
+    color: var(--font-color);
 }
 .call-button.active {
     background: #28a745 !important;
@@ -767,7 +784,7 @@ a.call-button, a.call-button:link {
     align-items: center;
     background: none;
     border: none;
-    color: #56616A;
+    color: var(--font-color);
 }
 .product-display .top-box .back{
     display: grid;
@@ -836,7 +853,7 @@ a.call-button, a.call-button:link {
     font-size: 12px;
     line-height: 14px;
     text-transform: uppercase;
-    color: #000000;
+    color: var(--font-color);
 
 }
 .address-area { 
@@ -873,7 +890,7 @@ a.call-button, a.call-button:link {
     text-transform: capitalize;
     font-style: normal;
     font-weight: normal;
-    color: #000000;
+    color: var(--font-color);
 }
 .single-tienda h6{
     font-style: normal;
@@ -882,7 +899,7 @@ a.call-button, a.call-button:link {
     line-height: 19px;
     text-transform: uppercase;
 
-    color: #000000;
+    color: var(--font-color);
 }
 
 .single-tienda hr{
@@ -937,7 +954,7 @@ a.call-button, a.call-button:link {
     line-height: 14px;
     text-transform: uppercase;
     margin-bottom: 0 !important;
-    color: #000000;
+    color: var(--font-color);
 }
 
 
@@ -1013,10 +1030,13 @@ a.call-button, a.call-button:link {
     padding: 0 !important;
     border-top: none !important;
 }
-.modal-footer .submit-button{
+.submit-button{
     background: #103867;
+    border: none;
     border-radius: 5px;
     width: 382px;
+    font-style: normal;
+    font-weight: normal;
     font-size: 16px;
     line-height: 19px;
     text-align: center;
@@ -1025,18 +1045,11 @@ a.call-button, a.call-button:link {
     transition: 500ms;
     margin-bottom: 22px;
 }
-.modal-footer div{
+.modal-footer div, .submit-button-box{
     margin: 0 !important;
 }
-.modal-footer .submit-button:disabled{
+.submit-button:disabled{
     background: #ccc;
-    border-radius: 5px;
-    width: 382px;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-    color: #FFFFFF;
-    padding: 9px 0 10px 0;
 }
 
 .check-login h2 {
@@ -1053,7 +1066,6 @@ a.call-button, a.call-button:link {
     box-sizing: border-box;
     border-radius: 7px;
     padding: 13px 0 9px 0;
-    margin: 0 0 27px 0;
     text-align: center;
     outline: none;
     font-size: 16px;
@@ -1064,6 +1076,9 @@ a.call-button, a.call-button:link {
     text-align: center;
 
     color: #988F8F;
+}
+.login-popup .form-group{
+    margin: 0 0 27px 0;
 }
 .boton-ingresar {
     background: none;
@@ -1131,13 +1146,14 @@ button:focus {
 
 /* Footer */
 #besign-footer {
+    height: 20px;
     background: #595959;
     width: 100%;
     float: left;
     position: fixed;
     bottom: 0;
     z-index: 9999;
-    transition: opacity .5s; 
+    transition: opacity .5s;
 }
 #cliente {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -1284,6 +1300,12 @@ button:focus {
 }
 
 /*MEDIA QUERYS*/
+@media(max-width:1360px){
+    .indicador-sesion .text{
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
 @media (max-width: 1180px){
     .container-suggestions{
         width: 100% !important;
@@ -1301,7 +1323,12 @@ button:focus {
         width: 100% !important;
     }
     #form-search a, #form-search button {
-        width: 25%;
+        width: 20%;
+    }
+    #form-search button {
+        width: auto;
+        border-radius: 0 20px 20px 0;
+        padding: 15px auto;
     }
 }
 @media (max-width: 767px){
@@ -1335,6 +1362,10 @@ button:focus {
     .main .row{
         padding-left: 20px !important;
     }
+    .indicador-sesion .text{
+        align-items: center;
+    }
+    
 }
 
 @media (max-width: 575px){
@@ -1347,8 +1378,26 @@ button:focus {
     .toogle-button {
         display: inline-block;
         cursor: pointer;
-        margin-left: 17%;
-        margin-bottom: .5rem; 
+        margin-bottom: .5rem;
+         
+    }
+    .product-display{
+        padding: 20px 0 !important;
+        padding-left: 0px !important;
+        
+    }
+    .productos-indicador{
+        justify-content: space-between;
+        flex-direction: row;
+    }
+    .productos-indicador h6{
+        padding-left: 0px !important;
+    }
+    .productos-indicador h6, .productos-indicador span{
+        width: auto;
+    }
+    .toogle-button svg{
+        font-size: 50px;
     }
     .cancel-button {
         display: inline-block;
@@ -1356,13 +1405,22 @@ button:focus {
         font-size: 20px;
         z-index: 100;
     }
+    .close-filtros{
+        display: flex;
+        justify-content: flex-end;
+    }
     .done-button {
         display: block;
         background-color: #005ca8 !important;
         color: #FFF !important;
         padding: 10px 20px !important;
         margin: 0 auto;
+        margin-top:20px;
+
         border-radius: 10px;
+    }
+    .close-filtros{
+        display: block ;
     }
     .slidein { 
         display: block;
@@ -1381,15 +1439,46 @@ button:focus {
     .img-producto {
         margin: 0;
     }
-    .product-display {
-        padding: 20px;
-    }   
+
+    .home-background div h2{
+        font-size: 49px;
+        padding: 0 auto;
+    }
+    .home-background div p{
+        font-size: 16px;
+        padding: 0 auto;
+    }
+    .top-box .back{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .top-box {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .top-box .back button{
+        border: solid 1px #A9A9A9; 
+        border-radius: 5px; 
+        display: block; 
+        padding: 7px 5px 7px 15px; 
+    }
+    .top-box .leyenda-existencia .availability.small{
+        width: 15px;
+        height: 15px;
+
+    }
+    .indicador-group{
+        width: auto;
+    }
+    .indicador-group span{
+        font-size: 12px;
+    }
 }
-@media (max-width: 375px){ 
+/* @media (max-width: 375px){ 
     .toogle-button {
         margin-left: 25%;
     }
-}
+} */
 @media (max-width: 345px){ 
     #form-search input {
         height: 100%;
@@ -1397,10 +1486,10 @@ button:focus {
 }
 
 @media (max-width: 325px){ 
-    .toogle-button {
+    /* .toogle-button {
         margin-left: 20%;
 
-    }
+    } */
     .img-producto {
         margin: 0;
     }

@@ -7,7 +7,8 @@ const initialState = {
     email: "",
     sesion: "",
     estado: "",
-    loading:false
+    loading:false,
+    showLogin: false
 
 }
 
@@ -46,6 +47,11 @@ export default function sesionReducer(state=initialState, action){
         case actions.BUSQUEDA_SIN_REGISTRO:
             return {...state,                
                 busquedaSinRegistro: action.payload,
+            }
+
+        case actions.SHOW_LOGIN:
+            return {...state,                
+                showLogin: action.payload,
             }
 
         default:
