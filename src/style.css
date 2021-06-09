@@ -963,7 +963,8 @@ a.call-button, a.call-button:link {
 /* Login */
 
 .login-popup{
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
     /* height: 490px; */
 }
 .login-popup .modal-header{
@@ -994,7 +995,9 @@ a.call-button, a.call-button:link {
     text-align: center;
     margin: 22px 0 21px 0;
     color: #122C87;
-    width: 387px;
+    max-width: 387px;
+    width: 100%;
+
 
 }
 .login-form {
@@ -1034,7 +1037,8 @@ a.call-button, a.call-button:link {
     background: #103867;
     border: none;
     border-radius: 5px;
-    width: 382px;
+    max-width: 382px;
+    width: 100%;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -1060,7 +1064,8 @@ a.call-button, a.call-button:link {
     margin-bottom: 1rem;
 }
 .login-popup .input-form {
-    width: 387px;
+    max-width: 387px;
+    width: 100%;
     background: #FFFFFF;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
@@ -1467,9 +1472,22 @@ button:focus {
         height: 15px;
 
     }
-    .indicador-group{
-        width: auto;
+    .top-box .row{
+        padding-left: 0px !important;
     }
+    .top-box .leyenda-wrapper{
+        width: auto;
+        padding-left: 0px !important;
+    }
+    .top-box .leyenda-existencia{
+        width: 100%;
+    }
+    .indicador-group{
+        width: auto !important;
+    }
+    /* .indicador-group:first-child{
+        width: 260px !important;
+    } */
     .indicador-group span{
         font-size: 12px;
     }
