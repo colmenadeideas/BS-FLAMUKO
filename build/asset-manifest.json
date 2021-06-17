@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/latiendadelpintor/static/css/main.0f4099f0.chunk.css",
+    "main.js": "/latiendadelpintor/static/js/main.e9d0a644.chunk.js",
+    "main.js.map": "/latiendadelpintor/static/js/main.e9d0a644.chunk.js.map",
+    "runtime-main.js": "/latiendadelpintor/static/js/runtime-main.2ddd6451.js",
+    "runtime-main.js.map": "/latiendadelpintor/static/js/runtime-main.2ddd6451.js.map",
+    "static/css/2.9ee52aab.chunk.css": "/latiendadelpintor/static/css/2.9ee52aab.chunk.css",
+    "static/js/2.70049c71.chunk.js": "/latiendadelpintor/static/js/2.70049c71.chunk.js",
+    "static/js/2.70049c71.chunk.js.map": "/latiendadelpintor/static/js/2.70049c71.chunk.js.map",
+    "index.html": "/latiendadelpintor/index.html",
+    "precache-manifest.d6ae79e5b0c9abf5f36375bd70f61b73.js": "/latiendadelpintor/precache-manifest.d6ae79e5b0c9abf5f36375bd70f61b73.js",
+    "service-worker.js": "/latiendadelpintor/service-worker.js",
+    "static/css/2.9ee52aab.chunk.css.map": "/latiendadelpintor/static/css/2.9ee52aab.chunk.css.map",
+    "static/css/main.0f4099f0.chunk.css.map": "/latiendadelpintor/static/css/main.0f4099f0.chunk.css.map",
+    "static/js/2.70049c71.chunk.js.LICENSE.txt": "/latiendadelpintor/static/js/2.70049c71.chunk.js.LICENSE.txt",
+    "static/media/style.css": "/latiendadelpintor/static/media/home-buscador-background.a23ab6cd.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2ddd6451.js",
+    "static/css/2.9ee52aab.chunk.css",
+    "static/js/2.70049c71.chunk.js",
+    "static/css/main.0f4099f0.chunk.css",
+    "static/js/main.e9d0a644.chunk.js"
+  ]
+}
