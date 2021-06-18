@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Producto from './Producto';
+import NotFound from './NotFound'
 
 class Productos extends Component {
     state = {  
@@ -79,10 +80,7 @@ class Productos extends Component {
             })
         }
     }   
-    toogleFiltros = () => {
-        document.getElementById('filtros').setAttribute('class', 'filtros slidein col-sm-3 col-lg-2');
-        document.getElementById('besign-footer').setAttribute('class', 'none');
-    }
+    
     render() { 
         const { busqueda } = this.props
         
@@ -134,35 +132,41 @@ class Productos extends Component {
         });
         return (  
             <React.Fragment>
-                <div className="row productos-indicador align-items-center">
+                {/* <div className="row productos-indicador align-items-center">
                     <h6>{productos.length} Resultados para <span>"{busqueda.replace('/', '')}"</span></h6>
                     <span className="toogle-button" onClick={this.toogleFiltros}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                         </svg>
                     </span>
-                </div>				
+                </div>				 */}
                 <div className="row product-display productos-display">
                     {renderTodos}
+                    {productos.length === 0 || this.props.noResultados ? <NotFound sugerencia={true} /> : null}
                 </div>
                 {
                     (todosPerPage >= productos.length)
                         ? ""
                         : <nav>
-                            <ul id="page-numbers" className="pagination">
+                            <div className="pagination container">
                                 {
                                     (currentPage === 1) 
                                         ? <li className="page-item"><button className="page-link" disabled onClick={this.prevPage}>&lsaquo; Pagina Anterior</button></li> 
                                         : <li className="page-item"><button className="page-link" onClick={this.prevPage}>&lsaquo; Pagina Anterior</button></li>
                                 }
-                                {renderPageNumbers}
+
+                                
+                                <ul  id="page-numbers" className="pagination numbers">
+                                    {renderPageNumbers}
+
+                                </ul>
                                 {
                                     (currentPage === pageNumbers.length)
                                         ? <li className="page-item"><button className="page-link" disabled onClick={this.nextPage}>Pagina Siguiente &rsaquo;</button></li>
                                         : <li className="page-item"><button className="page-link" onClick={this.nextPage}>Pagina Siguiente &rsaquo;</button></li>
                                 }
 
-                            </ul>
+                            </div>
                         </nav>
                 }
             </React.Fragment>

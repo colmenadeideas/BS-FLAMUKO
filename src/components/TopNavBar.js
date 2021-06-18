@@ -66,7 +66,7 @@ const TopNavBar = () => {
                 <button className="logout-button" onClick={signOut}>¿No eres tú? Haz click aquí</button>
               </>
               : 
-              <button className="login-button" onClick={handleOnShow} >Iniciar Sesion</button>
+              <button className="login-button" onClick={handleOnShow} >Iniciar Sesión</button>
               
 
               }

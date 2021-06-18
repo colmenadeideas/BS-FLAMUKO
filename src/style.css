@@ -522,8 +522,11 @@ form a {
 }
 .not-found-content img{
     margin: 91px 0 32px 0;
-    width: 339px;
+    max-width: 339px;
+    width: 100%;
     height: 215px;
+    object-fit: cover;
+    object-position: center;
 }
 .not-found-content h2{
     font-family: var(--font-family);
@@ -582,8 +585,8 @@ form a {
 .filters-area ul { 
     padding:0; 
     margin: 0;  
-    max-height: 200px;
-    overflow-y: auto;
+    /* max-height: 200px;
+    overflow-y: auto; */
 }
 .filters-area ul li { 
     list-style: none; 
@@ -637,7 +640,7 @@ form a {
 #linea .mostrar, #ubicacion .mostrar {
     color: #0172cf;
 }
-.filters-area .active-filter {
+.filters-area .active-filter{
     border: solid 1px #A9A9A9; 
     border-radius: 5px; 
     display: block; 
@@ -671,6 +674,11 @@ button.active-filter::after {
     justify-content: center;
     padding-bottom: 15px;
 }
+.pagination.numbers{
+    overflow-x: auto;
+    justify-content: flex-start;
+
+}
 .page-link {
     border: 0;
     color: black;
@@ -700,8 +708,7 @@ button.active-filter::after {
 }
 .result-card-detail{
     margin-top: 25px;
-    width: 80% !important;
-    /* width: 400px !important; */
+    width: calc(100% - 15px) !important;
     min-height: 370px;
     border-radius: 5px !important;
 }
@@ -968,12 +975,12 @@ a.call-button, a.call-button:link {
 /* Fin Producto */
 
 /* Login */
-
+/* 
 .login-popup{
     max-width: 500px;
-    /* width: 100%; */
-    /* height: 490px; */
-}
+    width: 100%;
+    height: 490px; 
+} */
 .login-popup .modal-header{
     padding: 18px 14px 0px 14px !important;
     border-bottom: none !important;
@@ -1139,7 +1146,7 @@ button:focus {
     outline: none; 
 }
 .form-check{
-    width: auto;
+    width: 100%;
     margin-bottom: 38px;
 }
 .form-check-label {
@@ -1377,6 +1384,14 @@ button:focus {
     .indicador-sesion .text{
         align-items: center;
     }
+    .sesion-box{
+        padding-right: 15px !important;
+    }
+    .pagination.numbers{
+        width: auto;
+        padding-inline-start: 0px !important;
+    }
+      
     
 }
 
@@ -1387,11 +1402,13 @@ button:focus {
         background: #FFF;
         z-index: 10;
     }
+
     .toogle-button {
         display: inline-block;
         cursor: pointer;
         margin-bottom: .5rem;
-         
+        border: 1px solid #A9A9A9;
+         padding: 5px 8px;
     }
     .product-display{
         padding: 20px 0 !important;
@@ -1407,9 +1424,6 @@ button:focus {
     }
     .productos-indicador h6, .productos-indicador span{
         width: auto;
-    }
-    .toogle-button svg{
-        font-size: 50px;
     }
     .cancel-button {
         display: inline-block;
@@ -1451,7 +1465,10 @@ button:focus {
     .img-producto {
         margin: 0;
     }
-
+    .home-background{
+        background-position: bottom;
+        height: 420px;
+    }
     .home-background div h2{
         font-size: 49px;
         padding: 0 auto;
@@ -1460,6 +1477,7 @@ button:focus {
         font-size: 16px;
         padding: 0 auto;
     }
+    
     .top-box .back{
         display: flex;
         justify-content: flex-start;
@@ -1498,16 +1516,34 @@ button:focus {
     .indicador-group span{
         font-size: 12px;
     }
+    .main .row{
+        padding-left: 0px !important;
+    }
 }
 /* @media (max-width: 375px){ 
     .toogle-button {
         margin-left: 25%;
     }
 } */
-@media (max-width: 345px){ 
-    #form-search input {
-        height: 100%;
+@media (max-width: 365px){ 
+    .home-background div h2{
+        font-size: 38px;
+        margin-bottom: 10px;
     }
+    #form-search{
+        height: 40px;
+    }
+    #form-search input{
+        height: 40px;
+        padding: 5px 10px;
+    }
+    #form-search button{
+        height: 100%;
+        width: 80px;
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
 }
 
 @media (max-width: 325px){ 
@@ -1521,6 +1557,21 @@ button:focus {
     .div-img {
         width: 80%;
     }
+    .home-background{
+        padding-left:10px;
+        padding-right:10px;
+    }
+    .home-background h2{
+        text-align: center;
+    }
+    /* #form-search{
+        height: 40px;
+    }
+    #form-search button{
+        width: 80px;
+        font-size: 12px;
+        padding: 5px 10px;
+    } */
 }
 
 

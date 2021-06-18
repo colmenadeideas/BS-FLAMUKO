@@ -76,11 +76,16 @@ function Form({
                     
                 </div>
                 
-                <div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="Check" />
-                    <label className="form-check-label" htmlFor="Check">
-                        Estoy de acuerdo con suministrar mis datos y ser contactado<br/> para promociones
-                    </label>
+                <div className="form-check row">
+                    <div className="col-1">
+                        <input type="checkbox" className="form-check-input" id="Check" />
+                        
+                    </div>
+                    <div className="col-11">
+                        <label className="form-check-label" htmlFor="Check">
+                            Estoy de acuerdo con suministrar mis datos y ser contactado<br/> para promociones
+                        </label>
+                    </div>
                 </div>
 
                 <div className="submit-button-box">

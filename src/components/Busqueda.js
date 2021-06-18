@@ -91,6 +91,12 @@ class Busqueda extends Component {
     //   contador++;
     // }
   }
+
+  toogleFiltros = () => {
+    document.getElementById('filtros').setAttribute('class', 'filtros slidein col-sm-3 col-lg-2');
+    document.getElementById('besign-footer').setAttribute('class', 'none');
+  }
+
   render() { 
     const { productos, lineas, estados, busqueda, presentacion } = this.props.resultados
     let filtradoLinea = [];
@@ -158,6 +164,29 @@ class Busqueda extends Component {
                                 />
                             </div>
                             <div className="main col-12 col-sm-9 col-lg-10">
+                              <div className="row productos-indicador align-items-center">
+                                  <h6>{productos.length} Resultados para <span>"{busqueda.replace('/', '')}"</span></h6>
+                                  <span className="toogle-button" onClick={this.toogleFiltros}>
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                      </svg>
+                                  </span>
+                                  {/* {
+                                      (this.state.estado.length > 0)
+                                      ?   <button type="submit" className="active-filter" onClick={this.borrarFiltro} value={this.state.estado}>{this.state.estado}</button>
+                                      :   null
+                                  }
+                                  {
+                                      (this.state.presentacion.length > 0)
+                                      ?   <button type="submit" className="active-filter" onClick={this.borrarFiltro} value={this.state.presentacion}>{this.state.presentacion}</button>
+                                      :   null
+                                  }
+                                  {(this.state.linea.length > 0)
+                                      ?   this.state.linea.map((linea, key) => (
+                                              <button type="submit" key={key} className="active-filter" onClick={this.borrarFiltro} value={linea}>{linea}</button>
+                                          ))
+                                      :   null} */}
+                              </div>	
                               {
                                 (this.props.cargando) 
                                   ? <Cargando />
