@@ -5,7 +5,7 @@ const nameValidation = (fieldName, fieldValue) => {
     if (fieldValue.trim() === '') {
         return `El ${fieldName} es requerido`;
     }
-    if (/[^a-zA-Z -]/.test(fieldValue)) {
+    if (/[^a-zA-Z0-9 -]/.test(fieldValue)) {
         return 'Caracteres invalidos';
     }
     if (fieldValue.trim().length < 3) {

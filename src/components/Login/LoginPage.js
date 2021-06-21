@@ -31,11 +31,11 @@ const Login = (props) => {
 
         
         actions.localSesionAction(userData)
-
+        console.log(userData)
         if(props.producto !== ""){
             dispatch(actions.enviarRegistroAction(userData))
         } else {
-            console.log('Si esta reconociendo esto')
+            
             dispatch(actions.registroSuccess(data.username))
         }
         handleClose()
